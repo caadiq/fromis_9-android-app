@@ -2,6 +2,7 @@
 # 플러그인
 agp = "8.4.0"
 kotlin = "1.9.23"
+ksp = "1.9.23-1.0.20"
 
 # 라이브러리
 junit = "4.13.2"
@@ -14,6 +15,9 @@ navigation = "2.7.7"
 constraintlayout = "2.1.4"
 
 material = "1.11.0"
+
+hilt = "2.51.1"
+hiltX = "1.2.0"
 
 
 [libraries]
@@ -31,7 +35,14 @@ androidx-navigation = { group = "androidx.navigation", name = "navigation-fragme
 # google
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "hiltX" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

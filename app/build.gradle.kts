@@ -4,13 +4,15 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
-val properties = Properties().apply {
-    load(FileInputStream(rootProject.file("local.properties")))
-}
-
-fun getKey(propertyKey: String): String {
+fun getProperty(propertyKey: String): String {
+    val propertiesFile = rootProject.file("local.properties")
+    val properties = Properties().apply {
+        load(FileInputStream(propertiesFile))
+    }
     return properties.getProperty(propertyKey)
 }
 
@@ -32,7 +34,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String","BASE_URL", getKey("BASE_URL"))
+        buildConfigField("String","BASE_URL", getProperty("BASE_URL"))
     }
 
     buildTypes {
@@ -69,4 +71,9 @@ dependencies {
 
     // google
     implementation(libs.material)
+
+    // hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation)
+    ksp(libs.hilt.android.compiler)
 }
