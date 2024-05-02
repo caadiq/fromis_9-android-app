@@ -1,8 +1,10 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -10,6 +12,7 @@ import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.ActivityMainBinding
 import com.beemer.unofficial.fromis_9.viewmodel.MainFragment
 import com.beemer.unofficial.fromis_9.viewmodel.MainViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,9 +24,27 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
 
+    private var backPressedTime: Long = 0
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (System.currentTimeMillis() - backPressedTime >= 2000) {
+                backPressedTime = System.currentTimeMillis()
+                Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
+                    view.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+                    show()
+                }
+            } else {
+                finish()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         setupNav()
         setupView()
