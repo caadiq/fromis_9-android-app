@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentHome"
+        android:label="FragmentHome">
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentVideo"
+            app:destination="@id/fragmentVideo" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentSchedule"
+            app:destination="@id/fragmentSchedule" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentVideo"
+        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentVideo"
+        android:label="FragmentVideo">
+        <action
+            android:id="@+id/action_fragmentVideo_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentVideo_to_fragmentSchedule"
+            app:destination="@id/fragmentSchedule" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSchedule"
+        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentSchedule"
+        android:label="FragmentSchedule">
+        <action
+            android:id="@+id/action_fragmentSchedule_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentSchedule_to_fragmentVideo"
+            app:destination="@id/fragmentVideo" />
+    </fragment>
+
+</navigation>

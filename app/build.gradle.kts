@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation)
+    implementation(libs.androidx.navigation.ui)
 
     // google
     implementation(libs.material)
