@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.beemer.unofficial.fromis_9.R
@@ -81,14 +82,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         mainViewModel.currentFragment.observe(this) { fragment ->
-            navController.navigate(
-                when (fragment) {
-                    MainFragment.HOME -> R.id.fragmentHome
-                    MainFragment.VIDEO -> R.id.fragmentVideo
-                    MainFragment.SCHEDULE -> R.id.fragmentSchedule
-                    else -> R.id.fragmentHome
-                }
-            )
+            val destinationId = when (fragment) {
+                MainFragment.HOME -> R.id.fragmentHome
+                MainFragment.VIDEO -> R.id.fragmentVideo
+                MainFragment.SCHEDULE -> R.id.fragmentSchedule
+                else -> R.id.fragmentHome
+            }
+
+            val navOptions = NavOptions.Builder()
+                .setEnterAnim(R.anim.fade_in)
+                .setExitAnim(R.anim.fade_out)
+                .setPopEnterAnim(R.anim.fade_in)
+                .setPopExitAnim(R.anim.fade_out)
+                .build()
+
+            navController.navigate(destinationId, null, navOptions)
         }
     }
 }

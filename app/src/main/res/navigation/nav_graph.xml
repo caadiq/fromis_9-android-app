@@ -11,49 +11,29 @@
         android:label="FragmentHome"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_fragmentHome_to_fragmentVideo"
-            app:destination="@id/fragmentVideo" />
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentSchedule"
-            app:destination="@id/fragmentSchedule" />
-        <action
             android:id="@+id/action_fragmentHome_to_fragmentAlbumList"
-            app:destination="@id/fragmentAlbumList" />
+            app:destination="@id/fragmentAlbumList"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentVideo"
         android:name="com.beemer.unofficial.fromis_9.view.view.FragmentVideo"
         android:label="FragmentVideo"
-        tools:layout="@layout/fragment_video">
-        <action
-            android:id="@+id/action_fragmentVideo_to_fragmentHome"
-            app:destination="@id/fragmentHome" />
-        <action
-            android:id="@+id/action_fragmentVideo_to_fragmentSchedule"
-            app:destination="@id/fragmentSchedule" />
-    </fragment>
+        tools:layout="@layout/fragment_video"/>
 
     <fragment
         android:id="@+id/fragmentSchedule"
         android:name="com.beemer.unofficial.fromis_9.view.view.FragmentSchedule"
         android:label="FragmentSchedule"
-        tools:layout="@layout/fragment_schedule">
-        <action
-            android:id="@+id/action_fragmentSchedule_to_fragmentHome"
-            app:destination="@id/fragmentHome" />
-        <action
-            android:id="@+id/action_fragmentSchedule_to_fragmentVideo"
-            app:destination="@id/fragmentVideo" />
-    </fragment>
+        tools:layout="@layout/fragment_schedule"/>
     <fragment
         android:id="@+id/fragmentAlbumList"
         android:name="com.beemer.unofficial.fromis_9.view.view.FragmentAlbumList"
         android:label="FragmentAlbumList"
-        tools:layout="@layout/fragment_album_list">
-        <action
-            android:id="@+id/action_fragmentAlbumList_to_fragmentHome2"
-            app:destination="@id/fragmentHome" />
-    </fragment>
+        tools:layout="@layout/fragment_album_list"/>
 
 </navigation>
