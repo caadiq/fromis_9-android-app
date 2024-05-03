@@ -1,6 +1,7 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity() {
     private fun setupNav() {
         navHostFragment = supportFragmentManager.findFragmentById(binding.containerView.id) as NavHostFragment
         navController = navHostFragment.navController
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val visibleDestinations = setOf(R.id.fragmentHome, R.id.fragmentVideo, R.id.fragmentSchedule)
+            binding.bottomNavigation.visibility = if (destination.id in visibleDestinations) View.VISIBLE else View.GONE
+        }
     }
 
     private fun setupView() {

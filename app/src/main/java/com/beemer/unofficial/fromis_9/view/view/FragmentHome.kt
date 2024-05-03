@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.FragmentHomeBinding
@@ -66,8 +67,15 @@ class FragmentHome : Fragment() {
                 )
             )
 
-            setOnItemClickListener { _, position ->
-
+            setOnItemClickListener { item, _ ->
+                when (item.text) {
+                    "프로미스나인" -> {}
+                    "앨범" -> {
+                        val action = FragmentHomeDirections.actionFragmentHomeToFragmentAlbumList()
+                        findNavController().navigate(action)
+                    }
+                    "응원법" -> {}
+                }
             }
         }
     }
