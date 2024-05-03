@@ -22,16 +22,14 @@ class FragmentHome : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        setupToolbar()
-        setupRecyclerView()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupToolbar()
+        setupRecyclerView()
     }
 
     override fun onDestroyView() {
