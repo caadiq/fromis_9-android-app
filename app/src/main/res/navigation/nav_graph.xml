@@ -23,17 +23,17 @@
         android:id="@+id/fragmentVideo"
         android:name="com.beemer.unofficial.fromis_9.view.view.FragmentVideo"
         android:label="FragmentVideo"
-        tools:layout="@layout/fragment_video"/>
+        tools:layout="@layout/fragment_video" />
 
     <fragment
         android:id="@+id/fragmentSchedule"
         android:name="com.beemer.unofficial.fromis_9.view.view.FragmentSchedule"
         android:label="FragmentSchedule"
-        tools:layout="@layout/fragment_schedule"/>
+        tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/fragmentAlbumList"
         android:name="com.beemer.unofficial.fromis_9.view.view.FragmentAlbumList"
         android:label="FragmentAlbumList"
-        tools:layout="@layout/fragment_album_list"/>
+        tools:layout="@layout/fragment_album_list" />
 
 </navigation>

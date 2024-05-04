@@ -6,6 +6,11 @@
     <string name="str_bottom_nav_video">영상</string>
     <string name="str_bottom_nav_schedule">일정</string>
 
+    <!--fragment_album_list.xml-->
+    <string name="str_album_sort_release">발매일</string>
+    <string name="str_album_sort_title">타이틀</string>
+    <string name="str_album_sort_classify">분류</string>
+
     <!--MainActivity.kt-->
     <string name="str_main_press_back">뒤로 가기 버튼을 한 번 더 누르면 종료됩니다.</string>
 </resources>
