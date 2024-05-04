@@ -20,6 +20,7 @@ hilt = "2.51.1"
 hiltX = "1.2.0"
 
 glide = "4.16.0"
+retrofit = "2.11.0"
 
 
 [libraries]
@@ -45,6 +46,8 @@ hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-fragment", 
 
 # 기타
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 
 [plugins]

@@ -81,4 +81,6 @@ dependencies {
 
     // 기타
     implementation(libs.glide)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
 }

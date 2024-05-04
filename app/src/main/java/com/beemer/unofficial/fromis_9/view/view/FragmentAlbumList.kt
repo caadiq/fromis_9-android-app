@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.beemer.unofficial.fromis_9.databinding.FragmentAlbumListBinding
+import com.beemer.unofficial.fromis_9.view.adapter.AlbumListAdapter
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
 import com.beemer.unofficial.fromis_9.viewmodel.SortBy
 
@@ -14,7 +15,9 @@ class FragmentAlbumList : Fragment() {
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
 
-    private val albumViewModel: AlbumViewModel by viewModels()
+    private val albumViewModel: AlbumViewModel by activityViewModels()
+
+    private val albumListAdapter = AlbumListAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAlbumListBinding.inflate(inflater, container, false)
@@ -25,6 +28,7 @@ class FragmentAlbumList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupView()
+        setupRecyclerView()
         observeViewModel()
     }
 
@@ -34,6 +38,8 @@ class FragmentAlbumList : Fragment() {
     }
 
     private fun setupView() {
+        albumViewModel.getAlbumList()
+
         binding.btnToggleGroup.apply {
             check(binding.btnRelease.id)
             addOnButtonCheckedListener { _, checkedId, isChecked ->
@@ -54,6 +60,13 @@ class FragmentAlbumList : Fragment() {
         }
     }
 
+    private fun setupRecyclerView() {
+        binding.recyclerView.apply {
+            adapter = albumListAdapter
+            setHasFixedSize(true)
+        }
+    }
+
     private fun observeViewModel() {
         albumViewModel.apply {
             sortBy.observe(viewLifecycleOwner) {
@@ -63,10 +76,16 @@ class FragmentAlbumList : Fragment() {
                     SortBy.TYPE -> binding.btnToggleGroup.check(binding.btnType.id)
                     else -> binding.btnToggleGroup.check(binding.btnRelease.id)
                 }
+                sortAlbumList()
             }
 
-            isDescending.observe(viewLifecycleOwner) {
-                binding.btnDesc.isChecked = !it
+            isDescending.observe(viewLifecycleOwner) { descending ->
+                binding.btnDesc.isChecked = !descending
+                sortAlbumList()
+            }
+
+            albumList.observe(viewLifecycleOwner) { list ->
+                albumListAdapter.setItemList(list ?: emptyList())
             }
         }
     }
