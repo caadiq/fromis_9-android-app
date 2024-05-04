@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private var backPressedTime: Long = 0
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (!navController.popBackStack()) {
+            if (navController.currentDestination?.id == R.id.fragmentHome) {
                 if (System.currentTimeMillis() - backPressedTime >= 2000) {
                     backPressedTime = System.currentTimeMillis()
                     Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     finish()
                 }
+            } else {
+                navController.popBackStack()
             }
         }
     }
