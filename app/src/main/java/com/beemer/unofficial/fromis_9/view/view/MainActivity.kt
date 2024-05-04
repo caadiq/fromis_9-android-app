@@ -29,15 +29,17 @@ class MainActivity : AppCompatActivity() {
     private var backPressedTime: Long = 0
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (System.currentTimeMillis() - backPressedTime >= 2000) {
-                backPressedTime = System.currentTimeMillis()
-                Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
-                    view.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
-                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
-                    show()
+            if (!navController.popBackStack()) {
+                if (System.currentTimeMillis() - backPressedTime >= 2000) {
+                    backPressedTime = System.currentTimeMillis()
+                    Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
+                        view.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
+                        setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+                        show()
+                    }
+                } else {
+                    finish()
                 }
-            } else {
-                finish()
             }
         }
     }
