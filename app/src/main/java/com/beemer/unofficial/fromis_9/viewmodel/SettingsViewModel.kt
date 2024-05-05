@@ -52,4 +52,10 @@ class SettingsViewModel @Inject constructor(@ApplicationContext private val cont
         }
         return size
     }
+
+    fun clearCache() {
+        context.cacheDir.listFiles()?.forEach { it.deleteRecursively() }
+        context.externalCacheDir?.deleteRecursively()
+        getCacheSize()
+    }
 }

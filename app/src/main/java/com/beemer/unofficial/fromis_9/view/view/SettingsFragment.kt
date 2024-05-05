@@ -25,6 +25,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupView()
         observeViewModel()
     }
 
@@ -33,14 +34,21 @@ class SettingsFragment : Fragment() {
         _binding = null
     }
 
+    private fun setupView() {
+        binding.btnRemoveCache.setOnClickListener {
+            settingsViewModel.clearCache()
+        }
+    }
+
     private fun observeViewModel() {
         settingsViewModel.apply {
             appVersion.observe(viewLifecycleOwner) {
                 binding.txtVersion.text = it
             }
 
-            cacheSize.observe(viewLifecycleOwner) {
-                binding.txtCache.text = it
+            cacheSize.observe(viewLifecycleOwner) { cache ->
+                binding.txtCache.text = cache
+                binding.btnRemoveCache.isEnabled = cache != "0MB"
             }
         }
     }
