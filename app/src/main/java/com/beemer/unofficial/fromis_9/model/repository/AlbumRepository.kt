@@ -9,7 +9,7 @@ import javax.inject.Inject
 class AlbumRepository @Inject constructor(retrofit: Retrofit) {
     private val albumApi: AlbumApi = retrofit.create(AlbumApi::class.java)
 
-    suspend fun getAlbumList(): List<AlbumListDto>? {
-        return albumApi.getAlbumList().awaitResponse().body()
+    suspend fun getAlbumList(): List<AlbumListDto> {
+        return albumApi.getAlbumList().awaitResponse().body() ?: emptyList()
     }
 }

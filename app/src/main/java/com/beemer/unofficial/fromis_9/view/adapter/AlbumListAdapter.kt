@@ -10,6 +10,7 @@ import com.beemer.unofficial.fromis_9.databinding.RowAlbumListBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
 import com.beemer.unofficial.fromis_9.view.diff.AlbumListDiffUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>() {
@@ -41,8 +42,10 @@ class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>() {
         fun bind(item: AlbumListDto) {
             Glide.with(binding.root)
                 .load(item.cover)
+                .placeholder(android.R.color.transparent)
+                .sizeMultiplier(0.7f)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .sizeMultiplier(0.5f)
                 .into(binding.imgCover)
             binding.txtType.apply {
                 text = item.type
