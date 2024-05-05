@@ -38,6 +38,10 @@ class SettingsFragment : Fragment() {
             appVersion.observe(viewLifecycleOwner) {
                 binding.txtVersion.text = it
             }
+
+            cacheSize.observe(viewLifecycleOwner) {
+                binding.txtCache.text = it
+            }
         }
     }
 }
