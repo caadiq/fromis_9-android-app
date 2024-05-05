@@ -16,7 +16,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FragmentAlbumList : Fragment() {
+class AlbumListFragment : Fragment() {
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
 

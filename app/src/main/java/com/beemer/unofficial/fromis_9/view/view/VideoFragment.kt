@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.beemer.unofficial.fromis_9.databinding.FragmentVideoBinding
 
-class FragmentVideo : Fragment() {
+class VideoFragment : Fragment() {
     private var _binding: FragmentVideoBinding? = null
     private val binding get() = _binding!!
 

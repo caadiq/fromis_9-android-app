@@ -13,7 +13,7 @@ import com.beemer.unofficial.fromis_9.databinding.FragmentHomeBinding
 import com.beemer.unofficial.fromis_9.model.dto.HomeDto
 import com.beemer.unofficial.fromis_9.view.adapter.HomeAdapter
 
-class FragmentHome : Fragment() {
+class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -30,6 +30,7 @@ class FragmentHome : Fragment() {
 
         setupToolbar()
         setupRecyclerView()
+        setupView()
     }
 
     override fun onDestroyView() {
@@ -69,12 +70,19 @@ class FragmentHome : Fragment() {
                 when (item.text) {
                     "프로미스나인" -> {}
                     "앨범" -> {
-                        val action = FragmentHomeDirections.actionFragmentHomeToFragmentAlbumList()
+                        val action = HomeFragmentDirections.actionHomeFragmentToAlbumListFragment()
                         findNavController().navigate(action)
                     }
                     "응원법" -> {}
                 }
             }
+        }
+    }
+
+    private fun setupView() {
+        binding.btnSettings.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            findNavController().navigate(action)
         }
     }
 }

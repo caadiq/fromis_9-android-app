@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
 
-class FragmentSchedule : Fragment() {
+class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
 

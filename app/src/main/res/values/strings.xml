@@ -11,6 +11,16 @@
     <string name="str_album_sort_title">타이틀</string>
     <string name="str_album_sort_classify">분류</string>
 
+    <!-- fragment_settings -->
+    <string name="str_settings_info">정보</string>
+    <string name="str_settings_version">버전</string>
+    <string name="str_settings_version_update">업데이트</string>
+    <string name="str_settings_cache">캐시</string>
+    <string name="str_settings_cache_clear">캐시 삭제</string>
+    <string name="str_settings_others">기타</string>
+    <string name="str_settings_license">라이선스</string>
+    <string name="str_settings_changelog">체인지로그</string>
+
     <!--MainActivity.kt-->
     <string name="str_main_press_back">뒤로 가기 버튼을 한 번 더 누르면 종료됩니다.</string>
 </resources>

@@ -3,16 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentHome">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/fragmentHome"
-        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentHome"
+        android:id="@+id/homeFragment"
+        android:name="com.beemer.unofficial.fromis_9.view.view.HomeFragment"
         android:label="FragmentHome"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_fragmentHome_to_fragmentAlbumList"
-            app:destination="@id/fragmentAlbumList"
+            android:id="@+id/action_homeFragment_to_albumListFragment"
+            app:destination="@id/albumListFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
@@ -20,20 +27,27 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentVideo"
-        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentVideo"
+        android:id="@+id/videoFragment"
+        android:name="com.beemer.unofficial.fromis_9.view.view.VideoFragment"
         android:label="FragmentVideo"
         tools:layout="@layout/fragment_video" />
 
     <fragment
-        android:id="@+id/fragmentSchedule"
-        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentSchedule"
+        android:id="@+id/scheduleFragment"
+        android:name="com.beemer.unofficial.fromis_9.view.view.ScheduleFragment"
         android:label="FragmentSchedule"
         tools:layout="@layout/fragment_schedule" />
+
     <fragment
-        android:id="@+id/fragmentAlbumList"
-        android:name="com.beemer.unofficial.fromis_9.view.view.FragmentAlbumList"
+        android:id="@+id/albumListFragment"
+        android:name="com.beemer.unofficial.fromis_9.view.view.AlbumListFragment"
         android:label="FragmentAlbumList"
         tools:layout="@layout/fragment_album_list" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.beemer.unofficial.fromis_9.view.view.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings"/>
 
 </navigation>
