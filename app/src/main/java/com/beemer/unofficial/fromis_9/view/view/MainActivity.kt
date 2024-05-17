@@ -6,6 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
@@ -16,6 +17,8 @@ import com.beemer.unofficial.fromis_9.viewmodel.MainFragment
 import com.beemer.unofficial.fromis_9.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -61,7 +64,14 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(binding.containerView.id) as NavHostFragment
         navController = navHostFragment.navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bottomNavigation.visibility = if (isMainFragment(destination.id)) View.VISIBLE else View.GONE
+            if (isMainFragment(destination.id)) {
+                lifecycleScope.launch {
+                    delay(100)
+                    binding.bottomNavigation.visibility = View.VISIBLE
+                }
+            } else {
+                binding.bottomNavigation.visibility =  View.GONE
+            }
         }
     }
 

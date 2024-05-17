@@ -32,6 +32,7 @@ class AlbumListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupViewVisibility()
         setupView()
         setupRecyclerView()
         observeViewModel()
@@ -40,6 +41,14 @@ class AlbumListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupViewVisibility() {
+        binding.recyclerView.visibility = View.GONE
+        lifecycleScope.launch {
+            delay(130)
+            binding.recyclerView.visibility = View.VISIBLE
+        }
     }
 
     private fun setupView() {
@@ -102,10 +111,7 @@ class AlbumListFragment : Fragment() {
             }
 
             albumList.observe(viewLifecycleOwner) { list ->
-                lifecycleScope.launch {
-                    delay(100)
-                    albumListAdapter.setItemList(list)
-                }
+                albumListAdapter.setItemList(list)
             }
         }
     }
