@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.FragmentAlbumDetailsBinding
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumDetailsAdapter
+import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -20,6 +22,8 @@ class AlbumDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val args: AlbumDetailsFragmentArgs by navArgs()
+
+    private val albumViewModel: AlbumViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAlbumDetailsBinding.inflate(inflater, container, false)
@@ -42,6 +46,8 @@ class AlbumDetailsFragment : Fragment() {
         Glide.with(this)
             .load(args.Album.cover)
             .into(binding.imgCover)
+
+        albumViewModel.getAlbumDetails(args.Album.albumName)
     }
 
     private fun setupTabLayout() {
