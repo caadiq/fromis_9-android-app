@@ -7,9 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 enum class SortBy {
@@ -36,22 +34,19 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     }
 
     fun getAlbumList() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val albumList = repository.getAlbumList()
-            withContext(Dispatchers.Main) {
-                _albumList.value = albumList
-            }
+        viewModelScope.launch {
+            sortAlbumList(repository.getAlbumList())
         }
     }
 
-    fun sortAlbumList() {
+    fun sortAlbumList(list: List<AlbumListDto>) {
         val sortedList = when (_sortBy.value) {
-            SortBy.RELEASE -> _albumList.value?.sortedBy { it.release }?.toList()
-            SortBy.TITLE -> _albumList.value?.sortedBy { it.albumName.lowercase() }?.toList()
-            SortBy.TYPE ->_albumList.value?.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() })?.toList()
-            else -> _albumList.value
+            SortBy.RELEASE -> list.sortedBy { it.release }.toList()
+            SortBy.TITLE -> list.sortedBy { it.albumName.lowercase() }.toList()
+            SortBy.TYPE -> list.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() }).toList()
+            else -> list
         }
 
-        _albumList.value = if (_isDescending.value == true) sortedList?.reversed() else sortedList
+        _albumList.value = if (_isDescending.value == true) sortedList.reversed() else sortedList
     }
 }

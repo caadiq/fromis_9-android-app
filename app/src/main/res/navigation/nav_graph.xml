@@ -42,12 +42,30 @@
         android:id="@+id/albumListFragment"
         android:name="com.beemer.unofficial.fromis_9.view.view.AlbumListFragment"
         android:label="FragmentAlbumList"
-        tools:layout="@layout/fragment_album_list" />
+        tools:layout="@layout/fragment_album_list">
+        <action
+            android:id="@+id/action_albumListFragment_to_albumDetailsFragment"
+            app:destination="@id/albumDetailsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.beemer.unofficial.fromis_9.view.view.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/albumDetailsFragment"
+        android:name="com.beemer.unofficial.fromis_9.view.view.AlbumDetailsFragment"
+        android:label="AlbumDetailsFragment"
+        tools:layout="@layout/fragment_album_details">
+        <argument
+            android:name="Album"
+            app:argType="com.beemer.unofficial.fromis_9.model.data.AlbumData" />
+    </fragment>
 
 </navigation>

@@ -5,22 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.beemer.unofficial.fromis_9.databinding.FragmentAlbumListBinding
+import com.beemer.unofficial.fromis_9.model.data.AlbumData
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumListAdapter
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
 import com.beemer.unofficial.fromis_9.viewmodel.SortBy
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class AlbumListFragment : Fragment() {
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
 
-    private val albumViewModel: AlbumViewModel by viewModels()
+    private val albumViewModel: AlbumViewModel by activityViewModels()
 
     private val albumListAdapter = AlbumListAdapter()
 
@@ -43,10 +43,8 @@ class AlbumListFragment : Fragment() {
     }
 
     private fun setupView() {
-        lifecycleScope.launch {
-            delay(100)
+        if (albumViewModel.albumList.value.isNullOrEmpty())
             albumViewModel.getAlbumList()
-        }
 
         binding.btnToggleGroup.apply {
             check(binding.btnRelease.id)
@@ -73,6 +71,17 @@ class AlbumListFragment : Fragment() {
             adapter = albumListAdapter
             setHasFixedSize(true)
         }
+
+        albumListAdapter.setOnItemClickListener { item, _ ->
+            val action = AlbumListFragmentDirections.actionAlbumListFragmentToAlbumDetailsFragment(
+                AlbumData(
+                    albumName = item.albumName,
+                    cover = item.cover,
+                    colorMain = item.colorMain
+                )
+            )
+            findNavController().navigate(action)
+        }
     }
 
     private fun observeViewModel() {
@@ -84,16 +93,19 @@ class AlbumListFragment : Fragment() {
                     SortBy.TYPE -> binding.btnToggleGroup.check(binding.btnType.id)
                     else -> binding.btnToggleGroup.check(binding.btnRelease.id)
                 }
-                sortAlbumList()
+                sortAlbumList(albumList.value ?: emptyList())
             }
 
             isDescending.observe(viewLifecycleOwner) { descending ->
                 binding.btnDesc.isChecked = !descending
-                sortAlbumList()
+                sortAlbumList(albumList.value ?: emptyList())
             }
 
             albumList.observe(viewLifecycleOwner) { list ->
-                albumListAdapter.setItemList(list)
+                lifecycleScope.launch {
+                    delay(100)
+                    albumListAdapter.setItemList(list)
+                }
             }
         }
     }

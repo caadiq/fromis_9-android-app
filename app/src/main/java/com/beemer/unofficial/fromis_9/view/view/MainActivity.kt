@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private var backPressedTime: Long = 0
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (navController.currentDestination?.id == R.id.homeFragment) {
+            if (isMainFragment(navController.currentDestination?.id)) {
                 if (System.currentTimeMillis() - backPressedTime >= 2000) {
                     backPressedTime = System.currentTimeMillis()
                     Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     finish()
                 }
-            } else {
+            }  else {
                 navController.popBackStack()
             }
         }
@@ -61,8 +61,7 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(binding.containerView.id) as NavHostFragment
         navController = navHostFragment.navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val visibleDestinations = setOf(R.id.homeFragment, R.id.videoFragment, R.id.scheduleFragment)
-            binding.bottomNavigation.visibility = if (destination.id in visibleDestinations) View.VISIBLE else View.GONE
+            binding.bottomNavigation.visibility = if (isMainFragment(destination.id)) View.VISIBLE else View.GONE
         }
     }
 
@@ -102,5 +101,10 @@ class MainActivity : AppCompatActivity() {
 
             navController.navigate(destinationId, null, navOptions)
         }
+    }
+
+    private fun isMainFragment(destination: Int?): Boolean {
+        val visibleDestinations = setOf(R.id.homeFragment, R.id.videoFragment, R.id.scheduleFragment)
+        return destination in visibleDestinations
     }
 }
