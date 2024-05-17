@@ -24,6 +24,17 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/image_album" />
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCover"
+            app:layout_constraintEnd_toEndOf="@+id/imgCover"
+            app:layout_constraintStart_toStartOf="@+id/imgCover"
+            app:layout_constraintTop_toTopOf="@+id/imgCover" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtType"
             android:layout_width="wrap_content"

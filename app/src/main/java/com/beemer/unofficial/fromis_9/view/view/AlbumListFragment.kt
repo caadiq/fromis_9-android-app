@@ -6,15 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.beemer.unofficial.fromis_9.databinding.FragmentAlbumListBinding
 import com.beemer.unofficial.fromis_9.model.data.AlbumData
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumListAdapter
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
 import com.beemer.unofficial.fromis_9.viewmodel.SortBy
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class AlbumListFragment : Fragment() {
     private var _binding: FragmentAlbumListBinding? = null
@@ -32,7 +29,6 @@ class AlbumListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupViewVisibility()
         setupView()
         setupRecyclerView()
         observeViewModel()
@@ -41,14 +37,6 @@ class AlbumListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun setupViewVisibility() {
-        binding.recyclerView.visibility = View.GONE
-        lifecycleScope.launch {
-            delay(130)
-            binding.recyclerView.visibility = View.VISIBLE
-        }
     }
 
     private fun setupView() {
