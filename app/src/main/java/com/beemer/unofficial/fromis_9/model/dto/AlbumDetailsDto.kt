@@ -15,5 +15,6 @@ data class TrackListDto(
     val trackNumber: Int,
     val songName: String,
     val titleTrack: Boolean,
-    val length: String
+    val length: String,
+    val colorMain: String
 )

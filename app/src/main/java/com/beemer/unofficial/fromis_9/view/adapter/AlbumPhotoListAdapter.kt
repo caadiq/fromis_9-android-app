@@ -70,12 +70,12 @@ class AlbumPhotoListAdapter : RecyclerView.Adapter<AlbumPhotoListAdapter.ViewHol
         onItemClickListener = listener
     }
 
-    fun setItemList(newPhotoList: List<PhotoListDto>) {
-        val diffCallback = AlbumPhotoListDiffUtil(itemList, newPhotoList)
+    fun setItemList(list: List<PhotoListDto>) {
+        val diffCallback = AlbumPhotoListDiffUtil(itemList, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
         itemList.clear()
-        itemList.addAll(newPhotoList)
+        itemList.addAll(list)
         diffResult.dispatchUpdatesTo(this)
     }
 }

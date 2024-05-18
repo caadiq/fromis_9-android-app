@@ -45,12 +45,12 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
         onItemClickListener = listener
     }
 
-    fun setItemList(newHome: List<HomeDto>) {
-        val diffCallback = HomeDiffUtil(itemList, newHome)
+    fun setItemList(list: List<HomeDto>) {
+        val diffCallback = HomeDiffUtil(itemList, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
         itemList.clear()
-        itemList.addAll(newHome)
+        itemList.addAll(list)
         diffResult.dispatchUpdatesTo(this)
     }
 }
