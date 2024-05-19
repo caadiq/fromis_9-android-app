@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beemer.unofficial.fromis_9.model.dto.AlbumDetailsDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
+import com.beemer.unofficial.fromis_9.model.dto.AlbumSongDto
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -28,6 +29,9 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
 
     private val _albumDetails = MutableLiveData<AlbumDetailsDto>()
     val albumDetails: LiveData<AlbumDetailsDto> = _albumDetails
+
+    private val _albumSong = MutableLiveData<AlbumSongDto>()
+    val albumSong: LiveData<AlbumSongDto> = _albumSong
 
     fun setSortBy(sortBy: SortBy) {
         _sortBy.value = sortBy
@@ -57,6 +61,12 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     fun getAlbumDetails(album: String) {
         viewModelScope.launch {
             _albumDetails.value = repository.getAlbumDetails(album)
+        }
+    }
+
+    fun getAlbumSong(song: String) {
+        viewModelScope.launch {
+            _albumSong.value = repository.getAlbumSong(song)
         }
     }
 }

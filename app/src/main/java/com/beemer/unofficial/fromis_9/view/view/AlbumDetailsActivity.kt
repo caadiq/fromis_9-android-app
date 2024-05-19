@@ -23,6 +23,8 @@ class AlbumDetailsActivity : AppCompatActivity() {
     private val albumName by lazy { intent.getStringExtra("albumName") }
     private val cover by lazy { intent.getStringExtra("cover") }
     private val colorMain by lazy { intent.getStringExtra("colorMain") }
+    private val colorPrimary by lazy { intent.getStringExtra("colorPrimary") }
+    private val colorSecondary by lazy { intent.getStringExtra("colorSecondary") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,7 @@ class AlbumDetailsActivity : AppCompatActivity() {
         val tabTitles = listOf("앨범 소개", "컨셉 사진", "수록곡")
         val tabIcons = listOf(R.drawable.icon_introduction, R.drawable.icon_photo, R.drawable.icon_track)
 
-        binding.viewPager.adapter = AlbumDetailsAdapter(this)
+        binding.viewPager.adapter = AlbumDetailsAdapter(this, colorMain, colorPrimary, colorSecondary)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabTitles[position]
             tab.icon = AppCompatResources.getDrawable(this, tabIcons[position])

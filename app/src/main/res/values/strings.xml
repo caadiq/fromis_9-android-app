@@ -6,12 +6,15 @@
     <string name="str_bottom_nav_video">영상</string>
     <string name="str_bottom_nav_schedule">일정</string>
 
-    <!--fragment_album_list.xml-->
+    <!--activity_album_list.xml-->
     <string name="str_album_sort_release">발매일</string>
     <string name="str_album_sort_title">타이틀</string>
     <string name="str_album_sort_classify">분류</string>
 
-    <!-- fragment_settings -->
+    <!--activity_album_song.xml-->
+    <string name="str_album_song_play">노래 재생</string>
+
+    <!--activity_settings -->
     <string name="str_settings_info">정보</string>
     <string name="str_settings_version">버전</string>
     <string name="str_settings_version_update">업데이트</string>

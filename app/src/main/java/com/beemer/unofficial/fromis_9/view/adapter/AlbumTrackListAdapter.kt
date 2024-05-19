@@ -10,7 +10,7 @@ import com.beemer.unofficial.fromis_9.databinding.RowAlbumTrackListBinding
 import com.beemer.unofficial.fromis_9.model.dto.TrackListDto
 import com.beemer.unofficial.fromis_9.view.diff.AlbumTrackListDiffUtil
 
-class AlbumTrackListAdapter : RecyclerView.Adapter<AlbumTrackListAdapter.ViewHolder>() {
+class AlbumTrackListAdapter(private val colorMain: String?) : RecyclerView.Adapter<AlbumTrackListAdapter.ViewHolder>() {
     private var itemList = mutableListOf<TrackListDto>()
     private var onItemClickListener: ((TrackListDto, Int) -> Unit)? = null
 
@@ -41,7 +41,7 @@ class AlbumTrackListAdapter : RecyclerView.Adapter<AlbumTrackListAdapter.ViewHol
             binding.txtSongName.text = item.songName
             binding.txtSongLength.text = item.length
             binding.viewTitleTrack.apply {
-                setBackgroundColor(Color.parseColor("#${item.colorMain}"))
+                setBackgroundColor(Color.parseColor("#$colorMain"))
                 visibility = if (item.titleTrack) View.VISIBLE else View.INVISIBLE
             }
         }

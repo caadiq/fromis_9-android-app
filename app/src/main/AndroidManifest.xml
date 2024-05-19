@@ -26,6 +26,7 @@
         <activity android:name=".view.view.SettingsActivity"/>
         <activity android:name=".view.view.AlbumListActivity"/>
         <activity android:name=".view.view.AlbumDetailsActivity"/>
+        <activity android:name=".view.view.AlbumSongActivity"/>
     </application>
 
 </manifest>
