@@ -1,24 +1,16 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.ActivityMainBinding
-import com.beemer.unofficial.fromis_9.viewmodel.MainFragment
+import com.beemer.unofficial.fromis_9.viewmodel.MainFragmentType
 import com.beemer.unofficial.fromis_9.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -26,25 +18,18 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
 
-    private lateinit var navHostFragment: NavHostFragment
-    private lateinit var navController: NavController
-
     private var backPressedTime: Long = 0
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (isMainFragment(navController.currentDestination?.id)) {
-                if (System.currentTimeMillis() - backPressedTime >= 2000) {
-                    backPressedTime = System.currentTimeMillis()
-                    Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
-                        view.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
-                        setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
-                        show()
-                    }
-                } else {
-                    finish()
+            if (System.currentTimeMillis() - backPressedTime >= 2000) {
+                backPressedTime = System.currentTimeMillis()
+                Snackbar.make(binding.layoutParent, getString(R.string.str_main_press_back), 2000).apply {
+                    view.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+                    show()
                 }
-            }  else {
-                navController.popBackStack()
+            } else {
+                finish()
             }
         }
     }
@@ -55,66 +40,52 @@ class MainActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
-        setupNav()
-        setupView()
+        if (savedInstanceState == null) {
+            setupFragment()
+        }
+        setupBottomNavigation()
         observeViewModel()
     }
 
-    private fun setupNav() {
-        navHostFragment = supportFragmentManager.findFragmentById(binding.containerView.id) as NavHostFragment
-        navController = navHostFragment.navController
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (isMainFragment(destination.id)) {
-                lifecycleScope.launch {
-                    delay(100)
-                    binding.bottomNavigation.visibility = View.VISIBLE
-                }
-            } else {
-                binding.bottomNavigation.visibility =  View.GONE
-            }
+    private fun setupFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            add(binding.containerView.id, HomeFragment(), MainFragmentType.HOME.tag)
+            add(binding.containerView.id, VideoFragment(), MainFragmentType.VIDEO.tag)
+            add(binding.containerView.id, ScheduleFragment(), MainFragmentType.SCHEDULE.tag)
+            commit()
         }
     }
 
-    private fun setupView() {
-        binding.bottomNavigation.apply {
-            setupWithNavController(navController)
-
-            setOnItemSelectedListener { item ->
-                mainViewModel.setCurrentFragment(
-                    when (item.itemId) {
-                        R.id.home -> MainFragment.HOME
-                        R.id.video -> MainFragment.VIDEO
-                        R.id.schedule -> MainFragment.SCHEDULE
-                        else -> MainFragment.HOME
-                    }
-                )
-                true
+    private fun setupBottomNavigation() {
+        binding.bottomNavigation.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> mainViewModel.setCurrentFragment(0)
+                R.id.video -> mainViewModel.setCurrentFragment(1)
+                R.id.schedule -> mainViewModel.setCurrentFragment(2)
             }
+            true
         }
     }
 
     private fun observeViewModel() {
-        mainViewModel.currentFragment.observe(this) { fragment ->
-            val destinationId = when (fragment) {
-                MainFragment.HOME -> R.id.homeFragment
-                MainFragment.VIDEO -> R.id.videoFragment
-                MainFragment.SCHEDULE -> R.id.scheduleFragment
-                else -> R.id.homeFragment
+        mainViewModel.currentFragmentType.observe(this) { fragmentType ->
+            val currentFragment = supportFragmentManager.findFragmentByTag(fragmentType.tag)
+            supportFragmentManager.beginTransaction().apply {
+                setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                supportFragmentManager.fragments.forEach { fragment ->
+                    if (fragment == currentFragment)
+                        show(fragment)
+                    else
+                        hide(fragment)
+                }
+            }.commit()
+
+            binding.bottomNavigation.selectedItemId = when (fragmentType) {
+                MainFragmentType.HOME -> R.id.home
+                MainFragmentType.VIDEO -> R.id.video
+                MainFragmentType.SCHEDULE -> R.id.schedule
+                else -> R.id.home
             }
-
-            val navOptions = NavOptions.Builder()
-                .setEnterAnim(R.anim.fade_in)
-                .setExitAnim(R.anim.fade_out)
-                .setPopEnterAnim(R.anim.fade_in)
-                .setPopExitAnim(R.anim.fade_out)
-                .build()
-
-            navController.navigate(destinationId, null, navOptions)
         }
-    }
-
-    private fun isMainFragment(destination: Int?): Boolean {
-        val visibleDestinations = setOf(R.id.homeFragment, R.id.videoFragment, R.id.scheduleFragment)
-        return destination in visibleDestinations
     }
 }
