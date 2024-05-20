@@ -21,4 +21,11 @@
     <style name="Style.BottomNavigationView.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@android:color/transparent</item>
     </style>
+
+    <style name="StyleThemedToggleButton">
+        <item name="toggle_fontFamily">/fonts/nanum_square_round_bold.ttf</item>
+        <item name="toggle_textColor">@color/dark_gray</item>
+        <item name="toggle_selectedBackgroundColor">@color/colorPrimary</item>
+        <item name="toggle_selectedTextColor">@color/white</item>
+    </style>
 </resources>

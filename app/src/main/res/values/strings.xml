@@ -14,7 +14,7 @@
     <!--activity_album_song.xml-->
     <string name="str_album_song_play">노래 재생</string>
 
-    <!--activity_settings -->
+    <!--activity_settings.xml-->
     <string name="str_settings_info">정보</string>
     <string name="str_settings_version">버전</string>
     <string name="str_settings_version_update">업데이트</string>
@@ -23,7 +23,22 @@
     <string name="str_settings_others">기타</string>
     <string name="str_settings_license">라이선스</string>
     <string name="str_settings_changelog">체인지로그</string>
+    
+    <!--fragment_video.xml-->
+    <string name="str_video_all">전체</string>
+    <string name="str_video_mv">뮤직비디오</string>
+    <string name="str_video_channel9">채널나인</string>
+    <string name="str_video_fm124">FM_1.24</string>
+    <string name="str_video_vlog">v_log</string>
+    <string name="str_video_fromisoda">프롬이소다</string>
+
+    <!--menu_toolbar_search.xml-->
+    <string name="str_menu__search">검색</string>
 
     <!--MainActivity.kt-->
     <string name="str_main_press_back">뒤로 가기 버튼을 한 번 더 누르면 종료됩니다.</string>
+
+    <!--VideoFragment.kt-->
+    <string name="str_video_title">모든 영상</string>
+    <string name="str_video_search">프로미스나인 영상 검색</string>
 </resources>
