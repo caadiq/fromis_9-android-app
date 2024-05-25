@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/textview_translucent_rounded"
+        android:background="@drawable/rectangle_translucent_rounded_4dp"
         android:fontFamily="@font/nanum_square_round_bold"
         android:paddingHorizontal="6dp"
         android:paddingVertical="4dp"

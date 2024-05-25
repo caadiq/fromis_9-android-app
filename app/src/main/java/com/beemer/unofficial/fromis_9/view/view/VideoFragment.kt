@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -150,6 +151,17 @@ class VideoFragment : Fragment() {
                     }
                 }
             })
+        }
+
+        videoListAdapter.setOnItemClickListener { item, _ ->
+            val intent = Intent(requireActivity(), VideoDetailsActivity::class.java).apply {
+                putExtra("videoId", item.videoId)
+                putExtra("title", item.title)
+                putExtra("views", item.views)
+                putExtra("publishedAt", item.publishedAt)
+                putExtra("description", item.description)
+            }
+            startActivity(intent)
         }
     }
 

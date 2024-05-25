@@ -1,6 +1,7 @@
 package com.beemer.unofficial.fromis_9.view.utils
 
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -21,6 +22,21 @@ object DateTimeConverter {
             String.format(Locale.KOREA, "%d:%02d:%02d", hour, minute, second)
         } else {
             String.format(Locale.KOREA, "%d:%02d", minute, second)
+        }
+    }
+
+    fun timeAgo(dateTime: String): String {
+        val now = LocalDateTime.now()
+        val past = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_DATE_TIME)
+        val diff = now.toEpochSecond(ZoneOffset.of("+09:00")) - past.toEpochSecond(ZoneOffset.of("+09:00"))
+
+        return when {
+            diff < 60 -> "방금 전"
+            diff < 3600 -> "${diff / 60}분 전"
+            diff < 86400 -> "${diff / 3600}시간 전"
+            diff < 604800 -> "${diff / 86400}일 전"
+            diff < 2419200 -> "${diff / 604800}주 전" // 4 weeks = 2419200 seconds
+            else -> past.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
         }
     }
 }

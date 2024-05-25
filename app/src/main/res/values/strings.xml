@@ -23,6 +23,10 @@
     <string name="str_settings_others">기타</string>
     <string name="str_settings_license">라이선스</string>
     <string name="str_settings_changelog">체인지로그</string>
+
+    <!--activity_video_details.xml-->
+    <string name="str_video_details_views">조회수</string>
+    <string name="str_video_details_published">업로드</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>
