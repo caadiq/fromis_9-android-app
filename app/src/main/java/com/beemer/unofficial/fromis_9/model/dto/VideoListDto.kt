@@ -15,5 +15,8 @@ data class VideosDto(
     val videoId: String,
     val title: String,
     val thumbnail: String,
-    val publishedAt: String
+    val publishedAt: String,
+    val description: String,
+    val length: Int?,
+    val views: Int?
 )

@@ -12,5 +12,5 @@ interface VideoApi {
         @Query("limit") limit: Int?,
         @Query("query") query: String?,
         @Query("playlist") playlist: String?,
-    ): Call<List<VideoListDto>>
+    ): Call<VideoListDto>
 }

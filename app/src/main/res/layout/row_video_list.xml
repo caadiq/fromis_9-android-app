@@ -28,6 +28,23 @@
         app:layout_constraintTop_toTopOf="@+id/imgThumbnail" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textview_translucent_rounded"
+        android:fontFamily="@font/nanum_square_round_bold"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imgThumbnail"
+        app:layout_constraintEnd_toEndOf="@+id/imgThumbnail"
+        tools:text="14:38" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

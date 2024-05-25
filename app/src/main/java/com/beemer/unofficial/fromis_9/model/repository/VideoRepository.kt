@@ -9,7 +9,7 @@ import javax.inject.Inject
 class VideoRepository @Inject constructor(retrofit: Retrofit) {
     private val videoApi: VideoApi = retrofit.create(VideoApi::class.java)
 
-    suspend fun getVideoList(page: Int?, limit: Int?, query: String?, playlist: String?): List<VideoListDto> {
-        return videoApi.getVideoList(page, limit, query, playlist).awaitResponse().body() ?: emptyList()
+    suspend fun getVideoList(page: Int?, limit: Int?, query: String?, playlist: String?): VideoListDto? {
+        return videoApi.getVideoList(page, limit, query, playlist).awaitResponse().body()
     }
 }

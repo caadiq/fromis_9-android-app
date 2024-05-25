@@ -13,8 +13,11 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.FragmentVideoBinding
+import com.beemer.unofficial.fromis_9.view.adapter.VideoListAdapter
 import com.beemer.unofficial.fromis_9.viewmodel.VideoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,10 +28,14 @@ class VideoFragment : Fragment() {
 
     private val videoViewModel: VideoViewModel by viewModels()
 
+    private val videoListAdapter = VideoListAdapter()
+
     private lateinit var searchView: SearchView
 
-    private val title by lazy { getString(R.string.str_video_title) }
     private var searchQuery: String? = null
+    private var playlist: String? = null
+    private var isLoading = false
+    private var isRefreshed = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentVideoBinding.inflate(inflater, container, false)
@@ -40,6 +47,8 @@ class VideoFragment : Fragment() {
 
         setupToolbar()
         setupToggleGroup()
+        setupRecyclerView()
+        setupView()
         setupViewModel()
     }
 
@@ -49,41 +58,64 @@ class VideoFragment : Fragment() {
     }
 
     private fun setupToolbar() {
-        binding.txtTitle.text = title
+        binding.txtTitle.text = getString(R.string.str_video_title)
+
         (activity as AppCompatActivity).apply {
             setSupportActionBar(binding.toolbar)
             supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
 
-        requireActivity().addMenuProvider(object: MenuProvider{
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_toolbar_search, menu)
+            addMenuProvider(object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.menu_toolbar_search, menu)
 
-                val searchItem = menu.findItem(R.id.search)
-                searchView = searchItem.actionView as SearchView
+                    val searchItem = menu.findItem(R.id.search)
+                    searchView = searchItem.actionView as SearchView
 
-                searchView.apply {
-                    queryHint = getString(R.string.str_video_search)
-                    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                        override fun onQueryTextSubmit(query: String?): Boolean {
-                            searchQuery = query
-                            binding.txtTitle.text = query
-                            binding.toolbar.collapseActionView()
-                            searchView.clearFocus()
-                            return false
+                    searchView.apply {
+                        queryHint = getString(R.string.str_video_search)
+                        setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                            override fun onQueryTextSubmit(query: String?): Boolean {
+                                binding.swipeRefreshLayout.isRefreshing = true
+                                searchQuery = query
+                                searchView.clearFocus()
+                                binding.txtTitle.text = query
+                                videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                                return false
+                            }
+
+                            override fun onQueryTextChange(newText: String?): Boolean {
+                                return false
+                            }
+                        })
+                    }
+
+                    searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+                        override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                            return true
                         }
 
-                        override fun onQueryTextChange(newText: String?): Boolean {
-                            return false
+                        override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                            binding.swipeRefreshLayout.isRefreshing = true
+                            searchQuery = null
+                            binding.txtTitle.text = when (playlist) {
+                                "mv" -> getString(R.string.str_video_mv)
+                                "channel9" -> getString(R.string.str_video_channel9)
+                                "fm124" -> getString(R.string.str_video_fm124)
+                                "vlog" -> getString(R.string.str_video_vlog)
+                                "fromisoda" -> getString(R.string.str_video_fromisoda)
+                                else -> getString(R.string.str_video_title)
+                            }
+                            videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                            return true
                         }
                     })
                 }
-            }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return false
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    return false
+                }
+            }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        }
     }
 
     private fun setupToggleGroup() {
@@ -96,19 +128,95 @@ class VideoFragment : Fragment() {
         }
     }
 
+    private fun setupRecyclerView() {
+        binding.recyclerView.apply {
+            adapter = videoListAdapter
+            itemAnimator = null
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)?.findLastCompletelyVisibleItemPosition()
+                    val itemTotalCount = recyclerView.adapter?.itemCount?.minus(1)
+
+                    // 스크롤을 끝까지 내렸을 때
+                    if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == itemTotalCount && !isLoading) {
+                        videoViewModel.page.value?.let { page ->
+                            page.nextPage?.let {
+                                videoViewModel.getVideoList(it, 20, searchQuery, playlist, false)
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    private fun setupView() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+        }
+    }
+
     private fun setupViewModel() {
+        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+
         videoViewModel.apply {
             toggleGroup.observe(viewLifecycleOwner) {
                 binding.btnToggleGroup.selectButton(it)
-                binding.txtTitle.text = when(it) {
-                    binding.btnAll.id -> title
-                    binding.btnMv.id -> getString(R.string.str_video_mv)
-                    binding.btnChannel9.id -> getString(R.string.str_video_channel9)
-                    binding.btnFm124.id -> getString(R.string.str_video_fm124)
-                    binding.btnVlog.id -> getString(R.string.str_video_vlog)
-                    binding.btnFromisoda.id -> getString(R.string.str_video_fromisoda)
-                    else -> title
+                when (it) {
+                    binding.btnAll.id -> {
+                        playlist = null
+                        binding.txtTitle.text = getString(R.string.str_video_title)
+                        videoViewModel.getVideoList(0, 20, searchQuery, null, true)
+                    }
+                    binding.btnMv.id -> {
+                        playlist = "mv"
+                        binding.txtTitle.text = getString(R.string.str_video_mv)
+                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                    }
+                    binding.btnChannel9.id -> {
+                        playlist = "channel9"
+                        binding.txtTitle.text = getString(R.string.str_video_channel9)
+                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                    }
+                    binding.btnFm124.id -> {
+                        playlist = "fm124"
+                        binding.txtTitle.text = getString(R.string.str_video_fm124)
+                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                    }
+                    binding.btnVlog.id -> {
+                        playlist = "vlog"
+                        binding.txtTitle.text = getString(R.string.str_video_vlog)
+                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                    }
+                    binding.btnFromisoda.id -> {
+                        playlist = "fromisoda"
+                        binding.txtTitle.text = getString(R.string.str_video_fromisoda)
+                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                    }
                 }
+            }
+
+            videoList.observe(viewLifecycleOwner) { list ->
+                binding.swipeRefreshLayout.isRefreshing = false
+                setLoading(false)
+
+                videoListAdapter.setItemList(list)
+                if (this@VideoFragment.isRefreshed) binding.recyclerView.scrollToPosition(0)
+            }
+
+            isLoading.observe(viewLifecycleOwner) { isLoading ->
+                this@VideoFragment.isLoading = isLoading
+                if (isLoading)
+                    videoListAdapter.showProgress()
+                else
+                    videoListAdapter.hideProgress()
+            }
+
+            isRefreshed.observe(viewLifecycleOwner) { isRefreshed ->
+                this@VideoFragment.isRefreshed = isRefreshed
             }
         }
     }
