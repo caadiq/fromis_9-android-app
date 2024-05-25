@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.RowHomeBinding
 import com.beemer.unofficial.fromis_9.model.dto.HomeDto
 import com.beemer.unofficial.fromis_9.view.diff.HomeDiffUtil
-import com.bumptech.glide.Glide
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     private var itemList = mutableListOf<HomeDto>()
@@ -36,7 +35,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
         }
 
         fun bind(item: HomeDto) {
-            Glide.with(binding.root).load(item.image).into(binding.image)
+            binding.image.setImageResource(item.image)
             binding.text.text = item.text
         }
     }
@@ -45,12 +44,12 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
         onItemClickListener = listener
     }
 
-    fun setItemList(newHome: List<HomeDto>) {
-        val diffCallback = HomeDiffUtil(itemList, newHome)
+    fun setItemList(list: List<HomeDto>) {
+        val diffCallback = HomeDiffUtil(itemList, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
         itemList.clear()
-        itemList.addAll(newHome)
+        itemList.addAll(list)
         diffResult.dispatchUpdatesTo(this)
     }
 }

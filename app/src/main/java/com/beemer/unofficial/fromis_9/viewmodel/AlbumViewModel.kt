@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.beemer.unofficial.fromis_9.model.dto.AlbumDetailsDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
+import com.beemer.unofficial.fromis_9.model.dto.AlbumSongDto
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 enum class SortBy {
@@ -24,8 +24,14 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     private val _isDescending = MutableLiveData(true)
     val isDescending: LiveData<Boolean> = _isDescending
 
-    private val _albumList = MutableLiveData<List<AlbumListDto>>(emptyList())
+    private val _albumList = MutableLiveData<List<AlbumListDto>>()
     val albumList: LiveData<List<AlbumListDto>> = _albumList
+
+    private val _albumDetails = MutableLiveData<AlbumDetailsDto>()
+    val albumDetails: LiveData<AlbumDetailsDto> = _albumDetails
+
+    private val _albumSong = MutableLiveData<AlbumSongDto>()
+    val albumSong: LiveData<AlbumSongDto> = _albumSong
 
     fun setSortBy(sortBy: SortBy) {
         _sortBy.value = sortBy
@@ -36,22 +42,31 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     }
 
     fun getAlbumList() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val albumList = repository.getAlbumList()
-            withContext(Dispatchers.Main) {
-                _albumList.value = albumList
-            }
+        viewModelScope.launch {
+            sortAlbumList(repository.getAlbumList())
         }
     }
 
-    fun sortAlbumList() {
+    fun sortAlbumList(list: List<AlbumListDto>) {
         val sortedList = when (_sortBy.value) {
-            SortBy.RELEASE -> _albumList.value?.sortedBy { it.release }?.toList()
-            SortBy.TITLE -> _albumList.value?.sortedBy { it.albumName.lowercase() }?.toList()
-            SortBy.TYPE ->_albumList.value?.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() })?.toList()
-            else -> _albumList.value
+            SortBy.RELEASE -> list.sortedBy { it.release }.toList()
+            SortBy.TITLE -> list.sortedBy { it.albumName.lowercase() }.toList()
+            SortBy.TYPE -> list.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() }).toList()
+            else -> list
         }
 
-        _albumList.value = if (_isDescending.value == true) sortedList?.reversed() else sortedList
+        _albumList.value = if (_isDescending.value == true) sortedList.reversed() else sortedList
+    }
+
+    fun getAlbumDetails(album: String) {
+        viewModelScope.launch {
+            _albumDetails.value = repository.getAlbumDetails(album)
+        }
+    }
+
+    fun getAlbumSong(song: String) {
+        viewModelScope.launch {
+            _albumSong.value = repository.getAlbumSong(song)
+        }
     }
 }

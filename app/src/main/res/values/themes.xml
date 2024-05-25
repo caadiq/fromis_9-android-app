@@ -6,6 +6,7 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOutlineVariant">@color/colorOutlineVariant</item>
 
         <item name="android:colorBackground">@color/white</item>
         <item name="android:fontFamily">@font/nanum_square_round_bold</item>
@@ -19,5 +20,12 @@
 
     <style name="Style.BottomNavigationView.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@android:color/transparent</item>
+    </style>
+
+    <style name="StyleThemedToggleButton">
+        <item name="toggle_fontFamily">/fonts/nanum_square_round_bold.ttf</item>
+        <item name="toggle_textColor">@color/dark_gray</item>
+        <item name="toggle_selectedBackgroundColor">@color/colorPrimary</item>
+        <item name="toggle_selectedTextColor">@color/white</item>
     </style>
 </resources>

@@ -1,19 +1,19 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.FragmentHomeBinding
 import com.beemer.unofficial.fromis_9.model.dto.HomeDto
 import com.beemer.unofficial.fromis_9.view.adapter.HomeAdapter
 
-class FragmentHome : Fragment() {
+class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -30,6 +30,7 @@ class FragmentHome : Fragment() {
 
         setupToolbar()
         setupRecyclerView()
+        setupView()
     }
 
     override fun onDestroyView() {
@@ -38,12 +39,14 @@ class FragmentHome : Fragment() {
     }
 
     private fun setupToolbar() {
-        binding.toolbar.title = ""
-        (activity as? AppCompatActivity)?.setSupportActionBar(binding.toolbar)
+        (activity as? AppCompatActivity)?.apply {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
     }
 
     private fun setupRecyclerView() {
-        gridLayoutManager = GridLayoutManager(context, 2)
+        gridLayoutManager = GridLayoutManager(requireContext(), 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return if (position == 0) 2 else 1
@@ -69,12 +72,17 @@ class FragmentHome : Fragment() {
                 when (item.text) {
                     "프로미스나인" -> {}
                     "앨범" -> {
-                        val action = FragmentHomeDirections.actionFragmentHomeToFragmentAlbumList()
-                        findNavController().navigate(action)
+                        startActivity(Intent(requireContext(), AlbumListActivity::class.java))
                     }
                     "응원법" -> {}
                 }
             }
+        }
+    }
+
+    private fun setupView() {
+        binding.btnSettings.setOnClickListener {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
     }
 }

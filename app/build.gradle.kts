@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.androidx.navigation.safeargs)
 }
 
 fun getProperty(propertyKey: String): String {
@@ -68,8 +67,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation)
-    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.swipeRefreshLayout)
 
     // google
     implementation(libs.material)
@@ -83,4 +81,5 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
+    implementation(libs.themedToggleButton)
 }

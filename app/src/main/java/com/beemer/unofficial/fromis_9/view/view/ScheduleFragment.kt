@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.beemer.unofficial.fromis_9.databinding.FragmentVideoBinding
+import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
 
-class FragmentVideo : Fragment() {
-    private var _binding: FragmentVideoBinding? = null
+class ScheduleFragment : Fragment() {
+    private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentVideoBinding.inflate(inflater, container, false)
+        _binding = FragmentScheduleBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,8 +1,8 @@
 [versions]
 # 플러그인
-agp = "8.4.0"
-kotlin = "1.9.23"
-ksp = "1.9.23-1.0.20"
+agp = "8.4.1"
+kotlin = "1.9.24"
+ksp = "1.9.24-1.0.20"
 
 # 라이브러리
 junit = "4.13.2"
@@ -11,8 +11,8 @@ espressoCore = "3.5.1"
 
 coreKtx = "1.13.1"
 appcompat = "1.6.1"
-navigation = "2.7.7"
 constraintlayout = "2.1.4"
+swipeRefreshLayout = "1.1.0"
 
 material = "1.12.0"
 
@@ -21,6 +21,7 @@ hiltX = "1.2.0"
 
 glide = "4.16.0"
 retrofit = "2.11.0"
+themedToggleButton = "1.4.1"
 
 
 [libraries]
@@ -33,8 +34,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-androidx-navigation = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
-androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+androidx-swipeRefreshLayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefreshLayout" }
 
 # google
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -48,6 +48,7 @@ hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-fragment", 
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+themedToggleButton = { group = "nl.bryanderidder", name = "themed-toggle-button-group", version.ref = "themedToggleButton" }
 
 
 [plugins]
@@ -55,4 +56,3 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-androidx-navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
