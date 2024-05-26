@@ -82,4 +82,5 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.themedToggleButton)
+    implementation(libs.youtubePlayer)
 }

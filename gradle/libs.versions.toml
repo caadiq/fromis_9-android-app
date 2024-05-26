@@ -22,6 +22,7 @@ hiltX = "1.2.0"
 glide = "4.16.0"
 retrofit = "2.11.0"
 themedToggleButton = "1.4.1"
+youtubePlayer = "12.1.0"
 
 
 [libraries]
@@ -49,6 +50,7 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 themedToggleButton = { group = "nl.bryanderidder", name = "themed-toggle-button-group", version.ref = "themedToggleButton" }
+youtubePlayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version.ref = "youtubePlayer" }
 
 
 [plugins]

@@ -28,7 +28,10 @@
         <activity android:name=".view.view.AlbumListActivity"/>
         <activity android:name=".view.view.AlbumDetailsActivity"/>
         <activity android:name=".view.view.AlbumSongActivity"/>
-        <activity android:name=".view.view.VideoDetailsActivity"/>
+        <activity
+            android:name=".view.view.VideoDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true" />
     </application>
 
 </manifest>
