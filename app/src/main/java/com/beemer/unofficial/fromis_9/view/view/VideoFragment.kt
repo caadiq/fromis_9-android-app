@@ -183,6 +183,7 @@ class VideoFragment : Fragment() {
 
             videoList.observe(viewLifecycleOwner) { list ->
                 binding.swipeRefreshLayout.isRefreshing = false
+                binding.txtNoVideo.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
                 setLoading(false)
 
                 videoListAdapter.setItemList(list)
