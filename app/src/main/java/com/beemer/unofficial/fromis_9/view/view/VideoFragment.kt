@@ -98,15 +98,7 @@ class VideoFragment : Fragment() {
                         override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                             binding.swipeRefreshLayout.isRefreshing = true
                             searchQuery = null
-                            binding.txtTitle.text = when (playlist) {
-                                "mv" -> getString(R.string.str_video_mv)
-                                "channel9" -> getString(R.string.str_video_channel9)
-                                "fm124" -> getString(R.string.str_video_fm124)
-                                "vlog" -> getString(R.string.str_video_vlog)
-                                "fromisoda" -> getString(R.string.str_video_fromisoda)
-                                else -> getString(R.string.str_video_title)
-                            }
-                            videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
+                            setTitleAndGetVideoList()
                             return true
                         }
                     })
@@ -172,43 +164,21 @@ class VideoFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
-
         videoViewModel.apply {
+            getVideoList(0, 20, searchQuery, playlist, true)
+
             toggleGroup.observe(viewLifecycleOwner) {
                 binding.btnToggleGroup.selectButton(it)
-                when (it) {
-                    binding.btnAll.id -> {
-                        playlist = null
-                        binding.txtTitle.text = getString(R.string.str_video_title)
-                        videoViewModel.getVideoList(0, 20, searchQuery, null, true)
-                    }
-                    binding.btnMv.id -> {
-                        playlist = "mv"
-                        binding.txtTitle.text = getString(R.string.str_video_mv)
-                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
-                    }
-                    binding.btnChannel9.id -> {
-                        playlist = "channel9"
-                        binding.txtTitle.text = getString(R.string.str_video_channel9)
-                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
-                    }
-                    binding.btnFm124.id -> {
-                        playlist = "fm124"
-                        binding.txtTitle.text = getString(R.string.str_video_fm124)
-                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
-                    }
-                    binding.btnVlog.id -> {
-                        playlist = "vlog"
-                        binding.txtTitle.text = getString(R.string.str_video_vlog)
-                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
-                    }
-                    binding.btnFromisoda.id -> {
-                        playlist = "fromisoda"
-                        binding.txtTitle.text = getString(R.string.str_video_fromisoda)
-                        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
-                    }
+                playlist = when (it) {
+                    binding.btnAll.id -> null
+                    binding.btnMv.id -> "mv"
+                    binding.btnChannel9.id -> "channel9"
+                    binding.btnFm124.id -> "fm124"
+                    binding.btnVlog.id -> "vlog"
+                    binding.btnFromisoda.id -> "fromisoda"
+                    else -> null
                 }
+                setTitleAndGetVideoList()
             }
 
             videoList.observe(viewLifecycleOwner) { list ->
@@ -216,7 +186,8 @@ class VideoFragment : Fragment() {
                 setLoading(false)
 
                 videoListAdapter.setItemList(list)
-                if (this@VideoFragment.isRefreshed) binding.recyclerView.scrollToPosition(0)
+                if (this@VideoFragment.isRefreshed)
+                    binding.recyclerView.scrollToPosition(0)
             }
 
             isLoading.observe(viewLifecycleOwner) { isLoading ->
@@ -231,5 +202,17 @@ class VideoFragment : Fragment() {
                 this@VideoFragment.isRefreshed = isRefreshed
             }
         }
+    }
+
+    private fun setTitleAndGetVideoList() {
+        binding.txtTitle.text = when (playlist) {
+            "mv" -> getString(R.string.str_video_mv)
+            "channel9" -> getString(R.string.str_video_channel9)
+            "fm124" -> getString(R.string.str_video_fm124)
+            "vlog" -> getString(R.string.str_video_vlog)
+            "fromisoda" -> getString(R.string.str_video_fromisoda)
+            else -> getString(R.string.str_video_title)
+        }
+        videoViewModel.getVideoList(0, 20, searchQuery, playlist, true)
     }
 }

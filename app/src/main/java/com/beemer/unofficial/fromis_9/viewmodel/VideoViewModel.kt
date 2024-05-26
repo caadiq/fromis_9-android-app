@@ -32,7 +32,7 @@ class VideoViewModel @Inject constructor(private val videoRepository: VideoRepos
         _toggleGroup.value = toggleGroup
     }
 
-    fun getVideoList(page: Int?, limit: Int?, query: String?, playlist: String?, refresh: Boolean = false) {
+    fun getVideoList(page: Int?, limit: Int?, query: String?, playlist: String?, refresh: Boolean) {
         viewModelScope.launch {
             setLoading(true)
             _isRefreshed.value = refresh
