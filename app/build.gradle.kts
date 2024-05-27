@@ -48,6 +48,7 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -83,4 +84,7 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.themedToggleButton)
     implementation(libs.youtubePlayer)
+    implementation(libs.calendar)
+
+    coreLibraryDesugaring(libs.desugarJdkLibs)
 }

@@ -37,6 +37,9 @@
     <string name="str_video_fromisoda">프롬이소다</string>
     <string name="str_video_no_video">영상이 없습니다.</string>
 
+    <!--fragment_schedule-->
+    <string name="str_schedule_no_schedule">일정이 없습니다.</string>
+
     <!--menu_toolbar_search.xml-->
     <string name="str_menu__search">검색</string>
 

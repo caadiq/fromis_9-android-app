@@ -23,6 +23,9 @@ glide = "4.16.0"
 retrofit = "2.11.0"
 themedToggleButton = "1.4.1"
 youtubePlayer = "12.1.0"
+calendar = "2.5.1"
+
+desugar_jdk_libs = "2.0.4"
 
 
 [libraries]
@@ -51,6 +54,9 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 themedToggleButton = { group = "nl.bryanderidder", name = "themed-toggle-button-group", version.ref = "themedToggleButton" }
 youtubePlayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version.ref = "youtubePlayer" }
+calendar = { group = "com.kizitonwose.calendar", name = "view", version.ref = "calendar" }
+
+desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 
 
 [plugins]
