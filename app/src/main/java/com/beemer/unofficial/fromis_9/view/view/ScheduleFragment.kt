@@ -1,16 +1,21 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.CalendarDayBinding
 import com.beemer.unofficial.fromis_9.databinding.CalendarHeaderBinding
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
+import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
+import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
+import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.DayPosition
@@ -21,6 +26,7 @@ import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import com.kizitonwose.calendar.view.ViewContainer
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -28,15 +34,23 @@ import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 
+@AndroidEntryPoint
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
+
+    private val scheduleViewModel : ScheduleViewModel by viewModels()
+
+    private val scheduleListAdapter = ScheduleListAdapter()
 
     private lateinit var calendarView: CalendarView
 
     private val yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy년 M월", Locale.KOREA)
 
     private var selectedDate: LocalDate = LocalDate.now()
+    private var currentYear: Int = YearMonth.now().year
+
+    private val scheduleList = mutableListOf<ScheduleListDto>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentScheduleBinding.inflate(inflater, container, false)
@@ -47,7 +61,12 @@ class ScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         calendarView = binding.calendarView
+
         setupCalendar()
+        setupRecyclerView()
+        setupViewModel()
+
+        scheduleViewModel.getScheduleList(currentYear, null)
     }
 
     override fun onDestroyView() {
@@ -73,6 +92,12 @@ class ScheduleFragment : Fragment() {
                 selectedDate = if (month.yearMonth == currentMonth) LocalDate.now() else month.yearMonth.atDay(1)
                 calendarView.notifyDateChanged(selectedDate)
                 calendarView.notifyDateChanged(oldDate)
+
+                // 년도가 바뀌었을 때만 바뀐 년도의 일정 목록을 가져옵니다.
+                if (month.yearMonth.year != currentYear) {
+                    currentYear = month.yearMonth.year
+                    scheduleViewModel.getScheduleList(currentYear, null)
+                }
             }
         }
 
@@ -124,8 +149,11 @@ class ScheduleFragment : Fragment() {
                 }
 
                 container.binding.viewSelectedDay.visibility = if (data.date == selectedDate && data.position == DayPosition.MonthDate) View.VISIBLE else View.GONE
+                container.binding.viewIndicator.visibility = if (data.position == DayPosition.MonthDate && scheduleList.any { it.date.contains(data.date.toString()) }) View.VISIBLE else View.GONE
 
                 binding.txtDate.text = selectedDate.format(DateTimeFormatter.ofPattern("M월 d일 EEEE", Locale.KOREA))
+
+                scheduleListAdapter.setItemList(scheduleList.filter { it.date.contains(selectedDate.toString())  })
             }
         }
 
@@ -149,6 +177,26 @@ class ScheduleFragment : Fragment() {
                         }
                 }
             }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerView.apply {
+            adapter = scheduleListAdapter
+//            addItemDecoration(ItemDecoratorDivider(0, 40, 0, 0, 0, 0, null))
+        }
+
+        scheduleListAdapter.setOnItemClickListener { item, _ ->
+
+        }
+    }
+
+    private fun setupViewModel() {
+        scheduleViewModel.scheduleList.observe(viewLifecycleOwner) { list ->
+            Log.d("테스트", "일정 목록 : $list")
+            scheduleList.clear()
+            scheduleList.addAll(list)
+            calendarView.notifyCalendarChanged()
         }
     }
 }
