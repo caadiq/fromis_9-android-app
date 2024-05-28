@@ -1,7 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -151,9 +150,13 @@ class ScheduleFragment : Fragment() {
                 container.binding.viewSelectedDay.visibility = if (data.date == selectedDate && data.position == DayPosition.MonthDate) View.VISIBLE else View.GONE
                 container.binding.viewIndicator.visibility = if (data.position == DayPosition.MonthDate && scheduleList.any { it.dateTime.contains(data.date.toString()) }) View.VISIBLE else View.GONE
 
-                binding.txtDate.text = selectedDate.format(DateTimeFormatter.ofPattern("M월 d일 EEEE", Locale.KOREA))
+                binding.txtDate.text = selectedDate.format(DateTimeFormatter.ofPattern("d일 (E)", Locale.KOREA))
 
-                scheduleListAdapter.setItemList(scheduleList.filter { it.dateTime.contains(selectedDate.toString())  })
+                scheduleListAdapter.setItemList(scheduleList.filter {
+                    it.dateTime.contains(selectedDate.toString())
+                })
+
+                binding.txtNoSchedule.visibility = if (scheduleListAdapter.itemCount == 0) View.VISIBLE else View.GONE
             }
         }
 
@@ -194,7 +197,6 @@ class ScheduleFragment : Fragment() {
 
     private fun setupViewModel() {
         scheduleViewModel.scheduleList.observe(viewLifecycleOwner) { list ->
-            Log.d("테스트", "일정 목록 : $list")
             scheduleList.clear()
             scheduleList.addAll(list)
             calendarView.notifyCalendarChanged()
