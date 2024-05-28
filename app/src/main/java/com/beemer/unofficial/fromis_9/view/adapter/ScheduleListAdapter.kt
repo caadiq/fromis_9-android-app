@@ -35,7 +35,7 @@ class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
         }
 
         fun bind(item: ScheduleListDto) {
-            binding.txtTime.text = item.date
+            binding.txtTime.text = item.dateTime
             binding.txtSchedule.text = item.schedule
             binding.txtDescription.text = item.description
         }

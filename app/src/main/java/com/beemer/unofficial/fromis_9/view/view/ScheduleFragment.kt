@@ -149,11 +149,11 @@ class ScheduleFragment : Fragment() {
                 }
 
                 container.binding.viewSelectedDay.visibility = if (data.date == selectedDate && data.position == DayPosition.MonthDate) View.VISIBLE else View.GONE
-                container.binding.viewIndicator.visibility = if (data.position == DayPosition.MonthDate && scheduleList.any { it.date.contains(data.date.toString()) }) View.VISIBLE else View.GONE
+                container.binding.viewIndicator.visibility = if (data.position == DayPosition.MonthDate && scheduleList.any { it.dateTime.contains(data.date.toString()) }) View.VISIBLE else View.GONE
 
                 binding.txtDate.text = selectedDate.format(DateTimeFormatter.ofPattern("M월 d일 EEEE", Locale.KOREA))
 
-                scheduleListAdapter.setItemList(scheduleList.filter { it.date.contains(selectedDate.toString())  })
+                scheduleListAdapter.setItemList(scheduleList.filter { it.dateTime.contains(selectedDate.toString())  })
             }
         }
 
@@ -183,6 +183,7 @@ class ScheduleFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
             adapter = scheduleListAdapter
+            itemAnimator = null
 //            addItemDecoration(ItemDecoratorDivider(0, 40, 0, 0, 0, 0, null))
         }
 
