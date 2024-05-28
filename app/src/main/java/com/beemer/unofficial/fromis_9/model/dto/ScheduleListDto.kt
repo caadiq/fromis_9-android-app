@@ -4,6 +4,7 @@ data class ScheduleListDto(
     val scheduleId: Int,
     val platform: String,
     val image: String,
+    val color: String,
     val dateTime: String,
     val schedule: String,
     val description: String?,

@@ -13,29 +13,72 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPlatform"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="12dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="00:00" />
+            app:layout_constraintVertical_bias="0" />
+
+        <View
+            android:id="@+id/viewIndicator"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/oval_black_outlined"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTime"
+            app:layout_constraintEnd_toStartOf="@+id/txtTime"
+            app:layout_constraintStart_toEndOf="@+id/imgPlatform"
+            app:layout_constraintTop_toTopOf="@+id/txtTime" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            android:textColor="@color/dark_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtSchedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/viewIndicator"
+            app:layout_constraintTop_toTopOf="@+id/imgPlatform"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="오전 12:00" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtSchedule"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:layout_marginEnd="12dp"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/viewIndicator"
             app:layout_constraintTop_toBottomOf="@+id/txtTime"
+            app:layout_goneMarginBottom="12dp"
             tools:text="딘딘의 Music High" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/dark_gray"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/viewIndicator"
             app:layout_constraintTop_toBottomOf="@+id/txtSchedule"
             tools:text="송하영 고정 게스트" />
 

@@ -1,10 +1,15 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -148,7 +153,20 @@ class ScheduleFragment : Fragment() {
                 }
 
                 container.binding.viewSelectedDay.visibility = if (data.date == selectedDate && data.position == DayPosition.MonthDate) View.VISIBLE else View.GONE
-                container.binding.viewIndicator.visibility = if (data.position == DayPosition.MonthDate && scheduleList.any { it.dateTime.contains(data.date.toString()) }) View.VISIBLE else View.GONE
+
+                val dailySchedules = scheduleList.filter { it.dateTime.contains(data.date.toString()) }
+                val indicators = listOf(container.binding.viewIndicator1, container.binding.viewIndicator2, container.binding.viewIndicator3)
+
+                indicators.forEachIndexed { index, indicator ->
+                    if (index < dailySchedules.size && data.position == DayPosition.MonthDate) {
+                        indicator.visibility = View.VISIBLE
+                        val drawable = indicator.background as GradientDrawable
+                        drawable.setColor(Color.parseColor("#${dailySchedules[index].color}"))
+                        indicator.background = drawable
+                    } else {
+                        indicator.visibility = View.GONE
+                    }
+                }
 
                 binding.txtDate.text = selectedDate.format(DateTimeFormatter.ofPattern("d일 (E)", Locale.KOREA))
 
@@ -187,11 +205,20 @@ class ScheduleFragment : Fragment() {
         binding.recyclerView.apply {
             adapter = scheduleListAdapter
             itemAnimator = null
-//            addItemDecoration(ItemDecoratorDivider(0, 40, 0, 0, 0, 0, null))
         }
 
         scheduleListAdapter.setOnItemClickListener { item, _ ->
+            item.url?.let {
+                val intent = Intent(Intent.ACTION_VIEW, it.toUri())
+                val packageManager = requireContext().packageManager
+                val activities = packageManager.queryIntentActivities(intent, 0)
+                val isIntentSafe = activities.isNotEmpty()
 
+                if (isIntentSafe)
+                    startActivity(intent)
+                else
+                    Toast.makeText(requireContext(), "해당 URL을 열 수 있는 앱이 없습니다.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

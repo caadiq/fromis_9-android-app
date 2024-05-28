@@ -29,15 +29,47 @@
         tools:text="24" />
 
     <View
-        android:id="@+id/viewIndicator"
+        android:id="@+id/viewIndicator1"
         android:layout_width="4dp"
         android:layout_height="4dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/oval_lightpurple"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewIndicator2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCalendarDay"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_goneMarginEnd="0dp" />
+
+    <View
+        android:id="@+id/viewIndicator2"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_marginHorizontal="2dp"
+        android:background="@drawable/oval_lightpurple"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewIndicator3"
+        app:layout_constraintStart_toEndOf="@+id/viewIndicator1"
+        app:layout_constraintTop_toBottomOf="@+id/txtCalendarDay"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_goneMarginEnd="0dp"
+        app:layout_goneMarginStart="0dp" />
+
+    <View
+        android:id="@+id/viewIndicator3"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="2dp"
         android:background="@drawable/oval_lightpurple"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewIndicator2"
         app:layout_constraintTop_toBottomOf="@+id/txtCalendarDay"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_goneMarginStart="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,20 @@
 package com.beemer.unofficial.fromis_9.view.adapter
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.RowScheduleListBinding
 import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
 import com.beemer.unofficial.fromis_9.view.diff.ScheduleListDiffUtil
+import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.dateTimeToString
+import com.beemer.unofficial.fromis_9.view.utils.DensityConverter.dpToPx
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import java.util.Locale
 
 class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>() {
     private var itemList = mutableListOf<ScheduleListDto>()
@@ -35,9 +43,21 @@ class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
         }
 
         fun bind(item: ScheduleListDto) {
-            binding.txtTime.text = item.dateTime
+            Glide.with(binding.root)
+                .load(item.image)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(binding.imgPlatform)
+
+            val color = Color.parseColor("#${item.color}")
+            val drawable = binding.viewIndicator.background as GradientDrawable
+            drawable.setStroke(dpToPx(binding.root.context, 2f), color)
+
+            binding.txtTime.text = dateTimeToString(item.dateTime, "yyyy-MM-dd'T'HH:mm:ss", "a h:mm", Locale.KOREA)
             binding.txtSchedule.text = item.schedule
-            binding.txtDescription.text = item.description
+            binding.txtDescription.apply {
+                text = item.description
+                visibility = if (item.description == null) View.GONE else View.VISIBLE
+            }
         }
     }
 
