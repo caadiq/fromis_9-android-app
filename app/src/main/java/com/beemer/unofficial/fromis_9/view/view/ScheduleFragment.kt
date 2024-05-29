@@ -93,8 +93,8 @@ class ScheduleFragment : Fragment() {
     private fun setupCalendar() {
         val daysOfWeek = daysOfWeek()
         val currentMonth = YearMonth.now()
-        val startMonth = currentMonth.minusMonths(200)
-        val endMonth = currentMonth.plusMonths(200)
+        val startMonth = YearMonth.of(2018, 1)
+        val endMonth = YearMonth.of(2050, 12)
         configureBinders(daysOfWeek)
 
         calendarView.apply {
