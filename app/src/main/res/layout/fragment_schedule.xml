@@ -32,7 +32,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtYearMonth"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"
                 android:fontFamily="@font/nanum_square_round_extra_bold"
                 android:gravity="center"
@@ -42,6 +42,17 @@
                 app:layout_constraintStart_toEndOf="@+id/imgPrev"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2018년 1월" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/dark_gray"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtYearMonth"
+                app:layout_constraintStart_toEndOf="@+id/txtYearMonth"
+                app:layout_constraintTop_toTopOf="@+id/txtYearMonth"
+                app:srcCompat="@drawable/icon_arrow_down" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgNext"

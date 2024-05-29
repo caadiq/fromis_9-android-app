@@ -62,7 +62,7 @@ class AlbumSongActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
             adapter = albumSongAdapter
-            addItemDecoration(ItemDecoratorDivider(0, 80, 0, 0, 0, 0, null))
+            addItemDecoration(ItemDecoratorDivider(this@AlbumSongActivity, 0, 24, 0, 0, 0, 0, null))
         }
     }
 

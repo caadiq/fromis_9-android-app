@@ -26,6 +26,7 @@ import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.core.nextMonth
 import com.kizitonwose.calendar.core.previousMonth
+import com.kizitonwose.calendar.core.yearMonth
 import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
@@ -66,6 +67,7 @@ class ScheduleFragment : Fragment() {
 
         calendarView = binding.calendarView
 
+        setupView()
         setupCalendar()
         setupRecyclerView()
         setupViewModel()
@@ -76,6 +78,16 @@ class ScheduleFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupView() {
+        binding.txtYearMonth.setOnClickListener {
+            showYearMonthPickerDialog()
+        }
+
+        binding.imgDown.setOnClickListener {
+            showYearMonthPickerDialog()
+        }
     }
 
     private fun setupCalendar() {
@@ -228,5 +240,13 @@ class ScheduleFragment : Fragment() {
             scheduleList.addAll(list)
             calendarView.notifyCalendarChanged()
         }
+    }
+
+    private fun showYearMonthPickerDialog() {
+        YearMonthPickerDialog(yearMonth = selectedDate.yearMonth,
+            onConfirm = {
+                calendarView.scrollToMonth(it)
+            }
+        ).show(childFragmentManager, "YearMonthPickerDialog")
     }
 }
