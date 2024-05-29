@@ -1,17 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="일정"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgPrev"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="16dp"
+                android:tint="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/txtYearMonth"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtYearMonth"
+                app:srcCompat="@drawable/icon_arrow_left" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtYearMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:gravity="center"
+                android:textColorLink="@color/dark_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/imgNext"
+                app:layout_constraintStart_toEndOf="@+id/imgPrev"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2018년 1월" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/dark_gray"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtYearMonth"
+                app:layout_constraintStart_toEndOf="@+id/txtYearMonth"
+                app:layout_constraintTop_toTopOf="@+id/txtYearMonth"
+                app:srcCompat="@drawable/icon_arrow_down" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgNext"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="16dp"
+                android:tint="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/txtYearMonth"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtYearMonth"
+                app:srcCompat="@drawable/icon_arrow_right" />
+
+            <com.kizitonwose.calendar.view.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cv_dayViewResource="@layout/calendar_day"
+                app:cv_monthHeaderResource="@layout/calendar_header"
+                app:cv_outDateStyle="endOfRow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtYearMonth" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/light_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:padding="16dp"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                tools:text="24일 수요일" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtNoSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="@string/str_schedule_no_schedule"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingHorizontal="8dp"
+                android:paddingBottom="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDate"
+                tools:listitem="@layout/row_schedule_list" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

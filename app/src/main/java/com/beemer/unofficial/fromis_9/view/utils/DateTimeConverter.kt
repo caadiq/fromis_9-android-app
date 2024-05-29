@@ -13,6 +13,11 @@ object DateTimeConverter {
         return dateTime.format(targetFormatter)
     }
 
+    fun stringToDateTime(dateTime: String, format: String, locale: Locale): LocalDateTime {
+        val formatter = DateTimeFormatter.ofPattern(format, locale)
+        return LocalDateTime.parse(dateTime, formatter)
+    }
+
     fun secToTime(sec: Int): String {
         val hour = sec / 3600
         val minute = sec % 3600 / 60

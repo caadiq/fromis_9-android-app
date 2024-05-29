@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/viewSelectedDay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_primary_rounded_12dp_outlined"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCalendarDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        tools:text="24" />
+
+    <View
+        android:id="@+id/viewIndicator1"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/oval_lightpurple"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewIndicator2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCalendarDay"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_goneMarginEnd="0dp" />
+
+    <View
+        android:id="@+id/viewIndicator2"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_marginHorizontal="2dp"
+        android:background="@drawable/oval_lightpurple"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewIndicator3"
+        app:layout_constraintStart_toEndOf="@+id/viewIndicator1"
+        app:layout_constraintTop_toBottomOf="@+id/txtCalendarDay"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_goneMarginEnd="0dp"
+        app:layout_goneMarginStart="0dp" />
+
+    <View
+        android:id="@+id/viewIndicator3"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/oval_lightpurple"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewIndicator2"
+        app:layout_constraintTop_toBottomOf="@+id/txtCalendarDay"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_goneMarginStart="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

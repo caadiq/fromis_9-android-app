@@ -59,7 +59,7 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class ViewHolder(private val binding: RowVideoListBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClickListener?.invoke(itemList[position], position)
                 }
@@ -67,6 +67,8 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         fun bind(item: VideosDto) {
+            binding.progressIndicator.show()
+
             Glide.with(binding.root).load(item.thumbnail)
                 .placeholder(ColorDrawable(Color.TRANSPARENT))
                 .transition(DrawableTransitionOptions.withCrossFade())

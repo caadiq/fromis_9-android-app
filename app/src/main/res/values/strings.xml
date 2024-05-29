@@ -35,6 +35,14 @@
     <string name="str_video_fm124">FM_1.24</string>
     <string name="str_video_vlog">v_log</string>
     <string name="str_video_fromisoda">프롬이소다</string>
+    <string name="str_video_no_video">영상이 없습니다.</string>
+
+    <!--fragment_schedule-->
+    <string name="str_schedule_no_schedule">일정이 없습니다.</string>
+
+    <!--dialog_yearmonth_picker-->
+    <string name="str_yearmonth_cancel">취소</string>
+    <string name="str_yearmonth_confirm">확인</string>
 
     <!--menu_toolbar_search.xml-->
     <string name="str_menu__search">검색</string>

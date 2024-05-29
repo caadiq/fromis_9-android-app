@@ -29,7 +29,7 @@ class AlbumTrackListAdapter(private val colorMain: String?) : RecyclerView.Adapt
     inner class ViewHolder(private val binding: RowAlbumTrackListBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClickListener?.invoke(itemList[position], position)
                 }

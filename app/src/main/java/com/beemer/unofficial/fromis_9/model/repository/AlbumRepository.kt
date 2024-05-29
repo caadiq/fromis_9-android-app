@@ -15,11 +15,11 @@ class AlbumRepository @Inject constructor(retrofit: Retrofit) {
         return albumApi.getAlbumList().awaitResponse().body() ?: emptyList()
     }
 
-    suspend fun getAlbumDetails(album: String): AlbumDetailsDto {
-        return albumApi.getAlbumDetails(album).awaitResponse().body() ?: AlbumDetailsDto("", emptyList(), emptyList())
+    suspend fun getAlbumDetails(album: String): AlbumDetailsDto? {
+        return albumApi.getAlbumDetails(album).awaitResponse().body()
     }
 
-    suspend fun getAlbumSong(name: String): AlbumSongDto {
-        return albumApi.getAlbumSong(name).awaitResponse().body() ?: AlbumSongDto("", "", "", "", "")
+    suspend fun getAlbumSong(name: String): AlbumSongDto? {
+        return albumApi.getAlbumSong(name).awaitResponse().body()
     }
 }
