@@ -67,6 +67,8 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         fun bind(item: VideosDto) {
+            binding.progressIndicator.show()
+
             Glide.with(binding.root).load(item.thumbnail)
                 .placeholder(ColorDrawable(Color.TRANSPARENT))
                 .transition(DrawableTransitionOptions.withCrossFade())

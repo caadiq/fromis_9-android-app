@@ -109,7 +109,7 @@ class ScheduleFragment : Fragment() {
                 calendarView.notifyDateChanged(selectedDate)
                 calendarView.notifyDateChanged(oldDate)
 
-                // 년도가 바뀌었을 때만 바뀐 년도의 일정 목록을 가져옵니다.
+                // 년도가 바뀌었을 때만 바뀐 년도의 일정 목록을 가져옴
                 if (month.yearMonth.year != currentYear) {
                     currentYear = month.yearMonth.year
                     scheduleViewModel.getScheduleList(currentYear, null)
