@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rectangle_white_rounded_40dp">
+    android:background="@drawable/rectangle_white_rounded_20dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgPrev"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:padding="20dp"
         android:tint="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="@+id/txtYear"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toStartOf="@+id/txtYear"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtYear"
         app:srcCompat="@drawable/icon_arrow_left" />
 
@@ -29,7 +29,8 @@
         android:textColor="@color/dark_gray"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgNext"
+        app:layout_constraintStart_toEndOf="@+id/imgPrev"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="2024" />
 
@@ -37,11 +38,11 @@
         android:id="@+id/imgNext"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:padding="20dp"
         android:tint="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="@+id/txtYear"
         app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtYear"
         app:layout_constraintTop_toTopOf="@+id/txtYear"
         app:srcCompat="@drawable/icon_arrow_right" />
@@ -61,31 +62,30 @@
         app:spanCount="3"
         tools:listitem="@layout/row_yearmonth_picker" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCancel"
-        android:layout_width="60dp"
-        android:layout_height="0dp"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/rectangle_primary_rounded_20dp_outlined_ripple"
-        android:stateListAnimator="@null"
+        android:background="?attr/selectableItemBackground"
+        android:padding="12dp"
         android:text="@string/str_yearmonth_cancel"
         android:textColor="@color/colorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnConrifm"
-        app:layout_constraintEnd_toStartOf="@+id/btnConrifm"
-        app:layout_constraintTop_toTopOf="@+id/btnConrifm" />
+        app:layout_constraintBottom_toBottomOf="@+id/txtConrifm"
+        app:layout_constraintEnd_toStartOf="@+id/txtConrifm"
+        app:layout_constraintTop_toTopOf="@+id/txtConrifm" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnConrifm"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/rectangle_primary_rounded_20dp_ripple"
-        android:stateListAnimator="@null"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtConrifm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="12dp"
         android:text="@string/str_yearmonth_confirm"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimary"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
