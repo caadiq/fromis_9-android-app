@@ -144,6 +144,8 @@ class ScheduleFragment : Fragment() {
                         selectedDate = day.date
                         calendarView.notifyDateChanged(day.date)
                         calendarView.notifyDateChanged(oldDate)
+                        if (this@ScheduleFragment.binding.scrollView.scrollY != 0)
+                            this@ScheduleFragment.binding.scrollView.smoothScrollTo(0, 0)
                     }
                 }
             }
