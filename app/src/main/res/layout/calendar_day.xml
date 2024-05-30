@@ -9,7 +9,7 @@
         android:id="@+id/viewSelectedDay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_primary_rounded_12dp_outlined"
+        android:background="@drawable/rectangle_primary_rounded_20dp_outlined"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
