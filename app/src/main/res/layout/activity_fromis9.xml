@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nanum_square_round_extra_bold"
+            android:text="@string/app_name"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBanner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="@string/str_fromis9_detail"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgBanner" />
+
+            <kr.co.prnd.readmore.ReadMoreTextView
+                android:id="@+id/txtDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="12dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail"
+                app:readMoreColor="@color/colorPrimary"
+                app:readMoreMaxLine="10"
+                app:readMoreText=" …더보기"
+                tools:text="다채롭고 변화무쌍한 매력을 보여주는 프로미스나인\n\n2017년 11월 프리 데뷔 싱글의 타이틀곡 ‘유리구두’로 전 세계 음악 팬들에게 눈도장을 찍은 프로미스나인은 2018년 1월 첫 번째 미니앨범 ‘To. Heart’로 가요계에 정식 데뷔해 K팝 기대주로 떠올랐다." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/members"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="@string/str_fromis9_members"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerMembers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="4dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/members"
+                tools:listitem="@layout/row_member_list" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/debut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="@string/str_fromis9_debut"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerMembers" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDebut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:textColor="@color/dark_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/debut"
+                tools:text="2018.01.24" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="@string/str_fromis9_dday"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDebut" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDdayDays"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rectangle_primary_transcluent_rounded_12dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                android:textSize="18sp"
+                app:layout_constraintDimensionRatio="H,1.4:1"
+                app:layout_constraintEnd_toStartOf="@+id/txtDdayHours"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dday"
+                tools:text="2320" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDdayHours"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@drawable/rectangle_primary_transcluent_rounded_12dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDdayDays"
+                app:layout_constraintDimensionRatio="H,1.4:1"
+                app:layout_constraintEnd_toStartOf="@+id/txtDdayMinutes"
+                app:layout_constraintStart_toEndOf="@+id/txtDdayDays"
+                app:layout_constraintTop_toTopOf="@+id/txtDdayDays"
+                tools:text="10" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDdayMinutes"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@drawable/rectangle_primary_transcluent_rounded_12dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDdayDays"
+                app:layout_constraintDimensionRatio="H,1.4:1"
+                app:layout_constraintEnd_toStartOf="@+id/txtDdaySeconds"
+                app:layout_constraintStart_toEndOf="@+id/txtDdayHours"
+                app:layout_constraintTop_toTopOf="@+id/txtDdayDays"
+                tools:text="07" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtDdaySeconds"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rectangle_primary_transcluent_rounded_12dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:gravity="center"
+                android:textColor="@color/dark_gray"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDdayDays"
+                app:layout_constraintDimensionRatio="H,1.4:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtDdayMinutes"
+                app:layout_constraintTop_toTopOf="@+id/txtDdayDays"
+                tools:text="50" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ddayDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="@string/str_fromis9_days"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/txtDdayDays"
+                app:layout_constraintStart_toStartOf="@+id/txtDdayDays"
+                app:layout_constraintTop_toBottomOf="@+id/txtDdayDays" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ddayHours"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/str_fromis9_hours"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ddayDays"
+                app:layout_constraintEnd_toEndOf="@+id/txtDdayHours"
+                app:layout_constraintStart_toStartOf="@+id/txtDdayHours"
+                app:layout_constraintTop_toTopOf="@+id/ddayDays" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ddayMinutes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/str_fromis9_minutes"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ddayDays"
+                app:layout_constraintEnd_toEndOf="@+id/txtDdayMinutes"
+                app:layout_constraintStart_toStartOf="@+id/txtDdayMinutes"
+                app:layout_constraintTop_toTopOf="@+id/ddayDays" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ddaySeconds"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/str_fromis9_seconds"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ddayDays"
+                app:layout_constraintEnd_toEndOf="@+id/txtDdaySeconds"
+                app:layout_constraintStart_toStartOf="@+id/txtDdaySeconds"
+                app:layout_constraintTop_toTopOf="@+id/ddayDays" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sns"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="@string/str_fromis9_sns"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ddayDays" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerSns"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingVertical="24dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sns"
+                tools:listitem="@layout/row_sns_list" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

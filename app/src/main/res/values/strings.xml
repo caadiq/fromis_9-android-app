@@ -27,6 +27,17 @@
     <!--activity_video_details.xml-->
     <string name="str_video_details_views">조회수</string>
     <string name="str_video_details_published">업로드</string>
+
+    <!--activity_fromis9.xml-->
+    <string name="str_fromis9_detail">프로미스나인 소개</string>
+    <string name="str_fromis9_members">멤버</string>
+    <string name="str_fromis9_debut">데뷔</string>
+    <string name="str_fromis9_dday">D+Day</string>
+    <string name="str_fromis9_days">일</string>
+    <string name="str_fromis9_hours">시간</string>
+    <string name="str_fromis9_minutes">분</string>
+    <string name="str_fromis9_seconds">초</string>
+    <string name="str_fromis9_sns">SNS</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>

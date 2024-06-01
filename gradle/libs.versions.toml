@@ -10,7 +10,7 @@ junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 
 coreKtx = "1.13.1"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 constraintlayout = "2.1.4"
 swipeRefreshLayout = "1.1.0"
 
@@ -24,6 +24,7 @@ retrofit = "2.11.0"
 themedToggleButton = "1.4.1"
 youtubePlayer = "12.1.0"
 calendar = "2.5.1"
+readmore = "1.0.0"
 
 desugar_jdk_libs = "2.0.4"
 
@@ -55,6 +56,7 @@ retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ver
 themedToggleButton = { group = "nl.bryanderidder", name = "themed-toggle-button-group", version.ref = "themedToggleButton" }
 youtubePlayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version.ref = "youtubePlayer" }
 calendar = { group = "com.kizitonwose.calendar", name = "view", version.ref = "calendar" }
+readmore = { group = "kr.co.prnd", name = "readmore-textview", version.ref = "readmore" }
 
 desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 

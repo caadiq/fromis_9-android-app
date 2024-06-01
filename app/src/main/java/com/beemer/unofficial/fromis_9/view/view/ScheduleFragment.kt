@@ -19,6 +19,7 @@ import com.beemer.unofficial.fromis_9.databinding.CalendarHeaderBinding
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
 import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
+import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
 import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
@@ -222,17 +223,7 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleListAdapter.setOnItemClickListener { item, _ ->
-            item.url?.let {
-                val intent = Intent(Intent.ACTION_VIEW, it.toUri())
-                val packageManager = requireContext().packageManager
-                val activities = packageManager.queryIntentActivities(intent, 0)
-                val isIntentSafe = activities.isNotEmpty()
-
-                if (isIntentSafe)
-                    startActivity(intent)
-                else
-                    Toast.makeText(requireContext(), "해당 URL을 열 수 있는 앱이 없습니다.", Toast.LENGTH_SHORT).show()
-            }
+            item.url?.let { openUrl(requireContext(), it) }
         }
     }
 

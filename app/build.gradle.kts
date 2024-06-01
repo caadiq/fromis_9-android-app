@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.themedToggleButton)
     implementation(libs.youtubePlayer)
     implementation(libs.calendar)
+    implementation(libs.readmore)
 
     coreLibraryDesugaring(libs.desugarJdkLibs)
 }

@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.utils
 
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -16,6 +17,11 @@ object DateTimeConverter {
     fun stringToDateTime(dateTime: String, format: String, locale: Locale): LocalDateTime {
         val formatter = DateTimeFormatter.ofPattern(format, locale)
         return LocalDateTime.parse(dateTime, formatter)
+    }
+
+    fun stringToDate(date: String, format: String, locale: Locale): LocalDate {
+        val formatter = DateTimeFormatter.ofPattern(format, locale)
+        return LocalDate.parse(date, formatter)
     }
 
     fun secToTime(sec: Int): String {

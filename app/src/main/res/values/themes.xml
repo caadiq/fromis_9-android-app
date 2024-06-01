@@ -28,4 +28,8 @@
         <item name="toggle_selectedBackgroundColor">@color/colorPrimary</item>
         <item name="toggle_selectedTextColor">@color/white</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

@@ -70,10 +70,8 @@ class HomeFragment : Fragment() {
 
             setOnItemClickListener { item, _ ->
                 when (item.text) {
-                    "프로미스나인" -> {}
-                    "앨범" -> {
-                        startActivity(Intent(requireContext(), AlbumListActivity::class.java))
-                    }
+                    "프로미스나인" -> startActivity(Intent(requireContext(), Fromis9Activity::class.java))
+                    "앨범" -> startActivity(Intent(requireContext(), AlbumListActivity::class.java))
                     "응원법" -> {}
                 }
             }
