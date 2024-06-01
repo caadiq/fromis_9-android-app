@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -16,7 +17,6 @@ import com.beemer.unofficial.fromis_9.viewmodel.Fromis9ViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,22 +40,20 @@ class Fromis9Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupToolbar()
         setupRecyclerView()
         setupViewModel()
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { finish() }
     }
 
     private fun setupRecyclerView() {
         binding.recyclerMembers.apply {
             adapter = memberListAdapter
             addItemDecoration(ItemDecoratorDivider(this@Fromis9Activity, 0, 0, 0, 12, 0, 0, null))
+        }
+
+        memberListAdapter.setOnItemClickListener { item, _ ->
+            val intent = Intent(this, MemberActivity::class.java)
+            intent.putExtra("name", item.name)
+            startActivity(intent)
         }
 
         binding.recyclerSns.apply {

@@ -38,6 +38,11 @@
     <string name="str_fromis9_minutes">분</string>
     <string name="str_fromis9_seconds">초</string>
     <string name="str_fromis9_sns">SNS</string>
+
+    <!--activity_member.xml-->
+    <string name="str_member_birth">생년월일</string>
+    <string name="str_member_position">포지션</string>
+    <string name="str_member_sns">SNS</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>
