@@ -3,8 +3,11 @@ package com.beemer.unofficial.fromis_9.view.view
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.ActivitySettingsBinding
 import com.beemer.unofficial.fromis_9.viewmodel.SettingsViewModel
+import com.mikepenz.aboutlibraries.Libs
+import com.mikepenz.aboutlibraries.LibsBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +27,14 @@ class SettingsActivity : AppCompatActivity() {
     private fun setupView() {
         binding.btnRemoveCache.setOnClickListener {
             settingsViewModel.clearCache()
+        }
+
+        binding.txtLicense.setOnClickListener {
+            LibsBuilder()
+                .withAboutIconShown(true)
+                .withAboutVersionShown(true)
+                .withAboutAppName(getString(R.string.app_name))
+                .start(this)
         }
     }
 

@@ -3,6 +3,8 @@
 agp = "8.4.1"
 kotlin = "1.9.24"
 ksp = "1.9.24-1.0.20"
+aboutlib = "11.2.1"
+
 
 # 라이브러리
 junit = "4.13.2"
@@ -57,6 +59,7 @@ themedToggleButton = { group = "nl.bryanderidder", name = "themed-toggle-button-
 youtubePlayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version.ref = "youtubePlayer" }
 calendar = { group = "com.kizitonwose.calendar", name = "view", version.ref = "calendar" }
 readmore = { group = "kr.co.prnd", name = "readmore-textview", version.ref = "readmore" }
+aboutlibraries = { group = "com.mikepenz", name = "aboutlibraries", version.ref = "aboutlib" }
 
 desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 
@@ -66,3 +69,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+aboutlib = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlib" }
