@@ -1,6 +1,5 @@
 package com.beemer.unofficial.fromis_9.view.view
 
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -8,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -115,6 +112,9 @@ class ScheduleFragment : Fragment() {
                     currentYear = month.yearMonth.year
                     scheduleViewModel.getScheduleList(currentYear, null)
                 }
+
+                if (this@ScheduleFragment.binding.scrollView.scrollY != 0)
+                    this@ScheduleFragment.binding.scrollView.smoothScrollTo(0, 0)
             }
         }
 
