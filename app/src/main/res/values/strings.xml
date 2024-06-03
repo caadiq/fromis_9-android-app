@@ -28,17 +28,6 @@
     <string name="str_video_details_views">조회수</string>
     <string name="str_video_details_published">업로드</string>
 
-    <!--activity_fromis9.xml-->
-    <string name="str_fromis9_detail">프로미스나인 소개</string>
-    <string name="str_fromis9_members">멤버</string>
-    <string name="str_fromis9_debut">데뷔</string>
-    <string name="str_fromis9_dday">D+Day</string>
-    <string name="str_fromis9_days">일</string>
-    <string name="str_fromis9_hours">시간</string>
-    <string name="str_fromis9_minutes">분</string>
-    <string name="str_fromis9_seconds">초</string>
-    <string name="str_fromis9_sns">SNS</string>
-
     <!--activity_member.xml-->
     <string name="str_member_birth">생년월일</string>
     <string name="str_member_position">포지션</string>
@@ -53,10 +42,13 @@
     <string name="str_video_fromisoda">프롬이소다</string>
     <string name="str_video_no_video">영상이 없습니다.</string>
 
-    <!--fragment_schedule-->
+    <!--fragment_schedule.xml-->
     <string name="str_schedule_no_schedule">일정이 없습니다.</string>
 
-    <!--dialog_yearmonth_picker-->
+    <!--row_home_album_more.xml-->
+    <string name="str_home_album_more_more">더보기</string>
+
+    <!--dialog_yearmonth_picker.xml-->
     <string name="str_yearmonth_cancel">취소</string>
     <string name="str_yearmonth_confirm">확인</string>
 

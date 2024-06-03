@@ -7,15 +7,16 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgProfile"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="128dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="8dp"
         android:adjustViewBounds="true"
         android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-        app:strokeColor="@color/gray"
+        app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay.12dp"
+        app:strokeColor="@color/light_gray"
         app:strokeWidth="1dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -23,8 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/nanum_square_neo_bold"
         android:textColor="@color/dark_gray"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imgProfile"
         app:layout_constraintStart_toStartOf="@+id/imgProfile"

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgAlbum"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        app:contentPadding="12dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/primary_transcluent"
+        app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay.8dp"
+        app:srcCompat="@drawable/icon_fromis9" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtDDay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/nanum_square_neo_bold"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtDebut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgAlbum"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="플로버와 함께한 지 2322일" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtDebut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:fontFamily="@font/nanum_square_neo_regular"
+        app:layout_constraintEnd_toEndOf="@+id/txtDDay"
+        app:layout_constraintStart_toStartOf="@+id/txtDDay"
+        app:layout_constraintTop_toBottomOf="@+id/txtDDay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="2018.01.24 ~ " />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

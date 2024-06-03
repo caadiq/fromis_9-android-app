@@ -1,9 +1,9 @@
 package com.beemer.unofficial.fromis_9.view.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.beemer.unofficial.fromis_9.model.dto.Member
+import com.beemer.unofficial.fromis_9.view.adapter.HomeAlbumItem
 
-class MemberListDiffUtil(private val oldList: List<Member>, private val newList: List<Member>) : DiffUtil.Callback() {
+class HomeAlbumDiffUtil(private val oldList: List<HomeAlbumItem>, private val newList: List<HomeAlbumItem>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }
@@ -13,7 +13,7 @@ class MemberListDiffUtil(private val oldList: List<Member>, private val newList:
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].name == newList[newItemPosition].name
+        return oldList[oldItemPosition]::class == newList[newItemPosition]::class
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

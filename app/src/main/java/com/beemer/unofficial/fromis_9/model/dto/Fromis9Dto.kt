@@ -2,10 +2,10 @@ package com.beemer.unofficial.fromis_9.model.dto
 
 data class Fromis9Dto(
     val bannerImage: String,
-    val detail: String,
     val debut: String,
     val members: List<Member>,
-    val socials: List<Social>
+    val socials: List<Social>,
+    val albums: List<AlbumListDto>
 )
 
 data class Member(
