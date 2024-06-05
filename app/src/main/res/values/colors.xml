@@ -3,7 +3,7 @@
     <!-- 앱 기본 색상 -->
     <color name="colorPrimary">#DA75A1</color> <!-- 주요 색상 -->
     <color name="colorOnPrimary">#000000</color> <!-- 주요 색상 위에 오는 요소들의 색상 -->
-    <color name="colorSecondary">#DA75A1</color> <!-- 보조 색상 -->
+    <color name="colorSecondary">#F2E8ED</color> <!-- 보조 색상 -->
     <color name="colorOnSecondary">#FFFFFF</color> <!-- 보조 색상 위에 오는 요소들의 색상 -->
     <color name="colorSurface">#FFFFFF</color> <!-- 카드, 메뉴, 시트 등 UI 표면에 사용되는 색상 -->
     <color name="colorOutlineVariant">#E0E0E0</color> <!-- 테두리 색상 -->
@@ -14,7 +14,6 @@
     <color name="red">#F44336</color>
     <color name="green">#4CAF50</color>
     <color name="blue">#3F51B5</color>
-    <color name="primary_transcluent">#4DDA75A1</color>
     <color name="light_purple">#A09FD8</color>
     <color name="purple">#9C27B0</color>
     <color name="lighter_gray">#FAFAFA</color>

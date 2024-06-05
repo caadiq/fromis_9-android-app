@@ -6,8 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.databinding.ActivityAlbumListBinding
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumListAdapter
+import com.beemer.unofficial.fromis_9.view.utils.ItemDecoratorDivider
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
-import com.beemer.unofficial.fromis_9.viewmodel.SortBy
+import com.beemer.unofficial.fromis_9.viewmodel.Sort
+import com.beemer.unofficial.fromis_9.viewmodel.Type
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,23 +30,29 @@ class AlbumListActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        binding.btnToggleGroup.apply {
-            check(binding.btnRelease.id)
-            addOnButtonCheckedListener { _, checkedId, isChecked ->
-                if (isChecked) {
-                    val sortBy = when (checkedId) {
-                        binding.btnRelease.id -> SortBy.RELEASE
-                        binding.btnTitle.id -> SortBy.TITLE
-                        binding.btnType.id -> SortBy.TYPE
-                        else -> SortBy.RELEASE
-                    }
-                    albumViewModel.setSortBy(sortBy)
-                }
-            }
+        binding.txtSearch.setOnClickListener {
+//            startActivity(Intent(this, SongSearchActivity::class.java))
         }
 
-        binding.btnDesc.setOnCheckedChangeListener { _, isChecked ->
-            albumViewModel.setDescending(!isChecked)
+        binding.btnType.setOnClickListener {
+            MenuBottomSheetDialog(listOf("분류", "전체", "싱글", "미니", "정규"), onItemClick = { item, _ ->
+                when (item) {
+                    "전체" -> albumViewModel.setType(Type.ALL)
+                    "싱글" -> albumViewModel.setType(Type.SINGLE)
+                    "미니" -> albumViewModel.setType(Type.MINI)
+                    "정규" -> albumViewModel.setType(Type.ALBUM)
+                }
+            }).show(supportFragmentManager, "MenuBottomSheetDialog")
+        }
+
+        binding.btnSort.setOnClickListener {
+            MenuBottomSheetDialog(listOf("정렬", "발매", "앨범", "타입"), onItemClick = { item, _ ->
+                when (item) {
+                    "발매" -> albumViewModel.setSort(Sort.DATE)
+                    "앨범" -> albumViewModel.setSort(Sort.TITLE)
+                    "타입" -> albumViewModel.setSort(Sort.TYPE)
+                }
+            }).show(supportFragmentManager, "MenuBottomSheetDialog")
         }
     }
 
@@ -52,6 +60,7 @@ class AlbumListActivity : AppCompatActivity() {
         binding.recyclerView.apply {
             adapter = albumListAdapter
             setHasFixedSize(true)
+            addItemDecoration(ItemDecoratorDivider(this@AlbumListActivity, 0, 16, 0, 0, 0, 0, null))
         }
 
         albumListAdapter.setOnItemClickListener { item, _ ->
@@ -69,19 +78,44 @@ class AlbumListActivity : AppCompatActivity() {
         albumViewModel.apply {
             getAlbumList()
 
-            sortBy.observe(this@AlbumListActivity) {
-                when (it) {
-                    SortBy.RELEASE -> binding.btnToggleGroup.check(binding.btnRelease.id)
-                    SortBy.TITLE -> binding.btnToggleGroup.check(binding.btnTitle.id)
-                    SortBy.TYPE -> binding.btnToggleGroup.check(binding.btnType.id)
-                    else -> binding.btnToggleGroup.check(binding.btnRelease.id)
+            type.observe(this@AlbumListActivity) { type ->
+                albumListAdapter.filter.filter(
+                    type?.let {
+                        when (it) {
+                            Type.ALL -> ""
+                            Type.SINGLE -> "싱글"
+                            Type.MINI -> "미니"
+                            Type.ALBUM -> "정규"
+                        }
+                    }
+                )
+
+                binding.btnType.text = type?.let {
+                    when (it) {
+                        Type.ALL -> "전체"
+                        Type.SINGLE -> "싱글"
+                        Type.MINI -> "미니"
+                        Type.ALBUM -> "정규"
+                    }
                 }
-                sortAlbumList(albumList.value ?: emptyList())
+
+                if (albumListAdapter.itemCount > 0)
+                    binding.recyclerView.smoothScrollToPosition(0)
             }
 
-            isDescending.observe(this@AlbumListActivity) { descending ->
-                binding.btnDesc.isChecked = !descending
-                sortAlbumList(albumList.value ?: emptyList())
+            sort.observe(this@AlbumListActivity) { sort ->
+                albumListAdapter.sortList(sort)
+
+                binding.btnSort.text = sort?.let {
+                    when (it) {
+                        Sort.DATE -> "발매"
+                        Sort.TITLE -> "앨범"
+                        Sort.TYPE -> "타입"
+                    }
+                }
+
+                if (albumListAdapter.itemCount > 0)
+                    binding.recyclerView.smoothScrollToPosition(0)
             }
 
             albumList.observe(this@AlbumListActivity) { list ->

@@ -12,17 +12,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-enum class SortBy {
-    RELEASE, TITLE, TYPE
+enum class Type {
+    SINGLE, MINI, ALBUM, ALL
+}
+
+enum class Sort {
+    DATE, TITLE, TYPE
 }
 
 @HiltViewModel
 class AlbumViewModel @Inject constructor(private val repository: AlbumRepository) : ViewModel() {
-    private val _sortBy = MutableLiveData(SortBy.RELEASE)
-    val sortBy: LiveData<SortBy> = _sortBy
+    private val _type = MutableLiveData(Type.ALL)
+    val type: LiveData<Type> = _type
 
-    private val _isDescending = MutableLiveData(true)
-    val isDescending: LiveData<Boolean> = _isDescending
+    private val _sort = MutableLiveData(Sort.DATE)
+    val sort: LiveData<Sort> = _sort
 
     private val _albumList = MutableLiveData<List<AlbumListDto>>()
     val albumList: LiveData<List<AlbumListDto>> = _albumList
@@ -33,29 +37,18 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     private val _albumSong = MutableLiveData<AlbumSongDto>()
     val albumSong: LiveData<AlbumSongDto> = _albumSong
 
-    fun setSortBy(sortBy: SortBy) {
-        _sortBy.value = sortBy
+    fun setType(type: Type) {
+        _type.value = type
     }
 
-    fun setDescending(isDescending: Boolean) {
-        _isDescending.value = isDescending
+    fun setSort(sort: Sort) {
+        _sort.value = sort
     }
 
     fun getAlbumList() {
         viewModelScope.launch {
-            sortAlbumList(repository.getAlbumList())
+            _albumList.value = repository.getAlbumList()
         }
-    }
-
-    fun sortAlbumList(list: List<AlbumListDto>) {
-        val sortedList = when (_sortBy.value) {
-            SortBy.RELEASE -> list.sortedBy { it.release }.toList()
-            SortBy.TITLE -> list.sortedBy { it.albumName.lowercase() }.toList()
-            SortBy.TYPE -> list.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() }).toList()
-            else -> list
-        }
-
-        _albumList.value = if (_isDescending.value == true) sortedList.reversed() else sortedList
     }
 
     fun getAlbumDetails(album: String) {
