@@ -12,9 +12,11 @@
     <string name="str_album_list_type">전체</string>
     <string name="str_album_list_sort">날짜</string>
 
-
     <!--activity_album_song.xml-->
     <string name="str_album_song_play">노래 재생</string>
+
+    <!--activity_weverse_shop.xml-->
+    <string name="str_weverse_shop_title">weverse shop</string>
 
     <!--activity_settings.xml-->
     <string name="str_settings_info">정보</string>
@@ -49,6 +51,9 @@
 
     <!--row_home_album_more.xml-->
     <string name="str_home_album_more_more">더보기</string>
+
+    <!--row_weverse_shop_album_list.xml-->
+    <string name="str_weverse_shop_album_list_sold_out">품절</string>
 
     <!--dialog_yearmonth_picker.xml-->
     <string name="str_yearmonth_cancel">취소</string>

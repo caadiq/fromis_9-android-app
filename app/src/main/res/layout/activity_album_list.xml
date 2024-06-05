@@ -23,7 +23,7 @@
             android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btnSettings"
+            android:id="@+id/btnShop"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="end"

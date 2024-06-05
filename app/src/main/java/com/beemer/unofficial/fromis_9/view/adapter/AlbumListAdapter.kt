@@ -139,7 +139,7 @@ class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>(), Fi
         val sortedList = when (sort) {
             Sort.DATE -> filteredItemList.sortedByDescending { it.release }
             Sort.TITLE -> filteredItemList.sortedBy { it.albumName.lowercase() }
-            Sort.TYPE -> filteredItemList.sortedBy { it.type }
+            Sort.TYPE -> filteredItemList.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() })
         }
         setFilteredList(sortedList)
     }
