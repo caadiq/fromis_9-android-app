@@ -18,17 +18,10 @@ enum class Type {
     SINGLE, MINI, ALBUM, ALL
 }
 
-enum class Sort {
-    DATE, TITLE, TYPE
-}
-
 @HiltViewModel
 class AlbumViewModel @Inject constructor(private val repository: AlbumRepository) : ViewModel() {
     private val _type = MutableLiveData(Type.ALL)
     val type: LiveData<Type> = _type
-
-    private val _sort = MutableLiveData(Sort.DATE)
-    val sort: LiveData<Sort> = _sort
 
     private val _albumList = MutableLiveData<List<AlbumListDto>>()
     val albumList: LiveData<List<AlbumListDto>> = _albumList
@@ -47,10 +40,6 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
 
     fun setType(type: Type) {
         _type.value = type
-    }
-
-    fun setSort(sort: Sort) {
-        _sort.value = sort
     }
 
     fun getAlbumList() {

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.RowAlbumListBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
 import com.beemer.unofficial.fromis_9.view.diff.AlbumListDiffUtil
-import com.beemer.unofficial.fromis_9.viewmodel.Sort
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -133,14 +132,5 @@ class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>(), Fi
                 filteredList?.let { setFilteredList(it) }
             }
         }
-    }
-
-    fun sortList(sort: Sort) {
-        val sortedList = when (sort) {
-            Sort.DATE -> filteredItemList.sortedByDescending { it.release }
-            Sort.TITLE -> filteredItemList.sortedBy { it.albumName.lowercase() }
-            Sort.TYPE -> filteredItemList.sortedWith(compareBy<AlbumListDto> { it.type }.thenBy { it.albumName.lowercase() })
-        }
-        setFilteredList(sortedList)
     }
 }

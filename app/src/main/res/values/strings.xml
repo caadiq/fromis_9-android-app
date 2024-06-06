@@ -10,7 +10,6 @@
     <string name="str_album_list_title">앨범</string>
     <string name="str_album_list_search">노래 검색</string>
     <string name="str_album_list_type">전체</string>
-    <string name="str_album_list_sort">날짜</string>
 
     <!--activity_album_song.xml-->
     <string name="str_album_song_play">노래 재생</string>

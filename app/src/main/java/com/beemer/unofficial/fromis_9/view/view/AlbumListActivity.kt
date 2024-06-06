@@ -8,7 +8,6 @@ import com.beemer.unofficial.fromis_9.databinding.ActivityAlbumListBinding
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumListAdapter
 import com.beemer.unofficial.fromis_9.view.utils.ItemDecoratorDivider
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
-import com.beemer.unofficial.fromis_9.viewmodel.Sort
 import com.beemer.unofficial.fromis_9.viewmodel.Type
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,16 +44,6 @@ class AlbumListActivity : AppCompatActivity() {
                     "싱글" -> albumViewModel.setType(Type.SINGLE)
                     "미니" -> albumViewModel.setType(Type.MINI)
                     "정규" -> albumViewModel.setType(Type.ALBUM)
-                }
-            }).show(supportFragmentManager, "MenuBottomSheetDialog")
-        }
-
-        binding.btnSort.setOnClickListener {
-            MenuBottomSheetDialog(listOf("정렬", "발매", "앨범", "타입"), onItemClick = { item, _ ->
-                when (item) {
-                    "발매" -> albumViewModel.setSort(Sort.DATE)
-                    "앨범" -> albumViewModel.setSort(Sort.TITLE)
-                    "타입" -> albumViewModel.setSort(Sort.TYPE)
                 }
             }).show(supportFragmentManager, "MenuBottomSheetDialog")
         }
@@ -100,21 +89,6 @@ class AlbumListActivity : AppCompatActivity() {
                         Type.SINGLE -> "싱글"
                         Type.MINI -> "미니"
                         Type.ALBUM -> "정규"
-                    }
-                }
-
-                if (albumListAdapter.itemCount > 0)
-                    binding.recyclerView.scrollToPosition(0)
-            }
-
-            sort.observe(this@AlbumListActivity) { sort ->
-                albumListAdapter.sortList(sort)
-
-                binding.btnSort.text = sort?.let {
-                    when (it) {
-                        Sort.DATE -> "발매"
-                        Sort.TITLE -> "앨범"
-                        Sort.TYPE -> "타입"
                     }
                 }
 
