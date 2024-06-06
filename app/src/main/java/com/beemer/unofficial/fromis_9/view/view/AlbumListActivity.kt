@@ -104,7 +104,7 @@ class AlbumListActivity : AppCompatActivity() {
                 }
 
                 if (albumListAdapter.itemCount > 0)
-                    binding.recyclerView.smoothScrollToPosition(0)
+                    binding.recyclerView.scrollToPosition(0)
             }
 
             sort.observe(this@AlbumListActivity) { sort ->
@@ -119,7 +119,7 @@ class AlbumListActivity : AppCompatActivity() {
                 }
 
                 if (albumListAdapter.itemCount > 0)
-                    binding.recyclerView.smoothScrollToPosition(0)
+                    binding.recyclerView.scrollToPosition(0)
             }
 
             albumList.observe(this@AlbumListActivity) { list ->
