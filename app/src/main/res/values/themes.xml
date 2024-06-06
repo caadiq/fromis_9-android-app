@@ -14,6 +14,8 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="android:statusBarColor">@color/white</item>
+
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
     </style>
 
     <style name="Theme.Fromis_9" parent="Base.Theme.Fromis_9" />
@@ -22,10 +24,32 @@
         <item name="android:color">@android:color/transparent</item>
     </style>
 
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomRoundedBackgroundBottomSheet</item>
+    </style>
+
+    <style name="CustomRoundedBackgroundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="StyleThemedToggleButton">
         <item name="toggle_fontFamily">/fonts/nanum_square_round_bold.ttf</item>
         <item name="toggle_textColor">@color/dark_gray</item>
         <item name="toggle_selectedBackgroundColor">@color/colorPrimary</item>
         <item name="toggle_selectedTextColor">@color/white</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedShapeAppearanceOverlay.12dp" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="RoundedShapeAppearanceOverlay.8dp" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 </resources>

@@ -7,12 +7,16 @@
     <string name="str_bottom_nav_schedule">일정</string>
 
     <!--activity_album_list.xml-->
-    <string name="str_album_sort_release">발매일</string>
-    <string name="str_album_sort_title">타이틀</string>
-    <string name="str_album_sort_classify">분류</string>
+    <string name="str_album_list_title">앨범</string>
+    <string name="str_album_list_search">노래 검색</string>
+    <string name="str_album_list_type">전체</string>
+    <string name="str_album_list_sort">날짜</string>
 
     <!--activity_album_song.xml-->
     <string name="str_album_song_play">노래 재생</string>
+
+    <!--activity_weverse_shop.xml-->
+    <string name="str_weverse_shop_title">weverse shop</string>
 
     <!--activity_settings.xml-->
     <string name="str_settings_info">정보</string>
@@ -27,6 +31,11 @@
     <!--activity_video_details.xml-->
     <string name="str_video_details_views">조회수</string>
     <string name="str_video_details_published">업로드</string>
+
+    <!--activity_member.xml-->
+    <string name="str_member_birth">생년월일</string>
+    <string name="str_member_position">포지션</string>
+    <string name="str_member_sns">SNS</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>
@@ -37,10 +46,16 @@
     <string name="str_video_fromisoda">프롬이소다</string>
     <string name="str_video_no_video">영상이 없습니다.</string>
 
-    <!--fragment_schedule-->
+    <!--fragment_schedule.xml-->
     <string name="str_schedule_no_schedule">일정이 없습니다.</string>
 
-    <!--dialog_yearmonth_picker-->
+    <!--row_home_album_more.xml-->
+    <string name="str_home_album_more_more">더보기</string>
+
+    <!--row_weverse_shop_album_list.xml-->
+    <string name="str_weverse_shop_album_list_sold_out">품절</string>
+
+    <!--dialog_yearmonth_picker.xml-->
     <string name="str_yearmonth_cancel">취소</string>
     <string name="str_yearmonth_confirm">확인</string>
 

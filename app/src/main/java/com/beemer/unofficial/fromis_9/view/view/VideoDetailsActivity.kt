@@ -12,7 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.databinding.ActivityVideoDetailsBinding
 import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.timeAgo
-import com.beemer.unofficial.fromis_9.view.utils.NumberFormatter.formatNumber
+import com.beemer.unofficial.fromis_9.view.utils.NumberFormatter.formatViews
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
@@ -63,7 +63,7 @@ class VideoDetailsActivity : AppCompatActivity() {
 
     private fun setupView() {
         binding.txtTitle.text = title
-        binding.txtViews.text = if (views == -1) "" else formatNumber(views)
+        binding.txtViews.text = if (views == -1) "" else formatViews(views)
         binding.txtPublished.text = publishedAt?.let { timeAgo(it) }
         binding.txtDescription.text = description
     }

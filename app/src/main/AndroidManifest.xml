@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <queries>
         <intent>
@@ -30,10 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.view.SettingsActivity"/>
-        <activity android:name=".view.view.AlbumListActivity"/>
-        <activity android:name=".view.view.AlbumDetailsActivity"/>
-        <activity android:name=".view.view.AlbumSongActivity"/>
+        <activity android:name=".view.view.MemberActivity" />
+        <activity android:name=".view.view.SettingsActivity" />
+        <activity android:name=".view.view.AlbumListActivity" />
+        <activity android:name=".view.view.AlbumDetailsActivity" />
+        <activity android:name=".view.view.AlbumSongActivity" />
+        <activity android:name=".view.view.AlbumSongSearchActivity" />
+        <activity android:name=".view.view.WeverseShopActivity" />
         <activity
             android:name=".view.view.VideoDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"

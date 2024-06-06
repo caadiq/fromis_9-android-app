@@ -1,6 +1,5 @@
 package com.beemer.unofficial.fromis_9.view.view
 
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -8,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,6 +16,7 @@ import com.beemer.unofficial.fromis_9.databinding.CalendarHeaderBinding
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
 import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
+import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
 import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
@@ -114,6 +112,9 @@ class ScheduleFragment : Fragment() {
                     currentYear = month.yearMonth.year
                     scheduleViewModel.getScheduleList(currentYear, null)
                 }
+
+                if (this@ScheduleFragment.binding.scrollView.scrollY != 0)
+                    this@ScheduleFragment.binding.scrollView.smoothScrollTo(0, 0)
             }
         }
 
@@ -144,6 +145,8 @@ class ScheduleFragment : Fragment() {
                         selectedDate = day.date
                         calendarView.notifyDateChanged(day.date)
                         calendarView.notifyDateChanged(oldDate)
+                        if (this@ScheduleFragment.binding.scrollView.scrollY != 0)
+                            this@ScheduleFragment.binding.scrollView.smoothScrollTo(0, 0)
                     }
                 }
             }
@@ -220,17 +223,7 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleListAdapter.setOnItemClickListener { item, _ ->
-            item.url?.let {
-                val intent = Intent(Intent.ACTION_VIEW, it.toUri())
-                val packageManager = requireContext().packageManager
-                val activities = packageManager.queryIntentActivities(intent, 0)
-                val isIntentSafe = activities.isNotEmpty()
-
-                if (isIntentSafe)
-                    startActivity(intent)
-                else
-                    Toast.makeText(requireContext(), "해당 URL을 열 수 있는 앱이 없습니다.", Toast.LENGTH_SHORT).show()
-            }
+            item.url?.let { openUrl(requireContext(), it) }
         }
     }
 

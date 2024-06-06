@@ -66,11 +66,11 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
             binding.txtYear.text = (year + 1).toString()
         }
 
-        binding.btnCancel.setOnClickListener {
+        binding.txtCancel.setOnClickListener {
             dismiss()
         }
 
-        binding.btnConrifm.setOnClickListener {
+        binding.txtConrifm.setOnClickListener {
             val year = binding.txtYear.text.toString().toInt()
 
             onConfirm(YearMonth.of(year, yearMonthPickerAdapter.getSelectedItem().plus(1)))

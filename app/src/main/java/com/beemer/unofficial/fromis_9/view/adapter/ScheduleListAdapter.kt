@@ -52,7 +52,7 @@ class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
             val drawable = binding.viewIndicator.background as GradientDrawable
             drawable.setStroke(dpToPx(binding.root.context, 2f), color)
 
-            binding.txtTime.text = dateTimeToString(item.dateTime, "yyyy-MM-dd'T'HH:mm:ss", "a h:mm", Locale.KOREA)
+            binding.txtTime.text = if (item.allDay) "종일" else dateTimeToString(item.dateTime, "yyyy-MM-dd'T'HH:mm:ss", "a h:mm", Locale.KOREA)
             binding.txtSchedule.text = item.schedule
             binding.txtDescription.apply {
                 text = item.description
