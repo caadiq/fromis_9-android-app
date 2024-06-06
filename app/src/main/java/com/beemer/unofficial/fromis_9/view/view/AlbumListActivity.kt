@@ -35,7 +35,7 @@ class AlbumListActivity : AppCompatActivity() {
         }
 
         binding.txtSearch.setOnClickListener {
-//            startActivity(Intent(this, SongSearchActivity::class.java))
+            startActivity(Intent(this, AlbumSongSearchActivity::class.java))
         }
 
         binding.btnType.setOnClickListener {

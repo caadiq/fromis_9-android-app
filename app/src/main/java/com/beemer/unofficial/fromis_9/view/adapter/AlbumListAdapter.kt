@@ -103,7 +103,7 @@ class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>(), Fi
 
         filteredItemList.clear()
         filteredItemList.addAll(list)
-        diffResult.dispatchUpdatesTo(this@AlbumListAdapter)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun getFilter(): Filter {
