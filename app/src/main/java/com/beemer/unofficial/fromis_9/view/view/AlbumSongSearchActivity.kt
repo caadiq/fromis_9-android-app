@@ -53,7 +53,7 @@ class AlbumSongSearchActivity : AppCompatActivity() {
             adapter = albumSongListAdapter
             layoutAnimation = loadLayoutAnimation(this@AlbumSongSearchActivity, R.anim.layout_animation_slide_from_bottom)
 
-            setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
                 if (scrollY > oldScrollY || scrollY < oldScrollY)
                     imm.hideSoftInputFromWindow(binding.editSearch.windowToken, 0)
             }
