@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCredits"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/nanum_square_neo_bold"
+        android:textColor="@color/dark_gray"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtPeople"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="작곡" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtPeople"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/nanum_square_neo_regular"
+        android:lineSpacingExtra="12dp"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="8"
+        app:layout_constraintStart_toEndOf="@+id/txtCredits"
+        app:layout_constraintTop_toTopOf="@+id/txtCredits"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="라이언전\nSvea Kagemark\nCeline Svanback\nJeppe London Bilsby\nStally\nPATEKO" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,8 +61,6 @@ class AlbumListActivity : AppCompatActivity() {
             intent.putExtra("albumName", item.albumName)
             intent.putExtra("cover", item.cover)
             intent.putExtra("colorMain", item.colorMain)
-            intent.putExtra("colorPrimary", item.colorPrimary)
-            intent.putExtra("colorSecondary", item.colorSecondary)
             startActivity(intent)
         }
     }

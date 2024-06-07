@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
             itemAnimator = null
         }
 
-        homeAdapter.setOnItemClickListener { item, position ->
+        homeAdapter.setOnItemClickListener { item, _ ->
             when (item) {
                 is HomeItem.HomeTitle -> return@setOnItemClickListener
                 is HomeItem.HomeDebut -> return@setOnItemClickListener

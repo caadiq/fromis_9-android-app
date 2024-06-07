@@ -2,16 +2,14 @@ package com.beemer.unofficial.fromis_9.view.view
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.databinding.ActivityAlbumSongBinding
-import com.beemer.unofficial.fromis_9.view.adapter.AlbumSong
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumSongAdapter
-import com.beemer.unofficial.fromis_9.view.utils.ItemDecoratorDivider
+import com.beemer.unofficial.fromis_9.view.adapter.AlbumSongItem
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,10 +23,9 @@ class AlbumSongActivity : AppCompatActivity() {
 
     private val songName by lazy { intent.getStringExtra("songName") }
     private val colorMain by lazy { intent.getStringExtra("colorMain") }
-    private val colorPrimary by lazy { intent.getStringExtra("colorPrimary") }
-    private val colorSecondary by lazy { intent.getStringExtra("colorSecondary") }
     private val titleTrack by lazy { intent.getBooleanExtra("titleTrack", false) }
     private var videoId: String? = null
+    private var fanchantVideoId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,43 +37,53 @@ class AlbumSongActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        binding.txtSongName.apply {
+        binding.txtTitle.apply {
             text = songName
             if (titleTrack) setTextColor(Color.parseColor("#$colorMain"))
-        }
-
-        binding.scrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            if (scrollY > oldScrollY)
-                binding.fab.hide()
-            else
-                binding.fab.show()
-        }
-
-        binding.fab.apply {
-            supportBackgroundTintList = ColorStateList.valueOf(Color.parseColor("#$colorPrimary"))
-            supportImageTintList = ColorStateList.valueOf(Color.parseColor("#$colorSecondary"))
-            setOnClickListener { videoId?.let { openYoutube(it) } }
         }
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerView.apply {
-            adapter = albumSongAdapter
-            addItemDecoration(ItemDecoratorDivider(this@AlbumSongActivity, 0, 24, 0, 0, 0, 0, null))
+        binding.recyclerView.adapter = albumSongAdapter
+
+        albumSongAdapter.setOnItemClickListener { item, _ ->
+            if (item is AlbumSongItem.Video)
+                openYoutube(item.videoId)
         }
     }
 
     private fun setupViewModel() {
         albumViewModel.apply {
-            getAlbumSong(songName ?: "")
+            songName?.let { getAlbumSong(it) }
 
             albumSong.observe(this@AlbumSongActivity) { song ->
-                albumSongAdapter.addItem(AlbumSong("작사", song.lyricist))
-                albumSongAdapter.addItem(AlbumSong("작곡", song.composer))
-                song.arranger?.let { albumSongAdapter.addItem(AlbumSong("편곡", it)) }
-                albumSongAdapter.addItem(AlbumSong("가사", song.lyrics))
+                val items = mutableListOf<AlbumSongItem>()
+
+                items.add(AlbumSongItem.Title("참여"))
+                items.add(AlbumSongItem.Credits("작사", song.lyricist))
+                items.add(AlbumSongItem.Credits("작곡", song.composer))
+                song.arranger?.let { items.add(AlbumSongItem.Credits("편곡", it)) }
+
+                items.add(AlbumSongItem.Title("가사"))
+                items.add(AlbumSongItem.Lyrics(song.lyrics))
+
+                song.fanchant?.let {
+                    items.add(AlbumSongItem.Title("응원법"))
+                    items.add(AlbumSongItem.FanChant(it))
+                }
+
+                items.add(AlbumSongItem.Title(if (titleTrack) "뮤직비디오" else "음원"))
+                items.add(AlbumSongItem.Video(song.videoId))
+
+                song.fanchantVideoId?.let {
+                    items.add(AlbumSongItem.Title("응원법 영상"))
+                    items.add(AlbumSongItem.Video(it))
+                }
+
+                albumSongAdapter.setItemList(items)
 
                 videoId = song.videoId
+                fanchantVideoId = song.fanchantVideoId
             }
         }
     }

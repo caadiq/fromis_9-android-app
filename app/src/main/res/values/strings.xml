@@ -12,7 +12,8 @@
     <string name="str_album_list_type">전체</string>
 
     <!--activity_album_song.xml-->
-    <string name="str_album_song_play">노래 재생</string>
+    <string name="str_album_song_fanchant">응원법 영상</string>
+    <string name="str_album_song_play">음원 영상</string>
 
     <!--activity_weverse_shop.xml-->
     <string name="str_weverse_shop_title">weverse shop</string>

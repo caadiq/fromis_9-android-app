@@ -5,5 +5,7 @@ data class AlbumSongDto(
     val composer: String,
     val arranger: String?,
     val lyrics: String,
-    val videoId: String
+    val fanchant: String?,
+    val videoId: String,
+    val fanchantVideoId: String?
 )
