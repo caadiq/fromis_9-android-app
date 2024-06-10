@@ -2,6 +2,7 @@ package com.beemer.unofficial.fromis_9.model.di
 
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import com.beemer.unofficial.fromis_9.model.repository.Fromis9Repository
+import com.beemer.unofficial.fromis_9.model.repository.NewsRepository
 import com.beemer.unofficial.fromis_9.model.repository.ScheduleRepository
 import com.beemer.unofficial.fromis_9.model.repository.VideoRepository
 import com.beemer.unofficial.fromis_9.model.service.RetrofitService
@@ -35,4 +36,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFromis9Repository(retrofit: Retrofit): Fromis9Repository = Fromis9Repository(retrofit)
+
+    @Provides
+    @Singleton
+    fun provideNewsRepository(retrofit: Retrofit): NewsRepository = NewsRepository(retrofit)
 }

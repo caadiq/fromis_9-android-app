@@ -8,7 +8,6 @@ import com.beemer.unofficial.fromis_9.model.dto.AlbumDetailsDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumSongDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumSongListDto
-import com.beemer.unofficial.fromis_9.model.dto.WeverseShopAlbumListDto
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -35,9 +34,6 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     private val _albumSongList = MutableLiveData<List<AlbumSongListDto>>()
     val albumSongList: LiveData<List<AlbumSongListDto>> = _albumSongList
 
-    private val _weverseShopAlbumList = MutableLiveData<List<WeverseShopAlbumListDto>>()
-    val weverseShopAlbumList: LiveData<List<WeverseShopAlbumListDto>> = _weverseShopAlbumList
-
     fun setType(type: Type) {
         _type.value = type
     }
@@ -63,12 +59,6 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     fun getAlbumSongList() {
         viewModelScope.launch {
             _albumSongList.value = repository.getAlbumSongList()
-        }
-    }
-
-    fun getWeverseShopAlbumList() {
-        viewModelScope.launch {
-            _weverseShopAlbumList.value = repository.getWeverseShopAlbumList()
         }
     }
 }

@@ -13,7 +13,7 @@ class WeverseShopAlbumListDiffUtil(private val oldList: List<WeverseShopAlbumLis
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].title == newList[newItemPosition].title
+        return oldList[oldItemPosition].itemId == newList[newItemPosition].itemId
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

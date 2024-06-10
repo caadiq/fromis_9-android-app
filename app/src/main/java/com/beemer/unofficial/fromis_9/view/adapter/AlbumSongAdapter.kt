@@ -123,7 +123,6 @@ class AlbumSongAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .load("https://i.ytimg.com/vi/${item.videoId}/maxresdefault.jpg")
                 .error("https://i.ytimg.com/vi/${item.videoId}/mqdefault.jpg")
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .sizeMultiplier(0.5f)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                         binding.progressIndicator.hide()

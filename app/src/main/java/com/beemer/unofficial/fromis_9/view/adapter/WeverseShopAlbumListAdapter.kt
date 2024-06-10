@@ -48,7 +48,7 @@ class WeverseShopAlbumListAdapter : RecyclerView.Adapter<WeverseShopAlbumListAda
         fun bind(item: WeverseShopAlbumListDto) {
             binding.progressIndicator.show()
 
-            Glide.with(binding.root).load(item.imgSrc)
+            Glide.with(binding.root).load(item.img)
                 .placeholder(ColorDrawable(Color.TRANSPARENT))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .listener(object : RequestListener<Drawable> {
