@@ -1,9 +1,9 @@
 package com.beemer.unofficial.fromis_9.view.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.beemer.unofficial.fromis_9.view.adapter.HomeAlbumItem
+import com.beemer.unofficial.fromis_9.view.adapter.HomeLatestNewsItem
 
-class HomeAlbumDiffUtil(private val oldList: List<HomeAlbumItem>, private val newList: List<HomeAlbumItem>) : DiffUtil.Callback() {
+class HomeNewsListDiffUtil(private val oldList: List<HomeLatestNewsItem>, private val newList: List<HomeLatestNewsItem>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }

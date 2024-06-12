@@ -52,6 +52,9 @@
     <!--row_home_album_more.xml-->
     <string name="str_home_album_more_more">더보기</string>
 
+    <!--row_home_news_more.xml-->
+    <string name="str_home_news_more_more">더보기</string>
+
     <!--row_weverse_shop_album_list.xml-->
     <string name="str_weverse_shop_album_list_sold_out">품절</string>
 

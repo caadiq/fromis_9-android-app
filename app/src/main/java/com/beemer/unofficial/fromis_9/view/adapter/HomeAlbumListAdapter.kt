@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.RowHomeAlbumBinding
 import com.beemer.unofficial.fromis_9.databinding.RowHomeAlbumMoreBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
-import com.beemer.unofficial.fromis_9.view.diff.HomeAlbumDiffUtil
+import com.beemer.unofficial.fromis_9.view.diff.HomeAlbumListDiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -90,7 +90,7 @@ class HomeAlbumListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun setItemList(list: List<HomeAlbumItem>) {
-        val diffCallback = HomeAlbumDiffUtil(itemList, list)
+        val diffCallback = HomeAlbumListDiffUtil(itemList, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
         itemList.clear()
