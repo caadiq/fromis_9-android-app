@@ -36,6 +36,9 @@
     <string name="str_member_birth">생년월일</string>
     <string name="str_member_position">포지션</string>
     <string name="str_member_sns">SNS</string>
+
+    <!--activity_news.xml-->
+    <string name="str_news_title">최근 소식</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>

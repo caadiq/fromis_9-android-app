@@ -1,6 +1,7 @@
 package com.beemer.unofficial.fromis_9.model.repository
 
 import com.beemer.unofficial.fromis_9.model.api.NewsApi
+import com.beemer.unofficial.fromis_9.model.dto.LatestNews
 import com.beemer.unofficial.fromis_9.model.dto.WeverseShopAlbumListDto
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
@@ -11,5 +12,9 @@ class NewsRepository @Inject constructor(retrofit: Retrofit) {
 
     suspend fun getWeverseShopAlbumList(): List<WeverseShopAlbumListDto> {
         return newsApi.getWeverseShopAlbumList().awaitResponse().body() ?: emptyList()
+    }
+
+    suspend fun getNewsList(): List<LatestNews> {
+        return newsApi.getNewsList().awaitResponse().body() ?: emptyList()
     }
 }

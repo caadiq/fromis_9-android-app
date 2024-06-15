@@ -93,9 +93,7 @@ class HomeFragment : Fragment() {
                 }
                 is HomeItem.HomeNews -> {
                     if (item.newsList.isEmpty()) {
-//                        val intent = Intent(requireContext(), NewsListActivity::class.java)
-//                        startActivity(intent)
-                        Toast.makeText(requireContext(), "더보기", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(requireContext(), NewsListActivity::class.java))
                     } else {
                         val news = item.newsList[0]
 
