@@ -1,12 +1,12 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.ActivitySettingsBinding
 import com.beemer.unofficial.fromis_9.viewmodel.SettingsViewModel
-import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +35,10 @@ class SettingsActivity : AppCompatActivity() {
                 .withAboutVersionShown(true)
                 .withAboutAppName(getString(R.string.app_name))
                 .start(this)
+        }
+
+        binding.txtChangelog.setOnClickListener {
+            startActivity(Intent(this, ChangelogActivity::class.java))
         }
     }
 

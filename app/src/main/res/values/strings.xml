@@ -39,6 +39,9 @@
 
     <!--activity_news.xml-->
     <string name="str_news_title">최근 소식</string>
+
+    <!--activity_changelog_list.xml-->
+    <string name="str_changelog_title">체인지로그</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>

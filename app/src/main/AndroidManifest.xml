@@ -39,6 +39,7 @@
         <activity android:name=".view.view.AlbumSongSearchActivity" />
         <activity android:name=".view.view.WeverseShopActivity" />
         <activity android:name=".view.view.NewsListActivity" />
+        <activity android:name=".view.view.ChangelogActivity" />
         <activity
             android:name=".view.view.VideoDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
