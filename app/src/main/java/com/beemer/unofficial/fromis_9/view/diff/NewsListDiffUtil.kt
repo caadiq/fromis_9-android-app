@@ -1,9 +1,9 @@
 package com.beemer.unofficial.fromis_9.view.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.beemer.unofficial.fromis_9.model.dto.LatestNews
+import com.beemer.unofficial.fromis_9.view.adapter.NewsItem
 
-class NewsListDiffUtil(private val oldList: List<LatestNews>, private val newList: List<LatestNews>) : DiffUtil.Callback() {
+class NewsListDiffUtil(private val oldList: List<NewsItem>, private val newList: List<NewsItem>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }
@@ -13,7 +13,7 @@ class NewsListDiffUtil(private val oldList: List<LatestNews>, private val newLis
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
+        return oldList[oldItemPosition]::class == newList[newItemPosition]::class
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

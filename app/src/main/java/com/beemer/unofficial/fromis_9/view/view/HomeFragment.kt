@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.beemer.unofficial.fromis_9.databinding.FragmentHomeBinding
 import com.beemer.unofficial.fromis_9.view.adapter.HomeAdapter
 import com.beemer.unofficial.fromis_9.view.adapter.HomeItem
 import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.stringToDate
+import com.beemer.unofficial.fromis_9.view.utils.IntentHelper.openUri
 import com.beemer.unofficial.fromis_9.viewmodel.Fromis9ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
@@ -97,16 +96,7 @@ class HomeFragment : Fragment() {
                     } else {
                         val news = item.newsList[0]
 
-                        val intent = Intent(Intent.ACTION_VIEW, news.url.toUri())
-
-                        val packageManager = requireContext().packageManager
-                        val activities = packageManager.queryIntentActivities(intent, 0)
-                        val isIntentSafe = activities.isNotEmpty()
-
-                        if (isIntentSafe)
-                            startActivity(intent)
-                        else
-                            Toast.makeText(requireContext(), "해당 URL을 열 수 있는 앱이 없습니다.", Toast.LENGTH_SHORT).show()
+                        openUri(requireContext(), news.url)
                     }
                 }
             }

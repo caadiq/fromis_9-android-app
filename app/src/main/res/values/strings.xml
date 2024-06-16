@@ -61,6 +61,9 @@
     <!--row_weverse_shop_album_list.xml-->
     <string name="str_weverse_shop_album_list_sold_out">품절</string>
 
+    <!--row_news_footer.xml-->
+    <string name="str_news_footer_footer">최근 3일까지의 소식을 볼 수 있습니다.</string>
+
     <!--dialog_yearmonth_picker.xml-->
     <string name="str_yearmonth_cancel">취소</string>
     <string name="str_yearmonth_confirm">확인</string>

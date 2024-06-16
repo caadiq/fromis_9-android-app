@@ -1,13 +1,12 @@
 package com.beemer.unofficial.fromis_9.view.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import com.beemer.unofficial.fromis_9.databinding.ActivityNewsListBinding
+import com.beemer.unofficial.fromis_9.view.adapter.NewsItem
 import com.beemer.unofficial.fromis_9.view.adapter.NewsListAdapter
+import com.beemer.unofficial.fromis_9.view.utils.IntentHelper.openUri
 import com.beemer.unofficial.fromis_9.viewmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,16 +33,7 @@ class NewsListActivity : AppCompatActivity() {
         }
 
         newsListAdapter.setOnItemClickListener { item, _ ->
-            val intent = Intent(Intent.ACTION_VIEW, item.url.toUri())
-
-            val packageManager = packageManager
-            val activities = packageManager.queryIntentActivities(intent, 0)
-            val isIntentSafe = activities.isNotEmpty()
-
-            if (isIntentSafe)
-                startActivity(intent)
-            else
-                Toast.makeText(this, "해당 URL을 열 수 있는 앱이 없습니다.", Toast.LENGTH_SHORT).show()
+            openUri(this, item.item.url)
         }
     }
 
@@ -52,7 +42,7 @@ class NewsListActivity : AppCompatActivity() {
             getNewsList()
 
             newsList.observe(this@NewsListActivity) { list ->
-                newsListAdapter.setItemList(list)
+                newsListAdapter.setItemList(list.map { NewsItem.News(it) })
             }
         }
     }
