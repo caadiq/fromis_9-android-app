@@ -39,7 +39,7 @@ class ChangelogListAdapter : RecyclerView.Adapter<ChangelogListAdapter.ViewHolde
 
         fun bind(item: ChangelogListDto) {
             changelogFeatureListAdapter.setItemList(item.changelog)
-            binding.txtVersion.text = item.version
+            binding.txtVersion.text = "v${item.version}"
             binding.txtDate.text = item.date.replace("-", ". ")
         }
     }
