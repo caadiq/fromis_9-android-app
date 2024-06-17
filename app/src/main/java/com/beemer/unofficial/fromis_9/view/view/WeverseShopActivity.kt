@@ -1,6 +1,7 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.databinding.ActivityWeverseShopBinding
@@ -36,9 +37,14 @@ class WeverseShopActivity : AppCompatActivity() {
     private fun setupViewModel() {
         newsViewModel.apply {
             getWeverseShopAlbumList()
+            binding.shimmerFrameLayout.startShimmer()
 
             weverseShopAlbumList.observe(this@WeverseShopActivity) { list ->
                 weverseShopAlbumListAdapter.setItemList(list.reversed())
+                binding.shimmerFrameLayout.apply {
+                    stopShimmer()
+                    visibility = View.GONE
+                }
             }
         }
     }

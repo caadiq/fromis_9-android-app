@@ -88,6 +88,7 @@ dependencies {
     implementation(libs.calendar)
     implementation(libs.readmore)
     implementation(libs.aboutlibraries)
+    implementation(libs.shimmer)
 
     coreLibraryDesugaring(libs.desugarJdkLibs)
 }

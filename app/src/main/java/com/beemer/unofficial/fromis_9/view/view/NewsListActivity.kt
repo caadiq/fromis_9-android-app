@@ -1,6 +1,7 @@
 package com.beemer.unofficial.fromis_9.view.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.databinding.ActivityNewsListBinding
@@ -40,9 +41,14 @@ class NewsListActivity : AppCompatActivity() {
     private fun setupViewModel() {
         newsViewModel.apply {
             getNewsList()
+            binding.shimmerFrameLayout.startShimmer()
 
             newsList.observe(this@NewsListActivity) { list ->
                 newsListAdapter.setItemList(list.map { NewsItem.News(it) })
+                binding.shimmerFrameLayout.apply {
+                    stopShimmer()
+                    visibility = View.GONE
+                }
             }
         }
     }
