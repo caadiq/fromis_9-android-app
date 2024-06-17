@@ -46,7 +46,7 @@ object DateTimeConverter {
             diff < 3600 -> "${diff / 60}분 전"
             diff < 86400 -> "${diff / 3600}시간 전"
             diff < 604800 -> "${diff / 86400}일 전"
-            diff < 2419200 -> "${diff / 604800}주 전" // 4 weeks = 2419200 seconds
+            diff < 2419200 -> "${diff / 604800}주 전"
             else -> past.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
         }
     }

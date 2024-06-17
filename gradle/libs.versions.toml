@@ -27,6 +27,7 @@ themedToggleButton = "1.4.1"
 youtubePlayer = "12.1.0"
 calendar = "2.5.1"
 readmore = "1.0.0"
+shimmer = "0.5.0"
 
 desugar_jdk_libs = "2.0.4"
 
@@ -60,6 +61,7 @@ youtubePlayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", nam
 calendar = { group = "com.kizitonwose.calendar", name = "view", version.ref = "calendar" }
 readmore = { group = "kr.co.prnd", name = "readmore-textview", version.ref = "readmore" }
 aboutlibraries = { group = "com.mikepenz", name = "aboutlibraries", version.ref = "aboutlib" }
+shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmer" }
 
 desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 

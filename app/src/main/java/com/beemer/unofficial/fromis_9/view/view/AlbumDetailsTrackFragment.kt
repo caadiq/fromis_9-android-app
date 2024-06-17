@@ -20,12 +20,10 @@ class AlbumDetailsTrackFragment : Fragment() {
     private lateinit var albumTrackListAdapter: AlbumTrackListAdapter
 
     companion object {
-        fun newInstance(colorMain: String?, colorPrimary: String?, colorSecondary: String?): AlbumDetailsTrackFragment {
+        fun newInstance(colorMain: String?): AlbumDetailsTrackFragment {
             val fragment = AlbumDetailsTrackFragment()
             val args = Bundle()
             args.putString("colorMain", colorMain)
-            args.putString("colorPrimary", colorPrimary)
-            args.putString("colorSecondary", colorSecondary)
             fragment.arguments = args
             return fragment
         }
@@ -60,8 +58,6 @@ class AlbumDetailsTrackFragment : Fragment() {
             val intent = Intent(requireContext(), AlbumSongActivity::class.java)
             intent.putExtra("songName", item.songName)
             intent.putExtra("colorMain", arguments?.getString("colorMain"))
-            intent.putExtra("colorPrimary", arguments?.getString("colorPrimary"))
-            intent.putExtra("colorSecondary", arguments?.getString("colorSecondary"))
             intent.putExtra("titleTrack", item.titleTrack)
             startActivity(intent)
         }

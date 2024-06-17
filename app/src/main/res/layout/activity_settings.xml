@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -80,14 +81,30 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtVersion"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:textColor="@color/gray"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/version"
                     app:layout_constraintStart_toEndOf="@+id/viewVersion"
-                    app:layout_constraintTop_toTopOf="@+id/version" />
+                    app:layout_constraintTop_toTopOf="@+id/version"
+                    tools:text="1.0.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtLatestVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:textColor="@color/green"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/version"
+                    app:layout_constraintStart_toEndOf="@+id/txtVersion"
+                    app:layout_constraintTop_toTopOf="@+id/version"
+                    tools:text="(1.0.1)"
+                    tools:visibility="visible" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnUpdate"
@@ -145,14 +162,15 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtCache"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:textColor="@color/gray"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/cache"
                     app:layout_constraintStart_toEndOf="@+id/viewCache"
-                    app:layout_constraintTop_toTopOf="@+id/cache" />
+                    app:layout_constraintTop_toTopOf="@+id/cache"
+                    tools:text="1.24MB" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnRemoveCache"

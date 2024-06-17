@@ -54,7 +54,7 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
 
         binding.imgPrev.setOnClickListener {
             val year = binding.txtYear.text.toString().toInt()
-            if (year == 2018)
+            if (year == 2017)
                 return@setOnClickListener
             binding.txtYear.text = (year - 1).toString()
         }

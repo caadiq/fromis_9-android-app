@@ -5,7 +5,6 @@ import com.beemer.unofficial.fromis_9.model.dto.AlbumDetailsDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumSongDto
 import com.beemer.unofficial.fromis_9.model.dto.AlbumSongListDto
-import com.beemer.unofficial.fromis_9.model.dto.WeverseShopAlbumListDto
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import javax.inject.Inject
@@ -27,9 +26,5 @@ class AlbumRepository @Inject constructor(retrofit: Retrofit) {
 
     suspend fun getAlbumSongList(): List<AlbumSongListDto> {
         return albumApi.getAlbumSongList().awaitResponse().body() ?: emptyList()
-    }
-
-    suspend fun getWeverseShopAlbumList(): List<WeverseShopAlbumListDto> {
-        return albumApi.getWeverseShopAlbumList().awaitResponse().body() ?: emptyList()
     }
 }

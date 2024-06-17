@@ -8,7 +8,6 @@ import com.beemer.unofficial.fromis_9.databinding.ActivityAlbumListBinding
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumListAdapter
 import com.beemer.unofficial.fromis_9.view.utils.ItemDecoratorDivider
 import com.beemer.unofficial.fromis_9.viewmodel.AlbumViewModel
-import com.beemer.unofficial.fromis_9.viewmodel.Sort
 import com.beemer.unofficial.fromis_9.viewmodel.Type
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,16 +47,6 @@ class AlbumListActivity : AppCompatActivity() {
                 }
             }).show(supportFragmentManager, "MenuBottomSheetDialog")
         }
-
-        binding.btnSort.setOnClickListener {
-            MenuBottomSheetDialog(listOf("정렬", "발매", "앨범", "타입"), onItemClick = { item, _ ->
-                when (item) {
-                    "발매" -> albumViewModel.setSort(Sort.DATE)
-                    "앨범" -> albumViewModel.setSort(Sort.TITLE)
-                    "타입" -> albumViewModel.setSort(Sort.TYPE)
-                }
-            }).show(supportFragmentManager, "MenuBottomSheetDialog")
-        }
     }
 
     private fun setupRecyclerView() {
@@ -72,8 +61,6 @@ class AlbumListActivity : AppCompatActivity() {
             intent.putExtra("albumName", item.albumName)
             intent.putExtra("cover", item.cover)
             intent.putExtra("colorMain", item.colorMain)
-            intent.putExtra("colorPrimary", item.colorPrimary)
-            intent.putExtra("colorSecondary", item.colorSecondary)
             startActivity(intent)
         }
     }
@@ -104,22 +91,7 @@ class AlbumListActivity : AppCompatActivity() {
                 }
 
                 if (albumListAdapter.itemCount > 0)
-                    binding.recyclerView.smoothScrollToPosition(0)
-            }
-
-            sort.observe(this@AlbumListActivity) { sort ->
-                albumListAdapter.sortList(sort)
-
-                binding.btnSort.text = sort?.let {
-                    when (it) {
-                        Sort.DATE -> "발매"
-                        Sort.TITLE -> "앨범"
-                        Sort.TYPE -> "타입"
-                    }
-                }
-
-                if (albumListAdapter.itemCount > 0)
-                    binding.recyclerView.smoothScrollToPosition(0)
+                    binding.recyclerView.scrollToPosition(0)
             }
 
             albumList.observe(this@AlbumListActivity) { list ->

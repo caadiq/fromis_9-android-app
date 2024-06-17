@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txtLyrics"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/nanum_square_neo_regular"
+    android:paddingHorizontal="24dp"
+    android:paddingBottom="24dp"
+    android:textColor="@color/dark_gray"
+    android:textSize="16sp"
+    android:lineSpacingExtra="8dp"
+    tools:text="네모 칸 속 화려한 내 모습 and I know\n나를 향해 쏟*/8아지는 heart\n네가 몰랐던 내 안의 내 모습 when I say\n넌 어떤 표정을 지을까?\n\n(너무 반짝이는 건)\nYeah, that's me, yeah, that's me\n(똑바로 볼 수 없대)\nAs you know, as you know\n조명이 꺼지는 지금 right now\n꾸밈없이 unlock\n누가 뭐라 해도 do\n\n느껴봐 me now\n숨김없이 이대로 like it\n새로워 me now\n이게 나야 이런 난 어때\n\n그래 난 안 뻔해 cliché 던질래\n어떤 모습이든 I don't care\n때론 chic 때론 cool 무심해 다정해\n정답 따윈 없어 I don't care\n\n(가장 반짝이는 건)\nYeah, that's you, yeah, that's you\n(눈으로 볼 수 없대)\nYes, I know, yes, I know\n까맣게 칠해진 맘을 light up\n내 진심을 unlock\n너도 원할 거야, go\n\n느껴봐 me now\n숨김없이 이대로 like it\n새로워 me now\n이게 나야 이런 난 어때\n\n(있는 그대로 볼래)\nThat's my world, that's my world\n(나를 다 보여 줄래)\nThat's my world, that's my world\n손끝에 닿았던 선을 넘어\n두려움은 no more\n거짓 없는 날 봐, true\n\nJust look around, 두 눈을 떠\n내 모든 것 자신 있어\nCross the line, 똑바로 봐\n너와 닮은 내가 있어\n\n살짝 넘어, now\n낯선 느낌 그래도 like it\n너도 알잖아\n전부 나야 이대로 좋아\n\n(있는 그대로 볼래)\nThat's my world, that's my world\n(나를 다 보여 줄래)\nThat's my world, that's my world\n펼쳐진 세상에 손을 뻗어\n고민 따윈 no more\n지금 나를 봐봐, you" />

@@ -5,7 +5,8 @@ data class Fromis9Dto(
     val debut: String,
     val members: List<Member>,
     val socials: List<Social>,
-    val albums: List<AlbumListDto>
+    val albums: List<AlbumListDto>,
+    val latestNews: List<LatestNews>
 )
 
 data class Member(
@@ -16,4 +17,13 @@ data class Member(
 data class Social(
     val sns: String,
     val url: String,
+)
+
+data class LatestNews(
+    val id: Int,
+    val title: String,
+    val url: String,
+    val date: String,
+    val portal: String,
+    val portalImage: String
 )

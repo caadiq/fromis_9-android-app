@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/nanum_square_neo_regular"
+    android:gravity="center"
+    android:paddingTop="16dp"
+    android:paddingBottom="28dp"
+    android:text="@string/str_news_footer_footer"
+    android:textColor="@color/gray"
+    android:textSize="14sp" />
