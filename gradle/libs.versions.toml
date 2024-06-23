@@ -1,6 +1,6 @@
 [versions]
 # 플러그인
-agp = "8.4.1"
+agp = "8.4.2"
 kotlin = "1.9.24"
 ksp = "1.9.24-1.0.20"
 aboutlib = "11.2.1"
