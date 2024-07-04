@@ -63,6 +63,11 @@ class AlbumDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        albumName?.let { albumViewModel.getAlbumDetails(it) }
+        albumName?.let {
+            albumViewModel.apply {
+                setAlbumName(it)
+                getAlbumDetails(it)
+            }
+        }
     }
 }

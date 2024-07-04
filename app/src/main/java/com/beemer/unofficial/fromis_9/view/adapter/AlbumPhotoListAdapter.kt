@@ -62,7 +62,6 @@ class AlbumPhotoListAdapter : RecyclerView.Adapter<AlbumPhotoListAdapter.ViewHol
                 })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.imgPhoto)
-
         }
     }
 
@@ -77,5 +76,9 @@ class AlbumPhotoListAdapter : RecyclerView.Adapter<AlbumPhotoListAdapter.ViewHol
         itemList.clear()
         itemList.addAll(list)
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun getItemList(): List<PhotoListDto> {
+        return itemList
     }
 }

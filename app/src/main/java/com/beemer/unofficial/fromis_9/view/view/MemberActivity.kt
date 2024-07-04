@@ -63,7 +63,7 @@ class MemberActivity : AppCompatActivity() {
                     })
                     .into(binding.imgProfile)
 
-                binding.txtBirth.text = it.birth
+                binding.txtBirth.text = it.birth.replace("-", ".")
                 binding.txtPosition.text = it.position
 
                 instagram = it.instagram
