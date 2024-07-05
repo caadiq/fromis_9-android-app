@@ -1,16 +1,20 @@
 package com.beemer.unofficial.fromis_9.view.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.RowAlbumPhotoPageBinding
 import com.beemer.unofficial.fromis_9.model.dto.PhotoListDto
 import com.beemer.unofficial.fromis_9.view.diff.AlbumPhotoListDiffUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 
 class AlbumPhotoPageAdapter : RecyclerView.Adapter<AlbumPhotoPageAdapter.ViewHolder>() {
     private var itemList = mutableListOf<PhotoListDto>()
@@ -29,14 +33,22 @@ class AlbumPhotoPageAdapter : RecyclerView.Adapter<AlbumPhotoPageAdapter.ViewHol
 
     inner class ViewHolder(private val binding: RowAlbumPhotoPageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PhotoListDto) {
-            Glide.with(binding.root)
-                .load(item.photo)
-                .preload()
+            binding.progressIndicator.show()
 
             Glide.with(binding.root)
                 .load(item.photo)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .placeholder(R.drawable.icon_fromis9_primary)
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                        binding.progressIndicator.visibility = View.GONE
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                        binding.progressIndicator.visibility = View.GONE
+                        return false
+                    }
+                })
                 .into(binding.imgPhoto)
             binding.txtConcept.apply {
                 text = item.concept
