@@ -8,4 +8,4 @@
     android:paddingBottom="28dp"
     android:text="@string/str_news_footer_footer"
     android:textColor="@color/gray"
-    android:textSize="14sp" />
+    android:textSize="14dp" />

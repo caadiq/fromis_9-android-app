@@ -8,5 +8,5 @@
     android:paddingHorizontal="24dp"
     android:paddingVertical="24dp"
     android:textColor="@color/darker_gray"
-    android:textSize="22sp"
+    android:textSize="22dp"
     tools:text="앨범" />

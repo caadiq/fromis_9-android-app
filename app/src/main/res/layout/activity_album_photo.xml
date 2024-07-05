@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/nanum_square_round_regular"
             android:textColor="@color/dark_gray"
-            android:textSize="24sp"
+            android:textSize="24dp"
             tools:text="Unlock My World" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -48,7 +48,7 @@
         android:gravity="center"
         android:paddingHorizontal="20dp"
         android:textColor="@color/dark_gray"
-        android:textSize="18sp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
