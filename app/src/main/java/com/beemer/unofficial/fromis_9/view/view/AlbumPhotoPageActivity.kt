@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -90,7 +89,6 @@ class AlbumPhotoPageActivity : AppCompatActivity(), AlbumPhotoPageAdapter.OnClic
             } else {
                 downloadImage(photoUrl)
             }
-            Log.d("테스트", "url: $photoUrl")
         }
     }
 
