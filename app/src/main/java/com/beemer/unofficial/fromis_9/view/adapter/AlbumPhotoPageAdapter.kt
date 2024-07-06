@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.RowAlbumPhotoPageBinding
@@ -16,7 +17,11 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class AlbumPhotoPageAdapter : RecyclerView.Adapter<AlbumPhotoPageAdapter.ViewHolder>() {
+class AlbumPhotoPageAdapter(private val listener: OnClickListener) : RecyclerView.Adapter<AlbumPhotoPageAdapter.ViewHolder>() {
+    interface OnClickListener {
+        fun setOnClick(item: PhotoListDto, imageView: ImageView)
+    }
+
     private var itemList = mutableListOf<PhotoListDto>()
 
     override fun getItemCount(): Int = itemList.size
@@ -53,6 +58,9 @@ class AlbumPhotoPageAdapter : RecyclerView.Adapter<AlbumPhotoPageAdapter.ViewHol
             binding.txtConcept.apply {
                 text = item.concept
                 visibility = if (item.concept.isEmpty()) View.GONE else View.VISIBLE
+            }
+            binding.imgPhoto.setOnClickListener {
+                listener.setOnClick(item, binding.imgPhoto)
             }
         }
     }

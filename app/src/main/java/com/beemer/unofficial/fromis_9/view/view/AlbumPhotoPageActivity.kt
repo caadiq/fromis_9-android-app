@@ -1,6 +1,9 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -11,10 +14,10 @@ import com.beemer.unofficial.fromis_9.model.dto.PhotoListDto
 import com.beemer.unofficial.fromis_9.view.adapter.AlbumPhotoPageAdapter
 import kotlin.math.abs
 
-class AlbumPhotoPageActivity : AppCompatActivity() {
+class AlbumPhotoPageActivity : AppCompatActivity(), AlbumPhotoPageAdapter.OnClickListener {
     private val binding by lazy { ActivityAlbumPhotoBinding.inflate(layoutInflater) }
 
-    private val albumPhotoPageAdapter = AlbumPhotoPageAdapter()
+    private lateinit var albumPhotoPageAdapter: AlbumPhotoPageAdapter
 
     private val albumName by lazy { intent.getStringExtra("albumName")}
     private val photos by lazy { intent.getParcelableArrayListExtra<PhotoListDto>("photos") }
@@ -28,12 +31,21 @@ class AlbumPhotoPageActivity : AppCompatActivity() {
         setupViewPager()
     }
 
+    override fun setOnClick(item: PhotoListDto, imageView: ImageView) {
+        val options  = ActivityOptions.makeSceneTransitionAnimation(this, imageView, "transitionImagePhoto").toBundle()
+        val intent = Intent(this, AlbumPhotoZoomActivity::class.java)
+        intent.putExtra("imageUrl", item.photo)
+        startActivity(intent, options)
+    }
+
     private fun setupView() {
         binding.txtTitle.text = albumName
         binding.txtCount.text = "${position + 1} / ${photos?.size}"
     }
 
     private fun setupViewPager() {
+        albumPhotoPageAdapter = AlbumPhotoPageAdapter(this)
+
         binding.viewPager.apply {
             adapter = albumPhotoPageAdapter
             albumPhotoPageAdapter.setItemList(photos ?: emptyList())

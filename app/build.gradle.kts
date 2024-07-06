@@ -90,6 +90,7 @@ dependencies {
     implementation(libs.readmore)
     implementation(libs.aboutlibraries)
     implementation(libs.shimmer)
+    implementation(libs.touchImageView)
 
     coreLibraryDesugaring(libs.desugarJdkLibs)
 }

@@ -36,6 +36,7 @@
         <activity android:name=".view.view.AlbumListActivity" />
         <activity android:name=".view.view.AlbumDetailsActivity" />
         <activity android:name=".view.view.AlbumPhotoPageActivity" />
+        <activity android:name=".view.view.AlbumPhotoZoomActivity" />
         <activity android:name=".view.view.AlbumSongActivity" />
         <activity android:name=".view.view.AlbumSongSearchActivity" />
         <activity android:name=".view.view.WeverseShopActivity" />
