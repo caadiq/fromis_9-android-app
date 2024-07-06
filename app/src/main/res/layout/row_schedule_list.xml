@@ -30,7 +30,7 @@
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/oval_black_outlined"
+            android:background="@drawable/oval_black_outlined_2dp"
             app:layout_constraintBottom_toBottomOf="@+id/txtTime"
             app:layout_constraintEnd_toStartOf="@+id/txtTime"
             app:layout_constraintStart_toEndOf="@+id/imgPlatform"

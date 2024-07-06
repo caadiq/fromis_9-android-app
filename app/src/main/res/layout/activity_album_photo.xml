@@ -21,8 +21,8 @@
             android:layout_gravity="center"
             android:fontFamily="@font/nanum_square_round_regular"
             android:textColor="@color/dark_gray"
-            android:textSize="24dp"
-            tools:text="Unlock My World" />
+            android:textSize="22dp"
+            tools:text="fromis_9 PRE-DEBUT SINGLE" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -53,5 +53,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="1 / 20" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDownload"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/oval_gray_outlined_1dp"
+        android:padding="12dp"
+        android:src="@drawable/icon_download"
+        android:tint="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCount"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
