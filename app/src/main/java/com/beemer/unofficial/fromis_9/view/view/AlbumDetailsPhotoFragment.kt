@@ -30,7 +30,7 @@ class AlbumDetailsPhotoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeViewModel()
+        setupViewModel()
     }
 
     override fun onDestroyView() {
@@ -53,7 +53,7 @@ class AlbumDetailsPhotoFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
+    private fun setupViewModel() {
         albumViewModel.apply {
             albumName.observe(viewLifecycleOwner) {
                 album = it

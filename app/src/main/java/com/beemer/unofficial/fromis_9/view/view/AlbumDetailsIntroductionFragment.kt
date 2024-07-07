@@ -23,7 +23,7 @@ class AlbumDetailsIntroductionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeViewModel()
+        setupViewModel()
     }
 
     override fun onDestroyView() {
@@ -31,7 +31,7 @@ class AlbumDetailsIntroductionFragment : Fragment() {
         _binding = null
     }
 
-    private fun observeViewModel() {
+    private fun setupViewModel() {
         albumViewModel.albumDetails.observe(viewLifecycleOwner) { albumDetails ->
             binding.txtDescription.text = albumDetails.description
         }

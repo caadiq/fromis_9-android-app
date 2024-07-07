@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             setupFragment()
         }
         setupBottomNavigation()
-        observeViewModel()
+        setupViewModel()
     }
 
     private fun setupFragment() {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeViewModel() {
+    private fun setupViewModel() {
         mainViewModel.currentFragmentType.observe(this) { fragmentType ->
             val currentFragment = supportFragmentManager.findFragmentByTag(fragmentType.tag)
             supportFragmentManager.beginTransaction().apply {
