@@ -65,7 +65,10 @@ class VideoDetailsActivity : AppCompatActivity() {
         binding.txtTitle.text = title
         binding.txtViews.text = if (views == -1) "" else formatViews(views)
         binding.txtPublished.text = publishedAt?.let { timeAgo(it) }
-        binding.txtDescription.text = description
+        binding.txtDescription.apply {
+            text = description
+            visibility = if (description.isNullOrEmpty()) View.GONE else View.VISIBLE
+        }
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
