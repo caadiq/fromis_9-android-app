@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.ActivitySettingsBinding
+import com.beemer.unofficial.fromis_9.model.utils.DownloadAndInstallApk
 import com.beemer.unofficial.fromis_9.viewmodel.ChangelogViewModel
 import com.beemer.unofficial.fromis_9.viewmodel.SettingsViewModel
 import com.mikepenz.aboutlibraries.LibsBuilder
@@ -19,17 +20,24 @@ class SettingsActivity : AppCompatActivity() {
     private val settingsViewModel: SettingsViewModel by viewModels()
     private val changelogViewModel: ChangelogViewModel by viewModels()
 
+    private lateinit var apk: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         setupView()
-        observeViewModel()
+        setupViewModel()
     }
 
     private fun setupView() {
         binding.btnRemoveCache.setOnClickListener {
             settingsViewModel.clearCache()
+        }
+
+        binding.btnUpdate.setOnClickListener {
+            val downloadAndInstallApk = DownloadAndInstallApk(this, apk, "fromis_9")
+            downloadAndInstallApk.startDownloadingApk()
         }
 
         binding.txtLicense.setOnClickListener {
@@ -45,7 +53,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeViewModel() {
+    private fun setupViewModel() {
         settingsViewModel.apply {
             appVersion.observe(this@SettingsActivity) {
                 binding.txtVersion.text = it
@@ -66,6 +74,7 @@ class SettingsActivity : AppCompatActivity() {
                     text = "(${it.version})"
                     visibility = if (it.version != binding.txtVersion.text.toString()) View.VISIBLE else View.GONE
                 }
+                apk = it.apk
             }
         }
     }

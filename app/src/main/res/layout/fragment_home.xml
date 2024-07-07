@@ -20,7 +20,7 @@
             android:fontFamily="@font/nanum_square_round_extra_bold"
             android:text="@string/app_name"
             android:textColor="@color/dark_gray"
-            android:textSize="24sp" />
+            android:textSize="24dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnSettings"

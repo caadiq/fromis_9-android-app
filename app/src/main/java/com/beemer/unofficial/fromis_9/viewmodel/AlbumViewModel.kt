@@ -22,6 +22,12 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
     private val _type = MutableLiveData(Type.ALL)
     val type: LiveData<Type> = _type
 
+    private val _albumName = MutableLiveData<String>()
+    val albumName: LiveData<String> = _albumName
+
+    private val _photoUrl = MutableLiveData<String>()
+    val photoUrl: LiveData<String> = _photoUrl
+
     private val _albumList = MutableLiveData<List<AlbumListDto>>()
     val albumList: LiveData<List<AlbumListDto>> = _albumList
 
@@ -36,6 +42,14 @@ class AlbumViewModel @Inject constructor(private val repository: AlbumRepository
 
     fun setType(type: Type) {
         _type.value = type
+    }
+
+    fun setAlbumName(albumName: String) {
+        _albumName.value = albumName
+    }
+
+    fun setPhotoUrl(photoUrl: String) {
+        _photoUrl.value = photoUrl
     }
 
     fun getAlbumList() {

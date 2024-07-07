@@ -37,7 +37,7 @@
                 android:fontFamily="@font/nanum_square_round_extra_bold"
                 android:text="@string/str_settings_info"
                 android:textColor="@color/dark_gray"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
@@ -62,7 +62,7 @@
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:text="@string/str_settings_version"
                     android:textColor="@color/dark_gray"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,7 +85,7 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:textColor="@color/gray"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="@+id/version"
                     app:layout_constraintStart_toEndOf="@+id/viewVersion"
                     app:layout_constraintTop_toTopOf="@+id/version"
@@ -98,7 +98,7 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:textColor="@color/green"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/version"
                     app:layout_constraintStart_toEndOf="@+id/txtVersion"
@@ -115,7 +115,7 @@
                     android:enabled="false"
                     android:text="@string/str_settings_version_update"
                     android:textColor="@color/color_button_text"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/viewDividerInfo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -142,7 +142,7 @@
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:text="@string/str_settings_cache"
                     android:textColor="@color/dark_gray"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewDividerInfo" />
@@ -166,7 +166,7 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:textColor="@color/gray"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="@+id/cache"
                     app:layout_constraintStart_toEndOf="@+id/viewCache"
                     app:layout_constraintTop_toTopOf="@+id/cache"
@@ -181,7 +181,7 @@
                     android:enabled="false"
                     android:text="@string/str_settings_cache_clear"
                     android:textColor="@color/color_button_text"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewDividerInfo" />
@@ -197,7 +197,7 @@
                 android:fontFamily="@font/nanum_square_round_extra_bold"
                 android:text="@string/str_settings_others"
                 android:textColor="@color/dark_gray"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutInfo" />
 
@@ -226,7 +226,7 @@
                     android:paddingEnd="0dp"
                     android:text="@string/str_settings_license"
                     android:textColor="@color/dark_gray"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/viewDividerOthers"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -256,7 +256,7 @@
                     android:paddingEnd="0dp"
                     android:text="@string/str_settings_changelog"
                     android:textColor="@color/dark_gray"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

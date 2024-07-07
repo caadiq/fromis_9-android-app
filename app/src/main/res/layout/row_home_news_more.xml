@@ -9,4 +9,4 @@
     android:stateListAnimator="@null"
     android:text="@string/str_home_news_more_more"
     android:textColor="@color/white"
-    android:textSize="16sp" />
+    android:textSize="16dp" />

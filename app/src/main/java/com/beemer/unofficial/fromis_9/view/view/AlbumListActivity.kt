@@ -90,7 +90,7 @@ class AlbumListActivity : AppCompatActivity() {
                     }
                 }
 
-                if (albumListAdapter.itemCount > 0)
+                if (albumListAdapter.getItemSize() > 0)
                     binding.recyclerView.scrollToPosition(0)
             }
 

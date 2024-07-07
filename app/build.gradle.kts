@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.aboutlib)
+    alias(libs.plugins.parcelize)
 }
 
 fun getProperty(propertyKey: String): String {
@@ -89,6 +90,7 @@ dependencies {
     implementation(libs.readmore)
     implementation(libs.aboutlibraries)
     implementation(libs.shimmer)
+    implementation(libs.touchImageView)
 
     coreLibraryDesugaring(libs.desugarJdkLibs)
 }

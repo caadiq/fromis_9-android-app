@@ -9,5 +9,5 @@
     android:paddingTop="40dp"
     android:paddingBottom="24dp"
     android:textColor="@color/darker_gray"
-    android:textSize="20sp"
+    android:textSize="20dp"
     tools:text="멤버" />

@@ -28,7 +28,7 @@
                 android:fontFamily="@font/nanum_square_round_extra_bold"
                 android:maxLines="1"
                 android:textColor="@color/dark_gray"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -129,7 +129,7 @@
         android:layout_gravity="center"
         android:text="@string/str_video_no_video"
         android:textColor="@color/dark_gray"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

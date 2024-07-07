@@ -133,4 +133,6 @@ class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>(), Fi
             }
         }
     }
+
+    fun getItemSize(): Int = filteredItemList.size
 }

@@ -38,7 +38,7 @@ class AlbumDetailsTrackFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeViewModel()
+        setupViewModel()
     }
 
     override fun onDestroyView() {
@@ -63,7 +63,7 @@ class AlbumDetailsTrackFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
+    private fun setupViewModel() {
         albumViewModel.albumDetails.observe(viewLifecycleOwner) {
             albumTrackListAdapter.setItemList(it.trackList)
         }

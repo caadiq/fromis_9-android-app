@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,8 @@ class AlbumDetailsPhotoFragment : Fragment() {
 
     private val albumPhotoListAdapter = AlbumPhotoListAdapter()
 
+    private var album: String? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAlbumDetailsPhotoBinding.inflate(inflater, container, false)
         return binding.root
@@ -27,7 +30,7 @@ class AlbumDetailsPhotoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeViewModel()
+        setupViewModel()
     }
 
     override fun onDestroyView() {
@@ -40,11 +43,25 @@ class AlbumDetailsPhotoFragment : Fragment() {
             adapter = albumPhotoListAdapter
             setHasFixedSize(true)
         }
+
+        albumPhotoListAdapter.setOnItemClickListener { _, position ->
+            val intent = Intent(requireContext(), AlbumPhotoPageActivity::class.java)
+            intent.putExtra("albumName", album)
+            intent.putParcelableArrayListExtra("photos", ArrayList(albumPhotoListAdapter.getItemList()))
+            intent.putExtra("position", position)
+            startActivity(intent)
+        }
     }
 
-    private fun observeViewModel() {
-        albumViewModel.albumDetails.observe(viewLifecycleOwner) {
-            albumPhotoListAdapter.setItemList(it.photoList)
+    private fun setupViewModel() {
+        albumViewModel.apply {
+            albumName.observe(viewLifecycleOwner) {
+                album = it
+            }
+
+            albumDetails.observe(viewLifecycleOwner) {
+                albumPhotoListAdapter.setItemList(it.photoList)
+            }
         }
     }
 }
