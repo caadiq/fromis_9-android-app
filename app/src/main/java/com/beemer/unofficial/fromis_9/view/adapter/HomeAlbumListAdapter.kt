@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.RowHomeAlbumBinding
 import com.beemer.unofficial.fromis_9.databinding.RowHomeAlbumMoreBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
@@ -63,6 +64,8 @@ class HomeAlbumListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(item: HomeAlbumItem.Album) {
             Glide.with(binding.root)
                 .load(item.item.cover)
+                .error(R.drawable.icon_fromis9_gray)
+                .fallback(R.drawable.icon_fromis9_gray)
                 .placeholder(android.R.color.transparent)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .sizeMultiplier(0.7f)
