@@ -6,6 +6,10 @@
     <string name="str_bottom_nav_video">영상</string>
     <string name="str_bottom_nav_schedule">일정</string>
 
+    <!--menu__webview.xml-->
+    <string name="str_webview_copy_url">Url 복사</string>
+    <string name="str_webview_open_browser">브라우저에서 열기</string>
+
     <!--activity_album_list.xml-->
     <string name="str_album_list_title">앨범</string>
     <string name="str_album_list_search">노래 검색</string>
