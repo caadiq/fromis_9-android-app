@@ -73,7 +73,10 @@ class HomeNewsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.txtPortal.text = item.item.portal
             binding.txtTitle.text = item.item.title
             binding.txtDate.text = if (stringToDateTime(item.item.date, "yyyy-MM-dd'T'HH:mm:ss", Locale.KOREA).toLocalDate() == today.toLocalDate()) {
-                dateTimeToString(item.item.date, "yyyy-MM-dd'T'HH:mm:ss", "HH:mm", Locale.KOREA)
+                if (item.item.portal == "위버스 공지사항")
+                    dateTimeToString(item.item.date, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
+                else
+                    dateTimeToString(item.item.date, "yyyy-MM-dd'T'HH:mm:ss", "HH:mm", Locale.KOREA)
             } else {
                 dateTimeToString(item.item.date, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
             }
