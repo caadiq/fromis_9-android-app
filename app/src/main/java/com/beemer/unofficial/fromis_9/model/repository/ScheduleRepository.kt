@@ -9,7 +9,11 @@ import javax.inject.Inject
 class ScheduleRepository @Inject constructor(retrofit: Retrofit) {
     private val scheduleApi: ScheduleApi = retrofit.create(ScheduleApi::class.java)
 
-    suspend fun getScheduleList(year: Int?, month: Int?): List<ScheduleListDto> {
-        return scheduleApi.getScheduleList(year, month).awaitResponse().body() ?: emptyList()
+    suspend fun getScheduleList(year: Int?, month: Int?, category: List<String>): List<ScheduleListDto> {
+        return scheduleApi.getScheduleList(year, month, category).awaitResponse().body() ?: emptyList()
+    }
+
+    suspend fun getCategoryList(): List<String> {
+        return scheduleApi.getCategoryList().awaitResponse().body() ?: emptyList()
     }
 }

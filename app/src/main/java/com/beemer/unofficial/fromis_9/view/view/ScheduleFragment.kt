@@ -70,7 +70,7 @@ class ScheduleFragment : Fragment() {
         setupRecyclerView()
         setupViewModel()
 
-        scheduleViewModel.getScheduleList(currentYear, null)
+        scheduleViewModel.getScheduleList(currentYear, null, emptyList())
     }
 
     override fun onDestroyView() {
@@ -110,7 +110,7 @@ class ScheduleFragment : Fragment() {
                 // 년도가 바뀌었을 때만 바뀐 년도의 일정 목록을 가져옴
                 if (month.yearMonth.year != currentYear) {
                     currentYear = month.yearMonth.year
-                    scheduleViewModel.getScheduleList(currentYear, null)
+                    scheduleViewModel.getScheduleList(currentYear, null, emptyList())
                 }
 
                 if (this@ScheduleFragment.binding.scrollView.scrollY != 0)

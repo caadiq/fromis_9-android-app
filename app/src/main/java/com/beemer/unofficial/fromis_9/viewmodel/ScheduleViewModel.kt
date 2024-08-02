@@ -14,9 +14,18 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepo
     private val _scheduleList = MutableLiveData<List<ScheduleListDto>>()
     val scheduleList: MutableLiveData<List<ScheduleListDto>> = _scheduleList
 
-    fun getScheduleList(year: Int?, month: Int?) {
+    private val _categoryList = MutableLiveData<List<String>>()
+    val categoryList: MutableLiveData<List<String>> = _categoryList
+
+    fun getScheduleList(year: Int?, month: Int?, category: List<String>) {
         viewModelScope.launch {
-            _scheduleList.postValue(repository.getScheduleList(year, month))
+            _scheduleList.postValue(repository.getScheduleList(year, month, category))
+        }
+    }
+
+    fun getCategoryList() {
+        viewModelScope.launch {
+            _categoryList.postValue(repository.getCategoryList())
         }
     }
 }
