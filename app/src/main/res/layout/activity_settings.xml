@@ -23,7 +23,7 @@
                 android:background="@drawable/logo_background_rounded"
                 android:padding="16dp"
                 android:src="@drawable/icon_fromis9"
-                android:tint="@color/colorOnPrimary"
+                android:tint="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
