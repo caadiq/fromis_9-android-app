@@ -6,6 +6,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.RowAlbumSongListBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumSongListDto
 import com.beemer.unofficial.fromis_9.view.diff.AlbumSongListDiffUtil
@@ -43,6 +44,8 @@ class AlbumSongListAdapter : RecyclerView.Adapter<AlbumSongListAdapter.ViewHolde
         fun bind(item: AlbumSongListDto) {
             Glide.with(binding.root)
                 .load(item.albumCover)
+                .error(R.drawable.icon_fromis9_gray)
+                .fallback(R.drawable.icon_fromis9_gray)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .sizeMultiplier(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
