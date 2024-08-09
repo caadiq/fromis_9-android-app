@@ -9,6 +9,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.RowAlbumListBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
 import com.beemer.unofficial.fromis_9.view.diff.AlbumListDiffUtil
@@ -52,6 +53,8 @@ class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.ViewHolder>(), Fi
 
             Glide.with(binding.root)
                 .load(item.cover)
+                .error(R.drawable.icon_fromis9_gray)
+                .fallback(R.drawable.icon_fromis9_gray)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .sizeMultiplier(0.7f)
                 .listener(object : RequestListener<Drawable> {

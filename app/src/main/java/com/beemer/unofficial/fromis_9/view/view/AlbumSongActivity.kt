@@ -64,16 +64,20 @@ class AlbumSongActivity : AppCompatActivity() {
                 items.add(AlbumSongItem.Credits("작곡", song.composer))
                 song.arranger?.let { items.add(AlbumSongItem.Credits("편곡", it)) }
 
-                items.add(AlbumSongItem.Title("가사"))
-                items.add(AlbumSongItem.Lyrics(song.lyrics))
+                song.lyrics?.let {
+                    items.add(AlbumSongItem.Title("가사"))
+                    items.add(AlbumSongItem.Lyrics(it))
+                }
 
                 song.fanchant?.let {
                     items.add(AlbumSongItem.Title("응원법"))
                     items.add(AlbumSongItem.FanChant(it))
                 }
 
-                items.add(AlbumSongItem.Title(if (titleTrack) "뮤직비디오" else "음원"))
-                items.add(AlbumSongItem.Video(song.videoId))
+                song.videoId?.let {
+                    items.add(AlbumSongItem.Title(if (titleTrack) "뮤직비디오" else "음원"))
+                    items.add(AlbumSongItem.Video(it))
+                }
 
                 song.fanchantVideoId?.let {
                     items.add(AlbumSongItem.Title("응원법 영상"))
