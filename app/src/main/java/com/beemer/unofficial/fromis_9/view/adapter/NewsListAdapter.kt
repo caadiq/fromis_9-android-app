@@ -8,7 +8,8 @@ import com.beemer.unofficial.fromis_9.databinding.RowHomeNewsBinding
 import com.beemer.unofficial.fromis_9.databinding.RowNewsFooterBinding
 import com.beemer.unofficial.fromis_9.model.dto.LatestNews
 import com.beemer.unofficial.fromis_9.view.diff.NewsListDiffUtil
-import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter
+import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.dateTimeToString
+import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.stringToDateTime
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import java.time.LocalDateTime
@@ -68,10 +69,13 @@ class NewsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .into(binding.imgPortal)
             binding.txtPortal.text = item.portal
             binding.txtTitle.text = item.title
-            binding.txtDate.text = if (DateTimeConverter.stringToDateTime(item.date, "yyyy-MM-dd'T'HH:mm:ss", Locale.KOREA).toLocalDate() == today.toLocalDate()) {
-                DateTimeConverter.dateTimeToString(item.date, "yyyy-MM-dd'T'HH:mm:ss", "HH:mm", Locale.KOREA)
+            binding.txtDate.text = if (stringToDateTime(item.date, "yyyy-MM-dd'T'HH:mm:ss", Locale.KOREA).toLocalDate() == today.toLocalDate()) {
+                if (item.portal == "위버스 공지사항")
+                    dateTimeToString(item.date, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
+                else
+                    dateTimeToString(item.date, "yyyy-MM-dd'T'HH:mm:ss", "HH:mm", Locale.KOREA)
             } else {
-                DateTimeConverter.dateTimeToString(item.date, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
+                dateTimeToString(item.date, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
             }
         }
     }
