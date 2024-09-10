@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.beemer.unofficial.fromis_9.databinding.DialogYearmonthPickerBinding
 import com.beemer.unofficial.fromis_9.view.adapter.MonthPicker
 import com.beemer.unofficial.fromis_9.view.adapter.YearMonthPickerAdapter
+import com.beemer.unofficial.fromis_9.view.adapter.YearMonthPickerYearAdapter
 import com.beemer.unofficial.fromis_9.view.utils.ItemDecoratorDivider
 import java.time.YearMonth
 
@@ -18,11 +19,14 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
     private val binding get() = _binding!!
 
     private val yearMonthPickerAdapter = YearMonthPickerAdapter()
+    private val yearMonthPickerYearAdapter = YearMonthPickerYearAdapter()
 
     private val monthList = listOf(
         "1월", "2월", "3월", "4월", "5월", "6월",
         "7월", "8월", "9월", "10월", "11월", "12월"
     )
+
+    private val yearList = (2017..2050).toList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DialogYearmonthPickerBinding.inflate(inflater, container, false)
@@ -34,6 +38,7 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
 
         setupDialog()
         setupView()
+        setupViewPager()
         setupRecyclerView()
     }
 
@@ -50,20 +55,12 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
     }
 
     private fun setupView() {
-        binding.txtYear.text = yearMonth.year.toString()
-
         binding.imgPrev.setOnClickListener {
-            val year = binding.txtYear.text.toString().toInt()
-            if (year == 2017)
-                return@setOnClickListener
-            binding.txtYear.text = (year - 1).toString()
+            binding.viewPager.setCurrentItem(binding.viewPager.currentItem - 1, true)
         }
 
         binding.imgNext.setOnClickListener {
-            val year = binding.txtYear.text.toString().toInt()
-            if (year == 2050)
-                return@setOnClickListener
-            binding.txtYear.text = (year + 1).toString()
+            binding.viewPager.setCurrentItem(binding.viewPager.currentItem + 1, true)
         }
 
         binding.txtCancel.setOnClickListener {
@@ -71,10 +68,16 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
         }
 
         binding.txtConrifm.setOnClickListener {
-            val year = binding.txtYear.text.toString().toInt()
-
-            onConfirm(YearMonth.of(year, yearMonthPickerAdapter.getSelectedItem().plus(1)))
+            onConfirm(YearMonth.of(yearList[binding.viewPager.currentItem], yearMonthPickerAdapter.getSelectedItem().plus(1)))
             dismiss()
+        }
+    }
+
+    private fun setupViewPager() {
+        yearMonthPickerYearAdapter.setItemList(yearList)
+        binding.viewPager.apply {
+            adapter = yearMonthPickerYearAdapter
+            setCurrentItem(yearList.indexOf(yearMonth.year), false)
         }
     }
 

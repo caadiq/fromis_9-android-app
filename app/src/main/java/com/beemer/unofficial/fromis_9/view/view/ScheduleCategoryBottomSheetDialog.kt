@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.beemer.unofficial.fromis_9.databinding.BottomsheetScheduleCategoryBinding
 import com.beemer.unofficial.fromis_9.view.adapter.Category
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleCategoryListAdapter
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ScheduleCategoryBottomSheetDialog(private val categories: List<Category>, private val onItemSelected: (selectedItems: List<Category>) -> Unit) : BottomSheetDialogFragment() {
@@ -40,9 +43,9 @@ class ScheduleCategoryBottomSheetDialog(private val categories: List<Category>, 
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
             adapter = scheduleCategoryListAdapter
-            layoutManager = com.google.android.flexbox.FlexboxLayoutManager(context).apply {
-                flexDirection = com.google.android.flexbox.FlexDirection.ROW
-                flexWrap = com.google.android.flexbox.FlexWrap.WRAP
+            layoutManager = FlexboxLayoutManager(context).apply {
+                flexDirection = FlexDirection.ROW
+                flexWrap = FlexWrap.WRAP
             }
         }
 
