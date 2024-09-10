@@ -128,7 +128,7 @@ class ScheduleFragment : Fragment() {
                 // 년도가 바뀌었을 때만 바뀐 년도의 일정 목록을 가져옴
                 if (month.yearMonth.year != currentYear) {
                     currentYear = month.yearMonth.year
-                    scheduleViewModel.getScheduleList(currentYear, null, emptyList())
+                    scheduleViewModel.getScheduleList(currentYear, null, if (selectedCategory.any { it.category == "전체" && it.isSelected }) emptyList() else selectedCategory.filter { it.isSelected }.map { it.category })
                 }
 
                 if (this@ScheduleFragment.binding.scrollView.scrollY != 0)
