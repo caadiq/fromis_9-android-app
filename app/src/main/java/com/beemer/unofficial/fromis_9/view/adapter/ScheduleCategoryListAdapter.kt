@@ -67,7 +67,22 @@ class ScheduleCategoryListAdapter : RecyclerView.Adapter<ScheduleCategoryListAda
     }
 
     fun setItemSelected(position: Int) {
-        itemList[position] = itemList[position].copy(isSelected = !itemList[position].isSelected)
-        notifyItemChanged(position)
+        val selectedItem = itemList[position]
+        if (selectedItem.category == "전체") {
+            if (!selectedItem.isSelected) {
+                itemList.forEachIndexed { index, category ->
+                    itemList[index] = category.copy(isSelected = category.category == "전체")
+                    notifyItemChanged(index)
+                }
+            }
+        } else {
+            itemList[position] = selectedItem.copy(isSelected = !selectedItem.isSelected)
+            notifyItemChanged(position)
+            val allCategoryIndex = itemList.indexOfFirst { it.category == "전체" }
+            if (allCategoryIndex != -1 && itemList[allCategoryIndex].isSelected) {
+                itemList[allCategoryIndex] = itemList[allCategoryIndex].copy(isSelected = false)
+                notifyItemChanged(allCategoryIndex)
+            }
+        }
     }
 }

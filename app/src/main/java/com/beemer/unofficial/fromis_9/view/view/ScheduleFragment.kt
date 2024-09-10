@@ -250,13 +250,15 @@ class ScheduleFragment : Fragment() {
             categoryList.observe(viewLifecycleOwner) { list ->
                 this@ScheduleFragment.categoryList.clear()
                 this@ScheduleFragment.categoryList.addAll(list)
-                setSelectedCategory(list.map { Category(it, false) })
+                val updatedList = list.map { Category(it, false) }.toMutableList()
+                updatedList.add(0, Category("전체", true))
+                setSelectedCategory(updatedList)
             }
 
             categories.observe(viewLifecycleOwner) { list ->
                 this@ScheduleFragment.selectedCategory.clear()
                 this@ScheduleFragment.selectedCategory.addAll(list)
-                scheduleViewModel.getScheduleList(currentYear, null, list.filter { it.isSelected }.map { it.category })
+                scheduleViewModel.getScheduleList(currentYear, null, if (list.any { it.category == "전체" && it.isSelected }) emptyList() else list.filter { it.isSelected }.map { it.category })
             }
         }
     }
