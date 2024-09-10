@@ -89,9 +89,11 @@ class ScheduleFragment : Fragment() {
         }
 
         binding.txtCategory.setOnClickListener {
-            ScheduleCategoryBottomSheetDialog(selectedCategory) { selectedItems ->
-                scheduleViewModel.setSelectedCategory(selectedItems)
-            }.show(childFragmentManager, "ScheduleCategoryBottomSheetDialog")
+            if (selectedCategory.isNotEmpty()) {
+                ScheduleCategoryBottomSheetDialog(selectedCategory) { selectedItems ->
+                    scheduleViewModel.setSelectedCategory(selectedItems)
+                }.show(childFragmentManager, "ScheduleCategoryBottomSheetDialog")
+            }
         }
     }
 

@@ -22,7 +22,7 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingStart="20dp"
-        android:paddingTop="20dp"
+        android:paddingTop="32dp"
         android:paddingEnd="4dp"
         android:paddingBottom="4dp"
         app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
