@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -14,7 +15,7 @@ import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.CalendarDayBinding
 import com.beemer.unofficial.fromis_9.databinding.CalendarHeaderBinding
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
-import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
+import com.beemer.unofficial.fromis_9.model.dto.ScheduleDto
 import com.beemer.unofficial.fromis_9.view.adapter.Category
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
 import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
@@ -54,7 +55,7 @@ class ScheduleFragment : Fragment() {
     private var selectedDate: LocalDate = LocalDate.now()
     private var currentYear: Int = YearMonth.now().year
 
-    private val scheduleList = mutableListOf<ScheduleListDto>()
+    private val scheduleList = mutableListOf<ScheduleDto>()
     private val categoryList = mutableListOf<String>()
     private val selectedCategory = mutableListOf<Category>()
 
@@ -94,6 +95,10 @@ class ScheduleFragment : Fragment() {
                     scheduleViewModel.setSelectedCategory(selectedItems)
                 }.show(childFragmentManager, "ScheduleCategoryBottomSheetDialog")
             }
+        }
+
+        binding.imgSearch.setOnClickListener {
+            startActivity(Intent(requireContext(), ScheduleSearchActivity::class.java))
         }
     }
 

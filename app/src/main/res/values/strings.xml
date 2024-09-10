@@ -46,6 +46,9 @@
 
     <!--activity_changelog_list.xml-->
     <string name="str_changelog_title">체인지로그</string>
+
+    <!--activity_schedule_search.xml-->
+    <string name="str_schedule_search">일정 검색</string>
     
     <!--fragment_video.xml-->
     <string name="str_video_all">전체</string>

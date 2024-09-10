@@ -76,7 +76,6 @@ class VideoFragment : Fragment() {
                         queryHint = getString(R.string.str_video_search)
                         setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                             override fun onQueryTextSubmit(query: String?): Boolean {
-                                binding.swipeRefreshLayout.isRefreshing = true
                                 searchQuery = query
                                 searchView.clearFocus()
                                 binding.txtTitle.text = query
@@ -130,11 +129,11 @@ class VideoFragment : Fragment() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
-                    val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)?.findLastCompletelyVisibleItemPosition()
-                    val itemTotalCount = recyclerView.adapter?.itemCount?.minus(1)
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+                    val totalItemCount = recyclerView.adapter?.itemCount ?: 0
 
-                    // 스크롤을 끝까지 내렸을 때
-                    if (!recyclerView.canScrollVertically(1) && lastVisibleItemPosition == itemTotalCount && !isLoading) {
+                    if (totalItemCount > 0 && !isLoading && lastVisibleItemPosition >= totalItemCount - 3) {
                         videoViewModel.page.value?.let { page ->
                             page.nextPage?.let {
                                 videoViewModel.getVideoList(it, 20, searchQuery, playlist, false)
