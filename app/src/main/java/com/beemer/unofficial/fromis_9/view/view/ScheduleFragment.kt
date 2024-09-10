@@ -88,7 +88,7 @@ class ScheduleFragment : Fragment() {
             showYearMonthPickerDialog()
         }
 
-        binding.txtCategory.setOnClickListener {
+        binding.imgCategory.setOnClickListener {
             if (selectedCategory.isNotEmpty()) {
                 ScheduleCategoryBottomSheetDialog(selectedCategory) { selectedItems ->
                     scheduleViewModel.setSelectedCategory(selectedItems)

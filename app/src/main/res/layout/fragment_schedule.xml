@@ -100,17 +100,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 tools:text="24일 수요일" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_bold"
-                android:padding="16dp"
-                android:text="@string/str_schedule_category"
-                android:textColor="@color/light_dark_gray"
-                android:textSize="17dp"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgCategory"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginVertical="8dp"
+                android:padding="8dp"
+                android:tint="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDate"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toStartOf="@+id/imgSearch"
+                app:layout_constraintTop_toTopOf="@+id/txtDate"
+                app:srcCompat="@drawable/icon_category" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgSearch"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:tint="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/txtDate"
+                app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                app:layout_constraintTop_toTopOf="@+id/txtDate"
+                app:srcCompat="@drawable/icon_search" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtNoSchedule"

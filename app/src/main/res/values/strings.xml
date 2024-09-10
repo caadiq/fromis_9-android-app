@@ -58,7 +58,6 @@
 
     <!--fragment_schedule.xml-->
     <string name="str_schedule_no_schedule">일정이 없습니다.</string>
-    <string name="str_schedule_category">카테고리</string>
 
     <!--row_home_album_more.xml-->
     <string name="str_home_album_more_more">더보기</string>
