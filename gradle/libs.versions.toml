@@ -1,9 +1,9 @@
 [versions]
 # 플러그인
-agp = "8.5.0"
-kotlin = "1.9.24"
-ksp = "1.9.24-1.0.20"
-aboutlib = "11.2.1"
+agp = "8.6.0"
+kotlin = "2.0.20"
+ksp = "2.0.20-1.0.25"
+aboutlib = "11.2.3"
 
 
 # 라이브러리
@@ -18,19 +18,19 @@ swipeRefreshLayout = "1.1.0"
 
 material = "1.12.0"
 
-hilt = "2.51.1"
+hilt = "2.52"
 hiltX = "1.2.0"
 
 glide = "4.16.0"
 retrofit = "2.11.0"
 themedToggleButton = "1.4.1"
 youtubePlayer = "12.1.0"
-calendar = "2.5.1"
+calendar = "2.5.4"
 readmore = "1.0.0"
 shimmer = "0.5.0"
 touchImageView = "3.6"
 
-desugar_jdk_libs = "2.0.4"
+desugar_jdk_libs = "2.1.2"
 
 
 [libraries]
