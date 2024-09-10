@@ -58,6 +58,7 @@
 
     <!--fragment_schedule.xml-->
     <string name="str_schedule_no_schedule">일정이 없습니다.</string>
+    <string name="str_schedule_category">카테고리</string>
 
     <!--row_home_album_more.xml-->
     <string name="str_home_album_more_more">더보기</string>
@@ -74,6 +75,9 @@
     <!--dialog_yearmonth_picker.xml-->
     <string name="str_yearmonth_cancel">취소</string>
     <string name="str_yearmonth_confirm">확인</string>
+
+    <!--bottomsheet_schedule_category.xml-->
+    <string name="str_schedule_category_all">전체 선택</string>
 
     <!--menu_toolbar_search.xml-->
     <string name="str_menu__search">검색</string>

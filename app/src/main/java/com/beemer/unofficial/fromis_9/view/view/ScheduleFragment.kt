@@ -15,6 +15,7 @@ import com.beemer.unofficial.fromis_9.databinding.CalendarDayBinding
 import com.beemer.unofficial.fromis_9.databinding.CalendarHeaderBinding
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
 import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
+import com.beemer.unofficial.fromis_9.view.adapter.Category
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
 import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
 import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
@@ -54,6 +55,8 @@ class ScheduleFragment : Fragment() {
     private var currentYear: Int = YearMonth.now().year
 
     private val scheduleList = mutableListOf<ScheduleListDto>()
+    private val categoryList = mutableListOf<String>()
+    private val selectedCategory = mutableListOf<Category>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentScheduleBinding.inflate(inflater, container, false)
@@ -69,8 +72,6 @@ class ScheduleFragment : Fragment() {
         setupCalendar()
         setupRecyclerView()
         setupViewModel()
-
-        scheduleViewModel.getScheduleList(currentYear, null, emptyList())
     }
 
     override fun onDestroyView() {
@@ -85,6 +86,12 @@ class ScheduleFragment : Fragment() {
 
         binding.imgDown.setOnClickListener {
             showYearMonthPickerDialog()
+        }
+
+        binding.txtCategory.setOnClickListener {
+            ScheduleCategoryBottomSheetDialog(selectedCategory) { selectedItems ->
+                scheduleViewModel.setSelectedCategory(selectedItems)
+            }.show(childFragmentManager, "ScheduleCategoryBottomSheetDialog")
         }
     }
 
@@ -228,10 +235,27 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        scheduleViewModel.scheduleList.observe(viewLifecycleOwner) { list ->
-            scheduleList.clear()
-            scheduleList.addAll(list)
-            calendarView.notifyCalendarChanged()
+        scheduleViewModel.apply {
+            getScheduleList(currentYear, null, emptyList())
+            getCategoryList()
+
+            scheduleList.observe(viewLifecycleOwner) { list ->
+                this@ScheduleFragment.scheduleList.clear()
+                this@ScheduleFragment.scheduleList.addAll(list)
+                calendarView.notifyCalendarChanged()
+            }
+
+            categoryList.observe(viewLifecycleOwner) { list ->
+                this@ScheduleFragment.categoryList.clear()
+                this@ScheduleFragment.categoryList.addAll(list)
+                setSelectedCategory(list.map { Category(it, false) })
+            }
+
+            categories.observe(viewLifecycleOwner) { list ->
+                this@ScheduleFragment.selectedCategory.clear()
+                this@ScheduleFragment.selectedCategory.addAll(list)
+                scheduleViewModel.getScheduleList(currentYear, null, list.filter { it.isSelected }.map { it.category })
+            }
         }
     }
 
