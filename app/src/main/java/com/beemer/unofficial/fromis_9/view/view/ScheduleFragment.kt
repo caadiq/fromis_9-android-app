@@ -100,6 +100,10 @@ class ScheduleFragment : Fragment() {
         binding.imgSearch.setOnClickListener {
             startActivity(Intent(requireContext(), ScheduleSearchActivity::class.java))
         }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            scheduleViewModel.getScheduleList(currentYear, null, if (selectedCategory.any { it.category == "전체" && it.isSelected }) emptyList() else selectedCategory.filter { it.isSelected }.map { it.category })
+        }
     }
 
     private fun setupCalendar() {
@@ -247,6 +251,8 @@ class ScheduleFragment : Fragment() {
             getCategoryList()
 
             scheduleList.observe(viewLifecycleOwner) { list ->
+                binding.swipeRefreshLayout.isRefreshing = false
+
                 this@ScheduleFragment.scheduleList.clear()
                 this@ScheduleFragment.scheduleList.addAll(list)
                 calendarView.notifyCalendarChanged()
