@@ -2,6 +2,7 @@ package com.beemer.unofficial.fromis_9.model.di
 
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import com.beemer.unofficial.fromis_9.model.repository.ChangelogRepository
+import com.beemer.unofficial.fromis_9.model.repository.FcmRepository
 import com.beemer.unofficial.fromis_9.model.repository.Fromis9Repository
 import com.beemer.unofficial.fromis_9.model.repository.NewsRepository
 import com.beemer.unofficial.fromis_9.model.repository.ScheduleRepository
@@ -45,4 +46,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideChangelogRepository(retrofit: Retrofit): ChangelogRepository = ChangelogRepository(retrofit)
+
+    @Provides
+    @Singleton
+    fun provideFcmRepository(retrofit: Retrofit): FcmRepository = FcmRepository(retrofit)
 }
