@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.aboutlib)
     alias(libs.plugins.parcelize)
+    alias(libs.plugins.gms)
 }
 
 fun getProperty(propertyKey: String): String {
@@ -74,6 +75,7 @@ dependencies {
 
     // google
     implementation(libs.material)
+    implementation(libs.firebase.messaging)
 
     // hilt
     implementation(libs.hilt.android)

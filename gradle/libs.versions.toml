@@ -4,6 +4,7 @@ agp = "8.6.0"
 kotlin = "2.0.20"
 ksp = "2.0.20-1.0.25"
 aboutlib = "11.2.3"
+gms = "4.4.2"
 
 
 # 라이브러리
@@ -17,6 +18,7 @@ constraintlayout = "2.1.4"
 swipeRefreshLayout = "1.1.0"
 
 material = "1.12.0"
+firebaseMessaging = "24.0.1"
 
 hilt = "2.52"
 hiltX = "1.2.0"
@@ -47,6 +49,7 @@ androidx-swipeRefreshLayout = { group = "androidx.swiperefreshlayout", name = "s
 
 # google
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 
 # hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
@@ -75,3 +78,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 aboutlib = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlib" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin" }
+gms = { id = "com.google.gms.google-services", version.ref = "gms" }
