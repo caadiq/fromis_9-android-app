@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.swipeRefreshLayout)
+    implementation(libs.androidx.datastore)
 
     // google
     implementation(libs.material)

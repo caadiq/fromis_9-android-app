@@ -23,6 +23,8 @@
     <string name="str_weverse_shop_title">weverse shop</string>
 
     <!--activity_settings.xml-->
+    <string name="str_settings_noti">알림</string>
+    <string name="str_settings_noti_member_time">멤버시</string>
     <string name="str_settings_info">정보</string>
     <string name="str_settings_version">버전</string>
     <string name="str_settings_version_update">업데이트</string>
