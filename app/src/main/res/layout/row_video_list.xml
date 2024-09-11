@@ -28,6 +28,24 @@
         app:layout_constraintTop_toTopOf="@+id/imgThumbnail" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rectangle_primary_translucent_rounded_4dp"
+        android:fontFamily="@font/nanum_square_round_bold"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:text="@string/str_video_new"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/txtLength"
+        app:layout_constraintTop_toTopOf="@+id/txtLength"
+        tools:text="NEW"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +60,8 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/imgThumbnail"
         app:layout_constraintEnd_toEndOf="@+id/imgThumbnail"
-        tools:text="14:38" />
+        tools:text="14:38"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtTitle"

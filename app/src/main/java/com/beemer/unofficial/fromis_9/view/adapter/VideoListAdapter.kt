@@ -1,7 +1,5 @@
 package com.beemer.unofficial.fromis_9.view.adapter
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -66,7 +64,6 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.progressIndicator.show()
 
             Glide.with(binding.root).load(item.thumbnail)
-                .placeholder(ColorDrawable(Color.TRANSPARENT))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .sizeMultiplier(0.5f)
                 .listener(object : RequestListener<Drawable> {
@@ -83,6 +80,7 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .into(binding.imgThumbnail)
             binding.txtTitle.text = item.title
             binding.txtPublishedAt.text = dateTimeToString(item.publishedAt, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
+            binding.txtNew.visibility = if (item.isNew) View.VISIBLE else View.GONE
             if (item.length != null) {
                 binding.txtLength.visibility = View.VISIBLE
                 binding.txtLength.text = secToTime(item.length)

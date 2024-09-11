@@ -1,7 +1,5 @@
 package com.beemer.unofficial.fromis_9.view.adapter
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -49,7 +47,6 @@ class WeverseShopAlbumListAdapter : RecyclerView.Adapter<WeverseShopAlbumListAda
             binding.progressIndicator.show()
 
             Glide.with(binding.root).load(item.img)
-                .placeholder(ColorDrawable(Color.TRANSPARENT))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {

@@ -74,6 +74,9 @@
     <!--row_news_footer.xml-->
     <string name="str_news_footer_footer">최근 3일 전까지의 소식을 볼 수 있습니다.</string>
 
+    <!--row_video_list.xml-->
+    <string name="str_video_new">NEW</string>
+
     <!--dialog_yearmonth_picker.xml-->
     <string name="str_yearmonth_cancel">취소</string>
     <string name="str_yearmonth_confirm">확인</string>
