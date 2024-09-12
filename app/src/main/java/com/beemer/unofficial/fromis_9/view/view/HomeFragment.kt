@@ -12,7 +12,6 @@ import com.beemer.unofficial.fromis_9.databinding.FragmentHomeBinding
 import com.beemer.unofficial.fromis_9.view.adapter.HomeAdapter
 import com.beemer.unofficial.fromis_9.view.adapter.HomeItem
 import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.stringToDate
-import com.beemer.unofficial.fromis_9.view.utils.IntentHelper.openUri
 import com.beemer.unofficial.fromis_9.viewmodel.Fromis9ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
@@ -95,8 +94,9 @@ class HomeFragment : Fragment() {
                         startActivity(Intent(requireContext(), NewsListActivity::class.java))
                     } else {
                         val news = item.newsList[0]
-
-                        openUri(requireContext(), news.url)
+                        val intent = Intent(requireContext(), WebViewActivity::class.java)
+                        intent.putExtra("url", news.url)
+                        startActivity(intent)
                     }
                 }
             }

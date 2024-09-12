@@ -18,7 +18,6 @@ import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
 import com.beemer.unofficial.fromis_9.model.dto.ScheduleDto
 import com.beemer.unofficial.fromis_9.view.adapter.Category
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
-import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
 import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
@@ -241,7 +240,9 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleListAdapter.setOnItemClickListener { item, _ ->
-            item.url?.let { openUrl(requireContext(), it) }
+            val intent = Intent(requireContext(), WebViewActivity::class.java)
+            intent.putExtra("url", item.url)
+            startActivity(intent)
         }
     }
 

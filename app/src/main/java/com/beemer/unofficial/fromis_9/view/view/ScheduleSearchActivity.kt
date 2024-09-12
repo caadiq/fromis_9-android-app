@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
@@ -8,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.ActivityScheduleSearchBinding
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleSearchListAdapter
-import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
 import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -81,7 +81,9 @@ class ScheduleSearchActivity : AppCompatActivity() {
         }
 
         scheduleSearchListAdapter.setOnItemClickListener { item, _ ->
-            item.url?.let { openUrl(this, it) }
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("url", item.url)
+            startActivity(intent)
         }
     }
 
