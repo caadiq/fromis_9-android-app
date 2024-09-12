@@ -108,6 +108,8 @@ class HomeFragment : Fragment() {
             getFromis9()
 
             fromis9.observe(viewLifecycleOwner) {
+                binding.progressIndicator.hide()
+
                 val items = mutableListOf<HomeItem>()
 
                 items.add(HomeItem.HomeDebut("플로버와 함께한 지 ${dday(it.debut)}일", "${it.debut} ~ "))

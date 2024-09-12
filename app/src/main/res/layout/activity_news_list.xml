@@ -53,25 +53,25 @@
             android:orientation="vertical"
             android:paddingHorizontal="16dp">
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
-            <include layout="@layout/shimmer_home_news" />
+            <include layout="@layout/shimmer_news_list" />
 
         </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.beemer.unofficial.fromis_9.view.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.beemer.unofficial.fromis_9.databinding.ActivityAlbumListBinding
@@ -68,6 +69,7 @@ class AlbumListActivity : AppCompatActivity() {
     private fun setupViewModel() {
         albumViewModel.apply {
             getAlbumList()
+            binding.shimmerFrameLayout.startShimmer()
 
             type.observe(this@AlbumListActivity) { type ->
                 albumListAdapter.filter.filter(
@@ -96,6 +98,10 @@ class AlbumListActivity : AppCompatActivity() {
 
             albumList.observe(this@AlbumListActivity) { list ->
                 albumListAdapter.setItemList(list)
+                binding.shimmerFrameLayout.apply {
+                    stopShimmer()
+                    visibility = View.GONE
+                }
             }
         }
     }
