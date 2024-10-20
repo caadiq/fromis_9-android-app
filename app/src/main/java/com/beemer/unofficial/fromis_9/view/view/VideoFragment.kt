@@ -95,9 +95,11 @@ class VideoFragment : Fragment() {
                         }
 
                         override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                            binding.swipeRefreshLayout.isRefreshing = true
-                            searchQuery = null
-                            setTitleAndGetVideoList()
+                            if (searchQuery != null) {
+                                binding.swipeRefreshLayout.isRefreshing = true
+                                searchQuery = null
+                                setTitleAndGetVideoList()
+                            }
                             return true
                         }
                     })
