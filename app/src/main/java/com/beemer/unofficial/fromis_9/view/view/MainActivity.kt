@@ -1,13 +1,9 @@
 package com.beemer.unofficial.fromis_9.view.view
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.ActivityMainBinding
@@ -38,15 +34,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val POST_NOTIFICATIONS_CODE = 0
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        checkPermission()
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
@@ -55,12 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
         setupBottomNavigation()
         setupViewModel()
-    }
-
-    private fun checkPermission() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)){
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), POST_NOTIFICATIONS_CODE)
-        }
     }
 
     private fun setupFragment() {
