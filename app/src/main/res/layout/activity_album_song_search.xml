@@ -17,7 +17,7 @@
             android:layout_height="56dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="12dp"
-            android:background="@drawable/rectangle_light_primary_rounded_28dp"
+            android:background="@drawable/rectangle_lightergray_rounded_28dp"
             android:drawablePadding="16dp"
             android:drawableTint="@color/gray"
             android:fontFamily="@font/nanum_square_neo_bold"

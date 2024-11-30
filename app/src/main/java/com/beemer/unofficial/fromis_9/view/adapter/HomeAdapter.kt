@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beemer.unofficial.fromis_9.databinding.RowHomeAlbumListBinding
 import com.beemer.unofficial.fromis_9.databinding.RowHomeDebutBinding
 import com.beemer.unofficial.fromis_9.databinding.RowHomeMemberListBinding
-import com.beemer.unofficial.fromis_9.databinding.RowHomeNewsListBinding
 import com.beemer.unofficial.fromis_9.databinding.RowHomeTitleBinding
 import com.beemer.unofficial.fromis_9.model.dto.AlbumListDto
-import com.beemer.unofficial.fromis_9.model.dto.LatestNews
 import com.beemer.unofficial.fromis_9.model.dto.Member
 import com.beemer.unofficial.fromis_9.view.diff.HomeDiffUtil
 
@@ -19,7 +17,6 @@ sealed class HomeItem {
     data class HomeDebut(val dday: String, val debut: String) : HomeItem()
     data class HomeMember(val memberList: List<Member>) : HomeItem()
     data class HomeAlbum(val albumList: List<AlbumListDto>) : HomeItem()
-    data class HomeNews(val newsList: List<LatestNews>) : HomeItem()
 }
 
 class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -35,7 +32,6 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is HomeItem.HomeDebut -> 1
             is HomeItem.HomeMember -> 2
             is HomeItem.HomeAlbum -> 3
-            is HomeItem.HomeNews -> 4
         }
     }
 
@@ -58,10 +54,6 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val binding = RowHomeAlbumListBinding.inflate(inflater, parent, false)
                 AlbumViewHolder(binding)
             }
-            4 -> {
-                val binding = RowHomeNewsListBinding.inflate(inflater, parent, false)
-                NewsViewHolder(binding)
-            }
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -72,7 +64,6 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is HomeItem.HomeDebut -> (holder as DebutViewHolder).bind(item)
             is HomeItem.HomeMember -> (holder as MemberViewHolder).bind(item)
             is HomeItem.HomeAlbum -> (holder as AlbumViewHolder).bind(item)
-            is HomeItem.HomeNews -> (holder as NewsViewHolder).bind(item)
         }
     }
 
@@ -142,38 +133,6 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(item: HomeItem.HomeAlbum) {
             homeALbumListAdapter.setItemList(item.albumList.map { HomeAlbumItem.Album(it) })
-        }
-    }
-
-    inner class NewsViewHolder(binding: RowHomeNewsListBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val homeNewsListAdapter = HomeNewsListAdapter()
-
-        init {
-            binding.recyclerView.apply {
-                adapter = homeNewsListAdapter
-                itemAnimator = null
-                setRecycledViewPool(viewPool)
-                setHasFixedSize(true)
-            }
-
-            homeNewsListAdapter.apply {
-                setOnNewsClickListener { albumItem, _ ->
-                    val parentPosition = bindingAdapterPosition
-                    if (parentPosition != RecyclerView.NO_POSITION) {
-                        onItemClickListener?.invoke(HomeItem.HomeNews(newsList = listOf(albumItem.item)), parentPosition)
-                    }
-                }
-                setOnMoreClickListener {
-                    val parentPosition = bindingAdapterPosition
-                    if (parentPosition != RecyclerView.NO_POSITION) {
-                        onItemClickListener?.invoke(HomeItem.HomeNews(newsList = emptyList()), parentPosition)
-                    }
-                }
-            }
-        }
-
-        fun bind(item: HomeItem.HomeNews) {
-            homeNewsListAdapter.setItemList(item.newsList.map { HomeLatestNewsItem.News(it) })
         }
     }
 

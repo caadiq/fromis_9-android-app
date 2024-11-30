@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.beemer.unofficial.fromis_9.databinding.RowScheduleListBinding
+import com.beemer.unofficial.fromis_9.databinding.RowProgressBinding
+import com.beemer.unofficial.fromis_9.databinding.RowScheduleSearchListBinding
 import com.beemer.unofficial.fromis_9.model.dto.ScheduleDto
 import com.beemer.unofficial.fromis_9.view.diff.ScheduleListDiffUtil
 import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.dateTimeToString
@@ -16,23 +17,37 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import java.util.Locale
 
-class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>() {
+class ScheduleSearchListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var itemList = mutableListOf<ScheduleDto>()
     private var onItemClickListener: ((ScheduleDto, Int) -> Unit)? = null
+    private var isLoading = false
 
-    override fun getItemCount(): Int = itemList.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = RowScheduleListBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+    companion object {
+        private const val VIEW_TYPE_ITEM = 0
+        private const val VIEW_TYPE_LOADING = 1
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(itemList[position])
+    override fun getItemCount(): Int = if (isLoading) itemList.size + 1 else itemList.size
+
+    override fun getItemViewType(position: Int): Int = if (isLoading && position == itemList.size) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder {
+        return if (viewType == VIEW_TYPE_ITEM) {
+            val binding = RowScheduleSearchListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ViewHolder(binding)
+        } else {
+            val binding = RowProgressBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            LoadingViewHolder(binding)
+        }
     }
 
-    inner class ViewHolder(private val binding: RowScheduleListBinding) : RecyclerView.ViewHolder(binding.root) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is ViewHolder) {
+            holder.bind(itemList[position])
+        }
+    }
+
+    inner class ViewHolder(private val binding: RowScheduleSearchListBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
                 val position = bindingAdapterPosition
@@ -53,7 +68,7 @@ class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
             drawable.setStroke(dpToPx(binding.root.context, 2f), color)
 
             binding.txtTime.apply {
-                text = if (item.allDay) "종일" else dateTimeToString(item.dateTime, "yyyy-MM-dd'T'HH:mm:ss", "a h:mm", Locale.KOREA)
+                text = if (item.allDay) "종일" else dateTimeToString(item.dateTime, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd  a h:mm", Locale.KOREA)
                 setTextColor(color)
             }
             binding.txtSchedule.text = item.schedule
@@ -63,6 +78,8 @@ class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
             }
         }
     }
+
+    inner class LoadingViewHolder(binding: RowProgressBinding) : RecyclerView.ViewHolder(binding.root)
 
     fun setOnItemClickListener(listener: (ScheduleDto, Int) -> Unit) {
         onItemClickListener = listener
@@ -75,5 +92,15 @@ class ScheduleListAdapter : RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
         itemList.clear()
         itemList.addAll(list)
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun showProgress() {
+        isLoading = true
+        notifyItemInserted(itemList.size)
+    }
+
+    fun hideProgress() {
+        isLoading = false
+        notifyItemRemoved(itemList.size)
     }
 }

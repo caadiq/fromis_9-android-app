@@ -1,7 +1,5 @@
 package com.beemer.unofficial.fromis_9.view.adapter
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -32,15 +30,11 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private const val VIEW_TYPE_LOADING = 1
     }
 
-    override fun getItemCount(): Int {
-        return if (isLoading) itemList.size + 1 else itemList.size
-    }
+    override fun getItemCount(): Int = if (isLoading) itemList.size + 1 else itemList.size
 
-    override fun getItemViewType(position: Int): Int {
-        return if (isLoading && position == itemList.size) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
-    }
+    override fun getItemViewType(position: Int): Int = if (isLoading && position == itemList.size) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_ITEM) {
             val binding = RowVideoListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             ViewHolder(binding)
@@ -70,7 +64,6 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.progressIndicator.show()
 
             Glide.with(binding.root).load(item.thumbnail)
-                .placeholder(ColorDrawable(Color.TRANSPARENT))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .sizeMultiplier(0.5f)
                 .listener(object : RequestListener<Drawable> {
@@ -87,6 +80,7 @@ class VideoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .into(binding.imgThumbnail)
             binding.txtTitle.text = item.title
             binding.txtPublishedAt.text = dateTimeToString(item.publishedAt, "yyyy-MM-dd'T'HH:mm:ss", "yyyy.MM.dd", Locale.KOREA)
+            binding.txtNew.visibility = if (item.isNew) View.VISIBLE else View.GONE
             if (item.length != null) {
                 binding.txtLength.visibility = View.VISIBLE
                 binding.txtLength.text = secToTime(item.length)

@@ -12,7 +12,6 @@ import com.beemer.unofficial.fromis_9.databinding.FragmentHomeBinding
 import com.beemer.unofficial.fromis_9.view.adapter.HomeAdapter
 import com.beemer.unofficial.fromis_9.view.adapter.HomeItem
 import com.beemer.unofficial.fromis_9.view.utils.DateTimeConverter.stringToDate
-import com.beemer.unofficial.fromis_9.view.utils.IntentHelper.openUri
 import com.beemer.unofficial.fromis_9.viewmodel.Fromis9ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
@@ -90,15 +89,6 @@ class HomeFragment : Fragment() {
                         startActivity(intent)
                     }
                 }
-                is HomeItem.HomeNews -> {
-                    if (item.newsList.isEmpty()) {
-                        startActivity(Intent(requireContext(), NewsListActivity::class.java))
-                    } else {
-                        val news = item.newsList[0]
-
-                        openUri(requireContext(), news.url)
-                    }
-                }
             }
         }
     }
@@ -108,18 +98,17 @@ class HomeFragment : Fragment() {
             getFromis9()
 
             fromis9.observe(viewLifecycleOwner) {
+                binding.progressIndicator.hide()
+
                 val items = mutableListOf<HomeItem>()
 
-                items.add(HomeItem.HomeDebut("플로버와 함께한 지 ${dday(it.debut)}일", "${it.debut} ~ "))
+                items.add(HomeItem.HomeDebut("플로버와 함께한 지 ${dday(it.debut, it.end)}일", "${it.debut} ~ ${it.end}"))
 
                 items.add(HomeItem.HomeTitle("멤버"))
                 items.add(HomeItem.HomeMember(it.members))
 
                 items.add(HomeItem.HomeTitle("앨범"))
                 items.add(HomeItem.HomeAlbum(it.albums))
-
-                items.add(HomeItem.HomeTitle("최근 소식"))
-                items.add(HomeItem.HomeNews(it.latestNews))
 
                 homeAdapter.setItemList(items)
 
@@ -128,11 +117,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun dday(debutDate: String) : Long {
+    private fun dday(debutDate: String, endDate: String) : Long {
         val debutDateTime = stringToDate(debutDate, "yyyy.MM.dd", Locale.KOREA).atStartOfDay()
+        val endDateTime = stringToDate(endDate, "yyyy.MM.dd", Locale.KOREA).atStartOfDay()
 
         val now = LocalDateTime.now()
-        val diff = Duration.between(debutDateTime, now)
+        val referenceDateTime = if (now.isAfter(endDateTime)) endDateTime else now
+        val diff = Duration.between(debutDateTime, referenceDateTime)
 
         return diff.toDays()
     }

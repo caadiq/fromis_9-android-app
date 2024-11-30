@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -52,10 +53,9 @@
         <activity android:name=".view.view.AlbumPhotoZoomActivity" />
         <activity android:name=".view.view.AlbumSongActivity" />
         <activity android:name=".view.view.AlbumSongSearchActivity" />
-        <activity android:name=".view.view.WeverseShopActivity" />
-        <activity android:name=".view.view.NewsListActivity" />
         <activity android:name=".view.view.ChangelogActivity" />
         <activity android:name=".view.view.WebViewActivity" />
+        <activity android:name=".view.view.ScheduleSearchActivity" />
         <activity
             android:name=".view.view.VideoDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"

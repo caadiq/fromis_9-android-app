@@ -1,5 +1,6 @@
 package com.beemer.unofficial.fromis_9.view.view
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -14,9 +15,9 @@ import com.beemer.unofficial.fromis_9.R
 import com.beemer.unofficial.fromis_9.databinding.CalendarDayBinding
 import com.beemer.unofficial.fromis_9.databinding.CalendarHeaderBinding
 import com.beemer.unofficial.fromis_9.databinding.FragmentScheduleBinding
-import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
+import com.beemer.unofficial.fromis_9.model.dto.ScheduleDto
+import com.beemer.unofficial.fromis_9.view.adapter.Category
 import com.beemer.unofficial.fromis_9.view.adapter.ScheduleListAdapter
-import com.beemer.unofficial.fromis_9.view.utils.OpenUrl.openUrl
 import com.beemer.unofficial.fromis_9.viewmodel.ScheduleViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
@@ -53,7 +54,9 @@ class ScheduleFragment : Fragment() {
     private var selectedDate: LocalDate = LocalDate.now()
     private var currentYear: Int = YearMonth.now().year
 
-    private val scheduleList = mutableListOf<ScheduleListDto>()
+    private val scheduleList = mutableListOf<ScheduleDto>()
+    private val categoryList = mutableListOf<String>()
+    private val selectedCategory = mutableListOf<Category>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentScheduleBinding.inflate(inflater, container, false)
@@ -69,8 +72,6 @@ class ScheduleFragment : Fragment() {
         setupCalendar()
         setupRecyclerView()
         setupViewModel()
-
-        scheduleViewModel.getScheduleList(currentYear, null)
     }
 
     override fun onDestroyView() {
@@ -86,13 +87,29 @@ class ScheduleFragment : Fragment() {
         binding.imgDown.setOnClickListener {
             showYearMonthPickerDialog()
         }
+
+        binding.imgCategory.setOnClickListener {
+            if (selectedCategory.isNotEmpty()) {
+                ScheduleCategoryBottomSheetDialog(selectedCategory) { selectedItems ->
+                    scheduleViewModel.setSelectedCategory(selectedItems)
+                }.show(childFragmentManager, "ScheduleCategoryBottomSheetDialog")
+            }
+        }
+
+        binding.imgSearch.setOnClickListener {
+            startActivity(Intent(requireContext(), ScheduleSearchActivity::class.java))
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            scheduleViewModel.getScheduleList(currentYear, null, if (selectedCategory.any { it.category == "전체" && it.isSelected }) emptyList() else selectedCategory.filter { it.isSelected }.map { it.category })
+        }
     }
 
     private fun setupCalendar() {
         val daysOfWeek = daysOfWeek()
         val currentMonth = YearMonth.now()
         val startMonth = YearMonth.of(2017, 1)
-        val endMonth = YearMonth.of(2050, 12)
+        val endMonth = YearMonth.of(2024, 12)
         configureBinders(daysOfWeek)
 
         calendarView.apply {
@@ -110,7 +127,7 @@ class ScheduleFragment : Fragment() {
                 // 년도가 바뀌었을 때만 바뀐 년도의 일정 목록을 가져옴
                 if (month.yearMonth.year != currentYear) {
                     currentYear = month.yearMonth.year
-                    scheduleViewModel.getScheduleList(currentYear, null)
+                    scheduleViewModel.getScheduleList(currentYear, null, if (selectedCategory.any { it.category == "전체" && it.isSelected }) emptyList() else selectedCategory.filter { it.isSelected }.map { it.category })
                 }
 
                 if (this@ScheduleFragment.binding.scrollView.scrollY != 0)
@@ -223,15 +240,38 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleListAdapter.setOnItemClickListener { item, _ ->
-            item.url?.let { openUrl(requireContext(), it) }
+            val intent = Intent(requireContext(), WebViewActivity::class.java)
+            intent.putExtra("url", item.url)
+            startActivity(intent)
         }
     }
 
     private fun setupViewModel() {
-        scheduleViewModel.scheduleList.observe(viewLifecycleOwner) { list ->
-            scheduleList.clear()
-            scheduleList.addAll(list)
-            calendarView.notifyCalendarChanged()
+        scheduleViewModel.apply {
+            getScheduleList(currentYear, null, emptyList())
+            getCategoryList()
+
+            scheduleList.observe(viewLifecycleOwner) { list ->
+                binding.swipeRefreshLayout.isRefreshing = false
+
+                this@ScheduleFragment.scheduleList.clear()
+                this@ScheduleFragment.scheduleList.addAll(list)
+                calendarView.notifyCalendarChanged()
+            }
+
+            categoryList.observe(viewLifecycleOwner) { list ->
+                this@ScheduleFragment.categoryList.clear()
+                this@ScheduleFragment.categoryList.addAll(list)
+                val updatedList = list.map { Category(it, false) }.toMutableList()
+                updatedList.add(0, Category("전체", true))
+                setSelectedCategory(updatedList)
+            }
+
+            categories.observe(viewLifecycleOwner) { list ->
+                this@ScheduleFragment.selectedCategory.clear()
+                this@ScheduleFragment.selectedCategory.addAll(list)
+                scheduleViewModel.getScheduleList(currentYear, null, if (list.any { it.category == "전체" && it.isSelected }) emptyList() else list.filter { it.isSelected }.map { it.category })
+            }
         }
     }
 

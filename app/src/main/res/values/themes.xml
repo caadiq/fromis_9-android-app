@@ -30,7 +30,7 @@
     </style>
 
     <style name="CustomRoundedBackgroundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@drawable/bottomsheet_rounded_corner</item>
     </style>
 
     <style name="StyleThemedToggleButton">

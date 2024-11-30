@@ -1,10 +1,9 @@
 package com.beemer.unofficial.fromis_9.view.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.beemer.unofficial.fromis_9.model.dto.ScheduleListDto
-import com.beemer.unofficial.fromis_9.model.dto.TrackListDto
+import com.beemer.unofficial.fromis_9.model.dto.ScheduleDto
 
-class ScheduleListDiffUtil(private val oldList: List<ScheduleListDto>, private val newList: List<ScheduleListDto>) : DiffUtil.Callback() {
+class ScheduleListDiffUtil(private val oldList: List<ScheduleDto>, private val newList: List<ScheduleDto>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }

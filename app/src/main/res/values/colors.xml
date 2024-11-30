@@ -11,7 +11,7 @@
 
     <!-- 색상 팔레트 -->
     <color name="primary">#E10714</color>
-    <color name="light_primary">#F9E2E3</color>
+    <color name="primary_translucent">#A0E10714</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#F44336</color>

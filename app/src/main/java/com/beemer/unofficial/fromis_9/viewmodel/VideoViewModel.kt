@@ -44,6 +44,7 @@ class VideoViewModel @Inject constructor(private val videoRepository: VideoRepos
                 else
                     _videoList.value?.let { it + (response?.videos ?: emptyList()) }
             )
+
             _page.postValue(response?.page)
         }
     }

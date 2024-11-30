@@ -23,15 +23,6 @@
             android:textColor="@color/dark_gray"
             android:textSize="20dp" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btnShop"
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="end"
-            android:background="@android:color/transparent"
-            android:tint="@color/dark_gray"
-            app:srcCompat="@drawable/icon_shop" />
-
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -40,7 +31,7 @@
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_light_primary_rounded_28dp_ripple"
+        android:background="@drawable/rectangle_lightergray_rounded_28dp_ripple"
         android:drawablePadding="16dp"
         android:drawableTint="@color/gray"
         android:fontFamily="@font/nanum_square_neo_bold"
@@ -60,7 +51,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/rectangle_light_primary_rounded_20dp_ripple"
+        android:background="@drawable/rectangle_lightgray_rounded_20dp_ripple"
         android:drawableEnd="@drawable/icon_arrow_down"
         android:drawablePadding="8dp"
         android:drawableTint="@color/dark_gray"
@@ -87,5 +78,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnType" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnType">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="24dp">
+
+            <include layout="@layout/shimmer_album_list" />
+
+            <include layout="@layout/shimmer_album_list" />
+
+            <include layout="@layout/shimmer_album_list" />
+
+            <include layout="@layout/shimmer_album_list" />
+
+            <include layout="@layout/shimmer_album_list" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
