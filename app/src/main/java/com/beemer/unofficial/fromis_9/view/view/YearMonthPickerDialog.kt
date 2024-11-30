@@ -26,7 +26,7 @@ class YearMonthPickerDialog(private val yearMonth: YearMonth, private val onConf
         "7월", "8월", "9월", "10월", "11월", "12월"
     )
 
-    private val yearList = (2017..2050).toList()
+    private val yearList = (2017..2024).toList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DialogYearmonthPickerBinding.inflate(inflater, container, false)

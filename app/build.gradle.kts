@@ -76,7 +76,6 @@ dependencies {
 
     // google
     implementation(libs.material)
-    implementation(libs.firebase.messaging)
 
     // hilt
     implementation(libs.hilt.android)

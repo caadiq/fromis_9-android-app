@@ -109,7 +109,7 @@ class ScheduleFragment : Fragment() {
         val daysOfWeek = daysOfWeek()
         val currentMonth = YearMonth.now()
         val startMonth = YearMonth.of(2017, 1)
-        val endMonth = YearMonth.of(2050, 12)
+        val endMonth = YearMonth.of(2024, 12)
         configureBinders(daysOfWeek)
 
         calendarView.apply {

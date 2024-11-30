@@ -19,9 +19,6 @@
     <string name="str_album_song_fanchant">응원법 영상</string>
     <string name="str_album_song_play">음원 영상</string>
 
-    <!--activity_weverse_shop.xml-->
-    <string name="str_weverse_shop_title">weverse shop</string>
-
     <!--activity_settings.xml-->
     <string name="str_settings_noti">알림</string>
     <string name="str_settings_noti_member_time">멤버시</string>
@@ -43,9 +40,6 @@
     <string name="str_member_position">포지션</string>
     <string name="str_member_sns">SNS</string>
 
-    <!--activity_news.xml-->
-    <string name="str_news_title">최근 소식</string>
-
     <!--activity_changelog_list.xml-->
     <string name="str_changelog_title">체인지로그</string>
 
@@ -66,12 +60,6 @@
 
     <!--row_home_album_more.xml-->
     <string name="str_home_album_more_more">더보기</string>
-
-    <!--row_home_news_more.xml-->
-    <string name="str_home_news_more_more">더보기</string>
-
-    <!--row_weverse_shop_album_list.xml-->
-    <string name="str_weverse_shop_album_list_sold_out">품절</string>
 
     <!--row_news_footer.xml-->
     <string name="str_news_footer_footer">최근 3일 전까지의 소식을 볼 수 있습니다.</string>

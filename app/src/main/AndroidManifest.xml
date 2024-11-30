@@ -35,13 +35,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
         <activity
             android:name=".view.view.MainActivity"
             android:exported="true"
@@ -60,8 +53,6 @@
         <activity android:name=".view.view.AlbumPhotoZoomActivity" />
         <activity android:name=".view.view.AlbumSongActivity" />
         <activity android:name=".view.view.AlbumSongSearchActivity" />
-        <activity android:name=".view.view.WeverseShopActivity" />
-        <activity android:name=".view.view.NewsListActivity" />
         <activity android:name=".view.view.ChangelogActivity" />
         <activity android:name=".view.view.WebViewActivity" />
         <activity android:name=".view.view.ScheduleSearchActivity" />

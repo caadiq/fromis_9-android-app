@@ -30,10 +30,6 @@ class AlbumListActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        binding.btnShop.setOnClickListener {
-            startActivity(Intent(this, WeverseShopActivity::class.java))
-        }
-
         binding.txtSearch.setOnClickListener {
             startActivity(Intent(this, AlbumSongSearchActivity::class.java))
         }

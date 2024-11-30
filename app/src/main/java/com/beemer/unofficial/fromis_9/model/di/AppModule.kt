@@ -1,20 +1,14 @@
 package com.beemer.unofficial.fromis_9.model.di
 
-import android.content.Context
-import com.beemer.unofficial.fromis_9.model.data.DataStoreModule
 import com.beemer.unofficial.fromis_9.model.repository.AlbumRepository
 import com.beemer.unofficial.fromis_9.model.repository.ChangelogRepository
-import com.beemer.unofficial.fromis_9.model.repository.DataStoreRepository
-import com.beemer.unofficial.fromis_9.model.repository.FcmRepository
 import com.beemer.unofficial.fromis_9.model.repository.Fromis9Repository
-import com.beemer.unofficial.fromis_9.model.repository.NewsRepository
 import com.beemer.unofficial.fromis_9.model.repository.ScheduleRepository
 import com.beemer.unofficial.fromis_9.model.repository.VideoRepository
 import com.beemer.unofficial.fromis_9.model.service.RetrofitService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -45,21 +39,5 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(retrofit: Retrofit): NewsRepository = NewsRepository(retrofit)
-
-    @Provides
-    @Singleton
     fun provideChangelogRepository(retrofit: Retrofit): ChangelogRepository = ChangelogRepository(retrofit)
-
-    @Provides
-    @Singleton
-    fun provideFcmRepository(retrofit: Retrofit): FcmRepository = FcmRepository(retrofit)
-
-    @Provides
-    @Singleton
-    fun provideDataStoreModule(@ApplicationContext context: Context) = DataStoreModule(context)
-
-    @Provides
-    @Singleton
-    fun provideDataStoreRepository(dataStoreModule: DataStoreModule): DataStoreRepository = DataStoreRepository(dataStoreModule)
 }
