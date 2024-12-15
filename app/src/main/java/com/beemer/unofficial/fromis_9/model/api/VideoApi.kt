@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface VideoApi {
-    @GET("/api/fromis9/video/list")
+    @GET("/api/fromis_9/video/list")
     fun getVideoList(
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,

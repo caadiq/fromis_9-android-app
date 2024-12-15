@@ -6,9 +6,9 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ChangelogApi {
-    @GET("/api/fromis9/changelog/list")
+    @GET("/api/fromis_9/changelog/list")
     fun getChangelogList(): Call<List<ChangelogListDto>>
 
-    @GET("/api/fromis9/changelog/latest")
+    @GET("/api/fromis_9/changelog/latest")
     fun getLatestChangelog(): Call<LatestVersionDto>
 }

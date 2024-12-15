@@ -9,15 +9,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface AlbumApi {
-    @GET("/api/fromis9/album/list")
+    @GET("/api/fromis_9/album/list")
     fun getAlbumList(): Call<List<AlbumListDto>>
 
-    @GET("/api/fromis9/album/details")
+    @GET("/api/fromis_9/album/details")
     fun getAlbumDetails(@Query("album") album: String): Call<AlbumDetailsDto>
 
-    @GET("/api/fromis9/album/song")
+    @GET("/api/fromis_9/album/song")
     fun getAlbumSong(@Query("name") name: String): Call<AlbumSongDto>
 
-    @GET("/api/fromis9/album/songs")
+    @GET("/api/fromis_9/album/songs")
     fun getAlbumSongList(): Call<List<AlbumSongListDto>>
 }

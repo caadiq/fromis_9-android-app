@@ -7,9 +7,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface Fromis9Api {
-    @GET("/api/fromis9/fromis9")
+    @GET("/api/fromis_9/fromis9")
     fun getFromis9(): Call<Fromis9Dto>
 
-    @GET("/api/fromis9/fromis9/profile/{name}")
+    @GET("/api/fromis_9/fromis9/profile/{name}")
     fun getMemberProfile(@Path("name") name: String): Call<MemberProfileDto>
 }
